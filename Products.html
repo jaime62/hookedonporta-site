@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fishing Gear by Category</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f8ff;
+      margin: 0;
+      padding: 1rem;
+      background-color: transparent;
+    }
+
+    .category {
+      background: #92D6B5;
+      color: #1a237e;
+      padding: .5rem;
+      margin-bottom: 0.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .subcategory {
+      display: none;
+      background: #e6fafa;
+      padding: 0.5rem 1rem;
+      margin-bottom: 0.5rem;
+      border-left: 4px solid #3b9c9c;
+    }
+
+    .sub-subcategory {
+      margin-left: 1rem;
+      padding: 0.25rem 0;
+    }
+
+    .sub-subcategory h4 {
+      margin: 0.5rem 0 0.25rem;
+      color: #006666;
+    }
+
+    .sub-subcategory ul {
+      padding-left: 1rem;
+      margin: 0;
+    }
+
+    .sub-subcategory li {
+      margin: 0.25rem 0;
+    }
+
+    .sub-subcategory a {
+      color: #003333;
+      text-decoration: none;
+    }
+
+    .sub-subcategory a:hover {
+      text-decoration: underline;
+    }
+
+    @media (min-width: 600px) {
+      body {
+        max-width: 600px;
+        margin: auto;
+      }
+    }
+
+    .emoji {
+      height: 36px;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Apparel & Protection -->
+  <div class="category" onclick="toggle(this)">
+    <img class="emoji" src="https://github.com/jaime62/Wheatons-World/blob/main/app/Tech-Tackle-Box/images/emoji-swimsuit.png?raw=true" alt="Apparel Emoji">
+    Apparel & Protection
+  </div>
+  <div class="subcategory">
+    <div class="sub-subcategory">
+      <h4>Gloves</h4>
+      <ul>
+        <li><a href="https://amzn.to/44Ys5zA" target="_blank" rel="sponsored nofollow">Palmyth UV Protection Fishing Gloves</a></li>
+        <li><a href="https://amzn.to/47eOiux" target="_blank" rel="sponsored nofollow">KastKing Mountain Mist Gloves</a></li>
+      </ul>
+    </div>
+    <div class="sub-subcategory">
+      <h4>Sunglasses</h4>
+      <ul>
+        <li><a href="https://amzn.to/4lb8xgg" target="_blank" rel="sponsored nofollow">KastKing Skidaway Polarized Sunglasses</a></li>
+        <li><a href="https://amzn.to/4l9ek5W" target="_blank" rel="sponsored nofollow">Fishoholic Polarized Fishing Sunglasses</a></li>
+      </ul>
+    </div>
+    <div class="sub-subcategory">
+      <h4>Sun Shirts</h4>
+      <ul>
+        <li><a href="https://amzn.to/3UJe1nu" target="_blank" rel="sponsored nofollow">Huk Men's Icon X Fishing Shirt</a></li>
+        <li><a href="https://amzn.to/45itkbA" target="_blank" rel="sponsored nofollow">Columbia Terminal Tackle Shirt</a></li>
+      </ul>
+    </div>
+    <div class="sub-subcategory">
+      <h4>Wading</h4>
+      <ul>
+        <li><a href="https://amzn.to/3UJe5Ug" target="_blank" rel="sponsored nofollow">Foxelli Neoprene Chest Waders</a></li>
+        <li><a href="https://amzn.to/4mpT7pe" target="_blank" rel="sponsored nofollow">Frogg Toggs Amphib Waders</a></li>
+      </ul>
+    </div>
+      <div class="sub-subcategory">
+      <h4>Wading Boots</h4>
+      <ul>
+        <li><a href="https://amzn.to/40OevMC" target="_blank" rel="sponsored nofollow">Unisex Wading Boots</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- Boating Accessories -->
+  <div class="category" onclick="toggle(this)">
+    <img class="emoji" src="https://github.com/jaime62/Wheatons-World/blob/main/app/Tech-Tackle-Box/images/emoji-anchor-rope.png?raw=true" alt="Boating Emoji">
+    Boating Accessories
+  </div>
+  <div class="subcategory">
+    <div class="sub-subcategory">
+      <h4>Anchors</h4>
+      <ul>
+        <li><a href="https://amzn.to/4mjYSVu" target="_blank" rel="sponsored nofollow">Seachoice Utility Anchor</a></li>
+        <li><a href="https://amzn.to/3JekwvY" target="_blank" rel="sponsored nofollow">Extreme Max Grapnel Anchor Kit</a></li>
+      </ul>
+    </div>
+    <div class="sub-subcategory">
+      <h4>Bilge Pumps</h4>
+      <ul>
+        <li><a href="https://amzn.to/4mrjLOF" target="_blank" rel="sponsored nofollow">Attwood Sahara Bilge Pumps</a></li>
+        <li><a href="https://amzn.to/4moENxl" target="_blank" rel="sponsored nofollow">Shoreline Marine Bilge Pumps</a></li>
+      </ul>
+    </div>
+    <div class="sub-subcategory">
+      <h4>Battery/Chargers</h4>
+      <ul>
+        <li><a href="https://amzn.to/45j8glk" target="_blank" rel="sponsored nofollow">Minn Kota Trolling Motor Power Center</a></li>
+        <li><a href="https://amzn.to/3Hf80Me" target="_blank" rel="sponsored nofollow">NOCO Genius Onboard Battery Chargers</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Electronics -->
+  <div class="category" onclick="toggle(this)">
+    <img class="emoji" src="https://github.com/jaime62/Wheatons-World/blob/main/app/Tech-Tackle-Box/images/emoji-fish-finder.png?raw=true" alt="Electronics Emoji">
+    Electronics
+  </div>
+  <div class="subcategory">
+    <div class="sub-subcategory">
+      <h4>Fish Finders</h4>
+      <ul>
+        <li><a href="https://amzn.to/3UK7Yz0" target="_blank" rel="sponsored nofollow">Garmin</a></li>
+        <li><a href="https://amzn.to/40OxgQ8" target="_blank" rel="sponsored nofollow">Hummingbird</a></li>
+        <li><a href="https://amzn.to/3JekzIa" target="_blank" rel="sponsored nofollow">Lowrance</a></li>
+      </ul>
+    </div>
+    <div class="sub-subcategory">
+      <h4>GPS Chartplotters</h4>
+      <ul>
+        <li><a href="https://amzn.to/4m98vGT" target="_blank" rel="sponsored nofollow">Garmin GPSMAP 86i</a></li>
+      </ul>
+    </div>
+    <div class="sub-subcategory">
+      <h4>Marine Radios</h4>
+      <ul>
+        <li><a href="https://amzn.to/4moETVJ" target="_blank" rel="sponsored nofollow">Marine Handheld Radios</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Rods & Reels -->
+  <div class="category" onclick="toggle(this)">
+    <img class="emoji" src="https://github.com/jaime62/Wheatons-World/blob/main/app/Tech-Tackle-Box/images/emoji-rod-reel.png?raw=true" alt="Rods Emoji">
+    Rods & Reels
+  </div>
+  <div class="subcategory">
+    <div class="sub-subcategory">
+      <h4>Rod & Reel Combos</h4>
+      <ul>
+        <li><a href="https://amzn.to/44ZRwRf" target="_blank" rel="sponsored nofollow">Ugly Stik GX2 Combos</a></li>
+        <li><a href="https://amzn.to/4ohM6IL" target="_blank" rel="sponsored nofollow">KastKing Centron Combos</a></li>
+        <li><a href="https://amzn.to/47dtN1n" target="_blank" rel="sponsored nofollow">Penn Saltwater Combos</a></li>
+      </ul>
+    </div>
+    <div class="sub-subcategory">
+      <h4>Baitcasting Rods</h4>
+      <ul>
+        <li><a href="https://amzn.to/46AdziF" target="_blank" rel="sponsored nofollow">Abu Garcia Baitcaster</a></li>
+      </ul>
+    </div>
+    <div class="sub-subcategory">
+      <h4>Spinning Reels</h4>
+      <ul>
+        <li><a href="https://amzn.to/4fo7N64" target="_blank" rel="sponsored nofollow">Shimano Sedona FI</a></li>
+        <li><a href="https://amzn.to/46GYiwE" target="_blank" rel="sponsored nofollow">Penn Saltwater Series Reels</a></li>
+        <li><a href="https://amzn.to/451g10w" target="_blank" rel="sponsored nofollow">Pflueger President</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Storage -->
+  <div class="category" onclick="toggle(this)">
+    <img class="emoji" src="https://github.com/jaime62/Wheatons-World/blob/main/app/Tech-Tackle-Box/images/emoji-tackle-box.png?raw=true" alt="Tackle Box">
+    Storage
+  </div>
+  <div class="subcategory">
+    <div class="sub-subcategory">
+      <h4>Tackle Bags/Boxes</h4>
+      <ul>
+        <li><a href="https://amzn.to/4mogvDz" target="_blank" rel="sponsored nofollow">Plano Tackle Bags</a></li>
+            <li><a href="https://www.amazon.com/dp/B000E3F1IA?tag=ww-tackle-box-20" target="_blank">Plano 3700 Series Stowaway</a></li>
+  </ul>
+    </div>
+  </div>
+
+  <!-- Tackle -->
+  <div class="category" onclick="toggle(this)">
+    <img class="emoji" src="https://github.com/jaime62/Wheatons-World/blob/main/app/Tech-Tackle-Box/images/emoji-lure.png?raw=true" alt="Tackle Emoji">
+    Tackle
+  </div>
+  <div class="subcategory">
+    <div class="sub-subcategory">
+      <h4>Hooks</h4>
+      <ul>
+        <li><a href="https://amzn.to/3J0llbI" target="_blank" rel="sponsored nofollow">Mustad Stainless Hooks</a></li>
+      </ul>
+    </div>
+    <div class="sub-subcategory">
+      <h4>Leaders & Wire</h4>
+      <ul>
+        <li><a href="https://amzn.to/4ohJ47u" target="_blank" rel="sponsored nofollow">Reaction Tackle Leaders & Wire</a></li>      <</ul>
+    </div>
+
+    <div class="sub-subcategory">
+      <h4>Line</h4>
+      <ul>
+        <li><a href="https://amzn.to/4mrl6oF" target="_blank" rel="sponsored nofollow">Braided</a></li>
+        <li><a href="https://amzn.to/4mmAwub" target="_blank" rel="sponsored nofollow">Fluorocarbon</a></li>
+        <li><a href="https://amzn.to/4m2yNuu" target="_blank" rel="sponsored nofollow">Fly Line</a></li>
+        <li><a href="https://amzn.to/40K1nZ2" target="_blank" rel="sponsored nofollow">Monofilament</a></li>
+        </ul>
+    </div>
+    <div class="sub-subcategory">
+      <h4>Lures</h4>
+      <ul>
+        <li><a href="https://amzn.to/3IW9lYZ" target="_blank" rel="sponsored nofollow">Crabs & Shrimp</a></li>
+        <li><a href="https://amzn.to/4oeQBE2" target="_blank" rel="sponsored nofollow">Halco Max Trolling Lures</a></li>
+        <li><a href="https://amzn.to/4fliypO" target="_blank" rel="sponsored nofollow">Lures & Leaders</a></li>
+        <li><a href="https://amzn.to/3UeO3YS" target="_blank" rel="sponsored nofollow">Spoons</a></li>
+        <li><a href="https://amzn.to/4lXfUZE" target="_blank" rel="sponsored nofollow">Top Brand Artificial</a></li>
+        <li><a href="https://amzn.to/4lbwrs1" target="_blank" rel="sponsored nofollow">Skirted Trolling Lures</a></li>
+      </ul>
+    </div>
+    <div class="sub-subcategory">
+      <h4>Swivels</h4>
+      <ul>
+        <li><a href="https://amzn.to/4fkn9IT" target="_blank" rel="sponsored nofollow">Stainless Swivels</a></li>      </ul>
+    </div>
+    <div class="sub-subcategory">
+      <h4>Weights</h4>
+      <ul>
+        <li><a href="https://amzn.to/45wOLHb" target="_blank" rel="sponsored nofollow">Saltwater Fishing Weights</a></li>      </ul>
+    </div>
+  </div>
+
+  <!-- Tools -->
+  <div class="category" onclick="toggle(this)">
+    <img class="emoji" src="https://github.com/jaime62/Wheatons-World/blob/main/app/Tech-Tackle-Box/images/emoji-plier-gaff.png?raw=true" alt="Tools Emoji">
+    Tools
+  </div>
+  <div class="subcategory">
+    <div class="sub-subcategory">
+      <h4>Cutters & Pliers</h4>
+      <ul>
+        <li><a href="https://amzn.to/3JhOCPa" target="_blank" rel="sponsored nofollow">Fishing Plyers</a></li>
+        <li><a href="https://amzn.to/45jvOGX" target="_blank" rel="sponsored nofollow">Line Snips</a></li>
+        <li><a href="https://amzn.to/45jvOGX" target="_blank" rel="sponsored nofollow">Fish Hook Retrievers</a></li>
+      </ul>
+    </div>
+    <div class="sub-subcategory">
+      <h4>Knives</h4>
+      <ul>
+        <li><a href="https://amzn.to/3UeRBu8" target="_blank" rel="sponsored nofollow">Electric Knives</a></li>
+        <li><a href="https://amzn.to/41o8eaz" target="_blank" rel="sponsored nofollow">Knife Sets</a></li>
+      </ul>
+    </div>
+    <div class="sub-subcategory">
+      <h4>Scales</h4>
+      <ul>
+        <li><a href="https://amzn.to/45f1qPf" target="_blank" rel="sponsored nofollow">Analog  Scales</a></li>
+        <li><a href="https://amzn.to/3GWEQl6" target="_blank" rel="sponsored nofollow">Digital Scalees</a></li>
+      </ul>
+    </div>
+  </div>
+
+<script>
+  let resizeTimeout;
+  let lastSentHeight = 0;
+
+  function sendHeightToParent() {
+    const currentHeight = document.documentElement.scrollHeight;
+    if (currentHeight !== lastSentHeight) {
+      window.parent.postMessage({ type: 'resize-iframe', height: currentHeight }, '*');
+      lastSentHeight = currentHeight;
+    }
+  }
+
+  function debouncedResize(delay = 150) {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(sendHeightToParent, delay);
+  }
+
+  const resizeObserver = new ResizeObserver(() => debouncedResize(150));
+  resizeObserver.observe(document.body);
+
+  const mutationObserver = new MutationObserver(() => debouncedResize(200));
+  mutationObserver.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    characterData: true
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggles = document.querySelectorAll('.category');
+    toggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const next = toggle.nextElementSibling;
+        const isVisible = next.style.display === 'block';
+
+        document.querySelectorAll('.subcategory').forEach(sub => {
+          if (sub !== next) sub.style.display = 'none';
+        });
+
+        next.style.display = isVisible ? 'none' : 'block';
+        debouncedResize(200);
+      });
+    });
+  });
+
+  window.addEventListener('load', () => debouncedResize(300));
+  window.addEventListener('resize', () => debouncedResize(200));
+</script>
+
+</body>
+</html>
