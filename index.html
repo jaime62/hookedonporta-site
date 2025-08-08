@@ -423,10 +423,30 @@
       <p>Built for locals and visitors alike, this site will keep growing with new tools, gear picks, affiliate deals, and time-saving features.</p>
     </div>
   </div>
-<div style="text-align: center;"><a href="#" onclick="openFishingReport(); return false;">
+<!--<div style="text-align: center;"><a href="#" onclick="openFishingReport(); return false;">
   Read our latest Fishing Report!
 </a>
+</div>-->
+  <style>
+.fishing-link {
+  text-decoration: none;
+  color: #0077b6; /* ocean blue */
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+.fishing-link:hover {
+  color: #0096c7;        /* lighter blue */
+  text-decoration: underline;
+  transform: scale(1.05);
+}
+</style>
+
+<div style="text-align: center;">
+  <a href="#" class="fishing-link" onclick="openFishingReport(); return false;">
+    Read our latest Fishing Report!
+  </a>
 </div>
+
   
 <!-- OPENING PARAGRAPH END -->
  <!-- STORE EMBED -->
