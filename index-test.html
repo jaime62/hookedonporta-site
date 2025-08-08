@@ -27,7 +27,7 @@
     .header {
       width: 100%;
       height: auto;
-      background-image: url('https://github.com/jaime62/Wheatons-World/blob/main/app/Tech-Tackle-Box/Underwater%20Ocean%20scene%202.png?raw=true');
+      background-image: url('https://github.com/jaime62/hookedonporta-site/blob/main/images/Underwater%20Ocean%20scene%202.png?raw=true');
       background-size: cover;
       background-position: center;
       display: flex;
@@ -141,7 +141,7 @@
     .logo {
       height: auto;
       width: auto;
-      transform: scale(1.5);
+      transform: scale(2.5);
       transform-origin: center;
     }
 
@@ -350,7 +350,7 @@
 
   <div class="header">
     <div class="title-row">
-     <a href="https://wheatonsworld.com" target="_blank"><img class="logo" src="https://github.com/jaime62/Wheatons-World/blob/main/app/Tech-Tackle-Box/WheatonsWorld-Globe.png?raw=true" alt="Wheaton's World Logo"></a>
+     <a href="https://hookedonporta.com" target="_blank"><img class="logo" src="https://github.com/jaime62/hookedonporta-site/blob/main/images/HookedOnPortA-logo-fogged_bg.png?raw=true" alt="HookedOnPortA.com"></a>
       &nbsp;<h1>Tech Tackle Box</h1>
     </div>
     <div class="nav">
@@ -408,7 +408,7 @@
   <!-- Clickable Header -->
   <div style="text-align: center;">
     <div class="about-tagline" onclick="toggleTackleBox()">
-      About Wheaton's Tech Tackle Box<span id="arrow-icon">▶</span>
+      About Tech Tackle Box<span id="arrow-icon">▶</span>
     </div>
   </div>
 </div>
@@ -416,13 +416,36 @@
 
     <!-- Collapsible Info Panel -->
     <div id="tackleBoxInfo">
-      <p><strong>Wheaton’s Tech Tackle Box</strong> is a mobile-friendly hub of fishing tools and resources for the Port Aransas area. Whether you're fishing the bay or offshore, it puts helpful info right at your fingertips.</p>
+      <p><strong> Tech Tackle Box</strong> is a mobile-friendly hub of fishing tools and resources for the Port Aransas area. Whether you're fishing the bay or offshore, it puts helpful info right at your fingertips.</p>
 
       <p>Quickly access bait cams, reef maps, interactive fishing-related maps, weather, tide, and regulation links — all without clutter.</p>
 
       <p>Built for locals and visitors alike, this site will keep growing with new tools, gear picks, affiliate deals, and time-saving features.</p>
     </div>
   </div>
+<!--<div style="text-align: center;"><a href="#" onclick="openFishingReport(); return false;">
+  Read our latest Fishing Report!
+</a>
+</div>-->
+  <style>
+.fishing-link {
+  text-decoration: none;
+  color: #0077b6; /* ocean blue */
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+.fishing-link:hover {
+  color: #0096c7;        /* lighter blue */
+  text-decoration: underline;
+  transform: scale(1.05);
+}
+</style>
+
+<div style="text-align: center;">
+  <a href="#" class="fishing-link" onclick="openFishingReport(); return false;">
+    Read our latest Fishing Report!
+  </a>
+</div>
 
   
 <!-- OPENING PARAGRAPH END -->
@@ -430,13 +453,13 @@
 <div id="amazon-ads" style="text-align: center; margin-bottom: 0; padding-bottom: 0;">
 <!--  <h2>Shop Fishing Gear</h2> -->
 <div class="tab-folder">
-  <button class="active" data-src="Products3.html">Shop Gear</button>
+  <button class="active" data-src="Products.html">Shop Gear</button>
   <button data-src="Guides.html">Local Fishing Guides</button>
 </div>
 
 <iframe
   id="product-iframe"
-  src="Products3.html"
+  src="Products.html"
   title="Fishing Products"
   loading="lazy"
   allowtransparency="true"
@@ -497,6 +520,15 @@
     info.style.display = isHidden ? "block" : "none";
     arrow.textContent = isHidden ? "▼" : "▶";
   }
+</script>
+  <script>
+function openFishingReport() {
+  window.open(
+    'https://hookedonporta.com/reports/fr08072025.html',
+    'FishingReport',
+    'width=900,height=700,resizable=yes,scrollbars=yes'
+  );
+}
 </script>
 
 </body>
