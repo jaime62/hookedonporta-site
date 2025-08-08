@@ -423,7 +423,7 @@
       <p>Built for locals and visitors alike, this site will keep growing with new tools, gear picks, affiliate deals, and time-saving features.</p>
     </div>
   </div>
-<div style="text-align: center;"><a href="#" onclick="window.open('https://hookedonporta.com/reports/fr08072025.html', '_blank'); return false;">
+<div style="text-align: center;"><a href="#" onclick="openFishingReport(); return false;">
   Read our latest Fishing Report!
 </a>
 </div>
@@ -500,6 +500,16 @@
     info.style.display = isHidden ? "block" : "none";
     arrow.textContent = isHidden ? "▼" : "▶";
   }
+
+  <script>
+function openFishingReport() {
+  window.open(
+    'https://hookedonporta.com/reports/fr08072025.html',
+    'FishingReport',
+    'width=900,height=700,resizable=yes,scrollbars=yes'
+  );
+}
+</script>
 </script>
 
 </body>
