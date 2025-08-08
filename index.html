@@ -523,12 +523,27 @@
 </script>
   <script>
 function openFishingReport() {
+  const popupWidth = 900;
+  const popupHeight = 700;
+
+  // Get the opener window's dimensions and position
+  const openerWidth = window.innerWidth;
+  const openerHeight = window.innerHeight;
+  const openerLeft = window.screenX || window.screenLeft;
+  const openerTop = window.screenY || window.screenTop;
+
+  // Calculate centered position
+  const left = openerLeft + (openerWidth - popupWidth) / 2;
+  const top = openerTop + (openerHeight - popupHeight) / 2;
+
+  // Open centered popup
   window.open(
     'https://hookedonporta.com/reports/fr08072025.html',
     'FishingReport',
-    'width=900,height=700,resizable=yes,scrollbars=yes'
+    `width=${popupWidth},height=${popupHeight},left=${left},top=${top},resizable=yes,scrollbars=yes`
   );
 }
+
 </script>
 
 </body>
