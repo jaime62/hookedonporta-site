@@ -1,104 +1,205 @@
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background-color: #f8f8f8;
-  }
-  .container {
-    max-width: 800px; /* narrower than before */
-    margin: 60px auto; /* more top/bottom space */
-    padding: 30px; /* more padding inside */
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-  }
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Port Aransas Fishing Diary</title>
+  <style>
+    :root {
+      --bg: #f8f8f8;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --shadow: 0 0 15px rgba(0,0,0,0.1);
+      --radius: 12px;
+    }
+
+    html, body {
+      padding: 0;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      line-height: 1.55;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 30px;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    /* Letterhead layout */
+    .header {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      top: 0;
+      left: 0;
+      transform: scale(1.8);
+      max-height: 120px;
+      width: auto;
+    }
+
+    .report-img {
+      display: block;
+      margin: 0 auto;
+      max-height: 80px;
+      width: auto;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    em { color: var(--muted); }
+    hr {
+      border: none;
+      border-top: 1px solid #e5e7eb;
+      margin: 24px 0;
+    }
+    h2, h3 { line-height: 1.25; margin-top: 1.2em; }
+    ul { padding-left: 1.2em; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+    }
+    th, td {
+      border: 1px solid #e5e7eb;
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        margin: 30px 16px;
+        padding: 20px;
+      }
+      .logo {
+        max-height: 90px;
+        position: static; /* stack on mobile */
+        display: block;
+        margin-bottom: 10px;
+      }
+      .report-img {
+        max-height: 64px;
+      }
+      .header {
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body>
-<div class="container">
+  <div class="container">
 
-<p><img style="border-width: 1px;" src="https://github.com/jaime62/hookedonporta-site/blob/main/images/HookedOnPortA-logo-fogged_bg.png?raw=true" alt="" width="255" height="216" /></p>
-<p><em>Date: August 7, 2025</em></p>
-<p>Hey there, fellow anglers! Welcome to my Port Aransas fishing diary—where the salt meets the soul and the stories are just as good as the catch. Let’s dive into what’s biting right now, the best surf-fishing times, offshore highlights, and the latest on season rules.</p>
-<hr />
-<h2>Best Times for Surf Fishing</h2>
-<p>If you're chasing fish from the shoreline, <strong>twilight hours</strong>—early morning and evening—are your golden window, especially when they align with <strong>major or minor solunar feeding periods</strong>. Look out for these peaks when the <strong>moon is rising or setting</strong> or directly overhead.</p>
-<p>According to today’s fishing forecast:</p>
-<ul>
-<li><strong>Thursday (Aug 7):</strong> Good fishing between <strong>7:19 AM and 11:19 AM</strong></li>
-<li><strong>Friday (Aug 8):</strong> Below average, but still workable between <strong>9:09 AM and 1:09 PM</strong></li>
-<li><strong>Monday (Aug 11):</strong> <strong>Great day</strong> with prime time early—<strong>4:03 AM to 8:03 AM</strong></li>
-</ul>
-<hr />
-<h2>Offshore &amp; Nearshore Species Targeting</h2>
-<h3>Nearshore &amp; Surf Reports</h3>
-<p>TPWD reports for August 6 show:</p>
-<ul>
-<li><strong>Redfish</strong> are doing great on the <strong>north and south jetties</strong> using live shrimp and finger mullet—and some monster reds are taking cut crab and mullet.</li>
-<li><strong>Speckled trout</strong> are hitting croaker and shrimp fished along rocks.</li>
-<li><strong>Kingfish and Spanish mackerel</strong> are showing up in force using ribbonfish or trolling shiny lures.</li>
-</ul>
-<h3>Summer Offshore Highlights</h3>
-<p>From <strong>June through August</strong>:</p>
-<ul>
-<li><strong>Red snapper</strong> is in-season—especially offshore—with a daily limit of 2 per person (16″ min) federally and 4 per day (15″ min) in state waters.</li>
-<li><strong>King mackerel (kingfish)</strong> are at peak numbers around shrimp boats; use shrimp as bait.</li>
-<li><strong>Mahi-Mahi</strong> thrive near weed lines—cruise days offer great hits.</li>
-<li><strong>Marlin and sailfish</strong> bite best in warm summer months—plan charters accordingly.</li>
-</ul>
-<h3>Seasonal Breakdown</h3>
-<table>
-<thead>
-<tr>
-<th>Species</th>
-<th>Prime Time</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Red Snapper</td>
-<td>Summer (June–August)</td>
-</tr>
-<tr>
-<td>Kingfish</td>
-<td>Late spring through early fall</td>
-</tr>
-<tr>
-<td>Mahi-Mahi</td>
-<td>May–August offshore</td>
-</tr>
-<tr>
-<td>Marlin/Sailfish</td>
-<td>Warm summer months</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2>Regulatory Seasons &amp; Limits</h2>
-<ul>
-<li><strong>Red Snapper</strong>:
-  <ul>
-    <li>Federal waters: Opens <strong>June 1, 2025</strong> (2 fish/day, 16″ min). Closing is based on monitoring.</li>
-    <li>State waters: Open year-round (4 fish/day, 15″ min).</li>
-  </ul>
-</li>
-<li><strong>Flounder</strong>: Bag limit is 5/day (15″ min) until <strong>August 31, 2025</strong>. Closed from <strong>Nov 1 to Dec 14</strong>.</li>
-</ul>
-<hr />
-<h2>Final Cast</h2>
-<ul>
-<li>Hit the surf around dawn/evening when tides align with solunar peaks.</li>
-<li>For inshore action: Redfish and trout are on fire—bring shrimp, mullet, croakers.</li>
-<li>Offshore buzz: Red snapper, kingfish, mahi-mahi, sailfish—all summer standouts.</li>
-<li>Stay legal: Know current bag &amp; size limits and check federal vs. state waters for red snapper season.</li>
-</ul>
+    <!-- Letterhead-style header -->
+    <div class="header">
+      <img
+        class="logo"
+        src="https://github.com/jaime62/hookedonporta-site/blob/main/images/HookedOnPortA-logo-fogged_bg.png?raw=true"
+        alt="Hooked On Port A logo" />
 
-</div>
+      <img
+        class="report-img"
+        src="https://github.com/jaime62/hookedonporta-site/blob/main/images/FishingReport.png?raw=true"
+        alt="Fishing Report badge" />
+    </div>
+    <hr style="width: 100%; border-top: 2px solid gray;">
+
+    <p align="left">Date: August 7, 2025</p><BR>
+    <p><b>Hey there, fellow anglers!</b><BR><BR>
+    Welcome to my Port Aransas fishing diary—where the salt meets the soul and the stories are just as good as the catch. Let’s dive into what’s biting right now, the best surf-fishing times, offshore highlights, and the latest on season rules.</p>
+    <hr />
+
+    <h2>Best Times for Surf Fishing</h2>
+    <p>If you're chasing fish from the shoreline, <strong>twilight hours</strong>—early morning and evening—are your golden window, especially when they align with <strong>major or minor solunar feeding periods</strong>. Look out for these peaks when the <strong>moon is rising or setting</strong> or directly overhead.</p>
+    <p>According to today’s fishing forecast:</p>
+    <ul>
+      <li><strong>Thursday (Aug 7):</strong> Good fishing between <strong>7:19 AM and 11:19 AM</strong></li>
+      <li><strong>Friday (Aug 8):</strong> Below average, but still workable between <strong>9:09 AM and 1:09 PM</strong></li>
+      <li><strong>Monday (Aug 11):</strong> <strong>Great day</strong> with prime time early—<strong>4:03 AM to 8:03 AM</strong></li>
+    </ul>
+    <p>Plan to hit the beach during those early-morning windows for your best chances at surf success.</p>
+    <hr />
+
+    <h2>Offshore &amp; Nearshore Species Targeting</h2>
+    <h3>Nearshore &amp; Surf Reports</h3>
+    <p>TPWD reports for August 6 show:</p>
+    <ul>
+      <li><strong>Redfish</strong> are doing great on the <strong>north and south jetties</strong> using live shrimp and finger mullet—and some monster reds are taking cut crab and mullet.</li>
+      <li><strong>Speckled trout</strong> are hitting croaker and shrimp fished along rocks.</li>
+      <li><strong>Kingfish and Spanish mackerel</strong> are showing up in force using ribbonfish or trolling shiny lures.</li>
+    </ul>
+
+    <h3>Summer Offshore Highlights</h3>
+    <p>From <strong>June through August</strong>:</p>
+    <ul>
+      <li><strong>Red snapper</strong> is in-season—especially offshore—with a daily limit of 2 per person (16″ min) federally and 4 per day (15″ min) in state waters.</li>
+      <li><strong>King mackerel (kingfish)</strong> are at peak numbers around shrimp boats; use shrimp as bait.</li>
+      <li><strong>Mahi-Mahi</strong> thrive near weed lines—cruise days offer great hits.</li>
+      <li><strong>Marlin and sailfish</strong> bite best in warm summer months—plan charters accordingly.</li>
+    </ul>
+
+    <h3>Seasonal Breakdown</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Species</th>
+          <th>Prime Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Red Snapper</td>
+          <td>Summer (June–August)</td>
+        </tr>
+        <tr>
+          <td>Kingfish</td>
+          <td>Late spring through early fall</td>
+        </tr>
+        <tr>
+          <td>Mahi-Mahi</td>
+          <td>May–August offshore</td>
+        </tr>
+        <tr>
+          <td>Marlin/Sailfish</td>
+          <td>Warm summer months</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Planning an offshore trip? Summer is your jackpot season.</p>
+    <hr />
+
+    <h2>Regulatory Seasons &amp; Limits</h2>
+    <ul>
+      <li><strong>Red Snapper</strong>:
+        <ul>
+          <li>Federal waters: Opens <strong>June 1, 2025</strong> (2 fish/day, 16″ min). Closing is based on monitoring.</li>
+          <li>State waters: Open year-round (4 fish/day, 15″ min).</li>
+        </ul>
+      </li>
+      <li><strong>Flounder</strong>: Bag limit is 5/day (15″ min) until <strong>August 31, 2025</strong>. Closed from <strong>Nov 1 to Dec 14</strong>.</li>
+    </ul>
+    <p>Pro Tip: Always carry a saltwater license with your saltwater endorsement. Exceptions apply (e.g., Free Fishing Day on June 7 or fishing from state park piers).</p>
+    <hr />
+
+    <h2>Final Cast</h2>
+    <p>Whether you're casting from the surf at dawn or chasing offshore giants, Port Aransas is delivering right now. Here's the game plan:</p>
+    <ul>
+      <li>Hit the surf around dawn/evening when tides align with solunar peaks.</li>
+      <li>For inshore action: Redfish and trout are on fire—bring shrimp, mullet, croakers.</li>
+      <li>Offshore buzz: Red snapper, kingfish, mahi-mahi, sailfish—all summer standouts.</li>
+      <li>Stay legal: Know current bag &amp; size limits and check federal vs. state waters for red snapper season.</li>
+    </ul>
+
+  </div>
 </body>
 </html>
