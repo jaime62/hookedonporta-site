@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Tech Tackle Box</title>
 
 <!-- Favicon links -->
@@ -15,24 +15,27 @@
   /* Reset + base */
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; overflow-x: hidden; font-family: Arial, sans-serif; }
-  body { color: #000; }
+  body { color: #000; background: transparent; }
+  html, body { overscroll-behavior-y: none; }
 
-  /* ---- FIXED OCEAN BACKGROUND (works on iOS) ---- */
-  .bg-fixed {
+  /* ---- FIXED FULL-PAGE OCEAN BACKGROUND (desktop + iOS) ---- */
+  body::before {
+    content: "";
     position: fixed;
     inset: 0;
+    z-index: -1;
     background-image: url("https://github.com/jaime62/hookedonporta-site/blob/main/images/sunrise-over-ocean-floor-fish.png?raw=true");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    z-index: -1;
     pointer-events: none;
-    height: 100svh;
+    height: 100svh;           /* iOS friendly */
+    transform: translateZ(0); /* reduce jank */
+    will-change: transform;
   }
   @supports not (height: 100svh) {
-    .bg-fixed { height: 100vh; }
+    body::before { height: 100vh; }
   }
-  .bg-fixed { will-change: transform; transform: translateZ(0); }
 
   /* Header (scrolls with page) */
   .header {
@@ -46,7 +49,6 @@
     justify-content: center;
     padding: 2rem 1rem 0.9rem;
   }
-
   .title-row {
     display: flex; align-items: center; justify-content: center;
     gap: 1rem; flex-wrap: wrap; text-align: center;
@@ -85,7 +87,6 @@
     60% { opacity: 1; transform: translateX(-50%) translateY(-5px); }
     100% { transform: translateX(-50%) translateY(0); }
   }
-
   .logo { height: auto; width: auto; transform: scale(2.5); transform-origin: center; }
 
   /* Headline & intro */
@@ -118,14 +119,15 @@
   }
   .fishing-link:hover { color: #0096c7; text-decoration: underline; transform: scale(1.05); }
 
-  /* Store / iframe area (transparent) */
-  #amazon-ads { margin: 2rem auto 0; padding: 0; width: 95%; max-width: 1400px; text-align: center; border-radius: 8px; }
-  #amazon-ads h2 { color: #1a237e; margin-bottom: 1rem; font-size: 2rem; }
-  #amazon-ads p { color: #444; font-size: 1.1rem; margin-bottom: 0.75rem; }
+  /* Store / iframe area — no white box, fully transparent */
+  #amazon-ads { margin: 2rem auto 0; padding: 0; width: 95%; max-width: 1400px; text-align: center; border-radius: 8px; background: transparent; }
   #amazon-ads iframe {
-    width: 100%; display: block; height: auto; border: none; border-radius: 5px; background-color: transparent;
+    width: 100%;
+    display: block;
+    border: none;
+    background: transparent;
+    height: auto; /* JS will size it */
   }
-
   .tab-folder { display: flex; justify-content: center; margin: 1.5rem 0 -0.5rem; gap: 1rem; }
   .tab-folder button {
     padding: 10px 20px; border: none; border-top-left-radius: 10px; border-top-right-radius: 10px;
@@ -134,7 +136,6 @@
   .tab-folder button.active { color: darkblue; background-color: gold; }
 
   .fishing-tagline { color: gold; font-size: 1.3rem; font-weight: bold; text-shadow: 1px 1px 4px #000; text-align: center; margin: .5rem; }
-
   .site-footer { text-align: center; font-size: 1rem; color: #666; padding: 1rem; margin-top: 1rem; border-top: 1px solid #ddd; }
 
   /* Responsive tweaks */
@@ -163,9 +164,6 @@
 </style>
 </head>
 <body>
-
-  <!-- Fixed background layer -->
-  <div class="bg-fixed" aria-hidden="true"></div>
 
   <!-- Header (scrolls with page) -->
   <div class="header">
@@ -254,7 +252,6 @@
       title="Fishing Products"
       loading="lazy"
       allowtransparency="true"
-      style="background-color: transparent; width: 100%; border: none; display:block;"
     ></iframe>
   </div>
 
@@ -318,58 +315,27 @@
     );
   }
 
-  // ===== Single, stable iframe height listener =====
-  (function () {
-    const iframe = document.getElementById('product-iframe');
-    let lastH = 0;
-    let rafId = null;
-
-    function apply(h) {
-      const next = Math.max(200, Math.min(Math.round(h), 20000)); // clamp
-      if (next === lastH) return;
-      iframe.style.height = next + 'px';
-      lastH = next;
-    }
-
-    window.addEventListener('message', (e) => {
-      const d = e.data;
-      if (!d || d.type !== 'resize-iframe') return;           // accept current child messages
-      if (e.source !== iframe.contentWindow) return;           // ensure it came from our iframe
-      const h = Number(d.height);
-      if (!Number.isFinite(h) || h <= 0) return;
-
-      if (rafId) cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(() => apply(h));
-    }, false);
-  })();
-</script>
-<script>
+  /* Single, stable iframe height listener (no loops, no bounce) */
   (function () {
     const iframe = document.getElementById('product-iframe');
     if (!iframe) return;
 
-    let lastH = 0;
+    let lastApplied = 0;
     let rafId = null;
-    let lastTick = 0;
-    const MIN_DELTA = 14;      // ignore tiny +/- jitters
-    const MAX_H = 20000;       // safety cap
-    const FPS_LIMIT = 30;      // don't apply faster than ~30fps
+    const MIN_DELTA = 14; // ignore tiny jitters
+    const MAX_H = 20000;
 
     function apply(h) {
-      const now = performance.now();
-      if (now - lastTick < (1000 / FPS_LIMIT)) return;
       const next = Math.max(200, Math.min(Math.round(h), MAX_H));
-      if (Math.abs(next - lastH) < MIN_DELTA) return;
+      if (Math.abs(next - lastApplied) < MIN_DELTA) return;
       iframe.style.height = next + 'px';
-      lastH = next;
-      lastTick = now;
+      lastApplied = next;
     }
 
     window.addEventListener('message', (e) => {
       const d = e.data;
       if (!d || d.type !== 'resize-iframe') return;
-      if (e.source !== iframe.contentWindow) return;
-
+      if (e.source !== iframe.contentWindow) return; // only our iframe
       const h = Number(d.height);
       if (!Number.isFinite(h) || h <= 0) return;
 
@@ -377,60 +343,6 @@
       rafId = requestAnimationFrame(() => apply(h));
     }, false);
   })();
-</script>
-<style>
-  /* Important: keep child fully transparent */
-  html, body {
-    background: transparent !important;
-  }
-  /* Wrap your content in a stable container with this id */
-  #page-root {
-    /* nothing required, just a consistent wrapper */
-  }
-</style>
-
-<script>
-(function(){
-  const root = document.getElementById('page-root') || document.body;
-  let last = 0;
-  let tId = null;
-  const THRESH = 12; // don't spam for <12px changes
-
-  function send(h) {
-    const next = Math.max(0, Math.round(h));
-    if (Math.abs(next - last) < THRESH) return;
-    last = next;
-    window.parent.postMessage({ type: 'resize-iframe', height: next }, '*');
-  }
-
-  function measure() {
-    // Measure the root container only (prevents doc/viewport feedback loops)
-    const h = root.scrollHeight;
-    send(h);
-  }
-
-  function schedule(ms = 120) {
-    clearTimeout(tId);
-    tId = setTimeout(measure, ms);
-  }
-
-  // Initial + after load settle
-  window.addEventListener('load', () => {
-    measure();
-    setTimeout(measure, 250);
-    setTimeout(measure, 600);
-  });
-
-  // Watch layout changes inside the root only
-  new ResizeObserver(() => schedule(120)).observe(root);
-  new MutationObserver(() => schedule(150)).observe(root, {
-    childList: true, subtree: true, attributes: true, characterData: true
-  });
-
-  // Orientation / viewport changes in child
-  window.addEventListener('orientationchange', () => schedule(250));
-  window.addEventListener('resize', () => schedule(150));
-})();
 </script>
 
 </body>
