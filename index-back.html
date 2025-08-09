@@ -12,16 +12,12 @@
 <link rel="shortcut icon" href="https://github.com/jaime62/hookedonporta-site/blob/main/images/HookedOnPortA-favicon_wbg.png?raw=true" type="image/png">
 
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
   html, body {
     font-family: Arial, sans-serif;
     background-image: url('https://github.com/jaime62/hookedonporta-site/blob/main/images/Underwater%20Ocean%20scene.png?raw=true');
-    background-attachment: fixed; /* static background */
+    background-attachment: fixed;   /* static background */
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -29,16 +25,16 @@
     overflow-x: hidden;
   }
 
-  /* Give main content a semi-transparent background for readability */
+  /* Wrapper for readability over the photo */
   .content-wrapper {
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(255,255,255,0.85);
     padding-bottom: 2rem;
   }
 
   .header {
     width: 100%;
     height: auto;
-    background: transparent; /* no image here now */
+    background: rgba(255,255,255,0.72); /* 72% opacity white */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,10 +51,7 @@
     text-align: center;
   }
 
-  .title-row img {
-    max-height: 80px;
-    width: auto;
-  }
+  .title-row img { max-height: 80px; width: auto; }
 
   .title-row h1 {
     font-size: 6vw;
@@ -87,123 +80,105 @@
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   }
+  .nav button:hover { background-color: #1976d2; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
 
-  .nav button:hover {
-    background-color: #1976d2;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  }
-
-  .tooltip-container {
-    position: relative;
-    display: inline-block;
-  }
-
+  .tooltip-container { position: relative; display: inline-block; }
   .custom-tooltip {
-    visibility: hidden;
-    opacity: 0;
-    background-color: #BBFAE5;
-    color: black;
-    font-size: 1rem;
-    border-radius: 10px;
-    padding: 8px 10px;
-    position: absolute;
-    bottom: 120%;
-    left: 60%;
+    visibility: hidden; opacity: 0;
+    background-color: #BBFAE5; color: black; font-size: 1rem;
+    border-radius: 10px; padding: 8px 10px;
+    position: absolute; bottom: 120%; left: 60%;
     transform: translateX(-50%) translateY(0);
-    white-space: nowrap;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    transition: opacity 0.3s ease;
-    z-index: 100;
+    white-space: nowrap; box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: opacity 0.3s ease; z-index: 100;
   }
-
   .custom-tooltip::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -6px;
-    border-width: 6px;
-    border-style: solid;
-    border-color: #BBFAE5 transparent transparent transparent;
+    content: ""; position: absolute; top: 100%; left: 50%; margin-left: -6px;
+    border-width: 6px; border-style: solid; border-color: #BBFAE5 transparent transparent transparent;
   }
-
   .tooltip-container:hover .custom-tooltip {
-    visibility: visible;
-    opacity: 1;
-    animation: fadeBounce 0.6s ease forwards;
+    visibility: visible; opacity: 1; animation: fadeBounce 0.6s ease forwards;
   }
-
   @keyframes fadeBounce {
-    0% {
-      opacity: 0;
-      transform: translateX(-50%) translateY(10px);
-    }
-    60% {
-      opacity: 1;
-      transform: translateX(-50%) translateY(-5px);
-    }
-    100% {
-      transform: translateX(-50%) translateY(0);
-    }
+    0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+    60% { opacity: 1; transform: translateX(-50%) translateY(-5px); }
+    100% { transform: translateX(-50%) translateY(0); }
   }
 
-  .logo {
-    height: auto;
-    width: auto;
-    transform: scale(2.5);
-    transform-origin: center;
-  }
+  .logo { height: auto; width: auto; transform: scale(2.5); transform-origin: center; }
 
   .fishing-tagline {
-    color: gold;
-    font-size: 1.3rem;
-    font-weight: bold;
-    text-shadow: 1px 1px 4px #000;
-    text-align: center;
-    margin: .5rem;
+    color: gold; font-size: 1.3rem; font-weight: bold;
+    text-shadow: 1px 1px 4px #000; text-align: center; margin: .5rem;
   }
 
   .site-footer {
-    text-align: center;
-    font-size: 1rem;
-    color: #666;
-    padding: 1rem;
-    margin-top: 1rem;
-    border-top: 1px solid #ddd;
+    text-align: center; font-size: 1rem; color: #666;
+    padding: 1rem; margin-top: 1rem; border-top: 1px solid #ddd;
+    background: rgba(255,255,255,0.85);
   }
+
+  /* Amazon Affiliate Section */
+  #amazon-ads {
+    margin: 2rem auto; padding: 2rem;
+    background-color: #f0f8ff; border-top: 3px solid #2196f3;
+    width: 95%; max-width: 1400px; text-align: center; border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  }
+  #amazon-ads h2 { color: #1a237e; margin-bottom: 1rem; font-size: 2rem; }
+  #amazon-ads p { color: #444; font-size: 1.1rem; margin-bottom: 0.75rem; }
+
+  #amazon-ads iframe {
+    width: 100%; display: block; height: auto;
+    border: none; border-radius: 5px; background-color: transparent;
+  }
+
+  .tab-folder {
+    display: flex; justify-content: center; margin: 1.5rem 0 -0.5rem; gap: 1rem;
+  }
+  .tab-folder button {
+    padding: 10px 20px; border: none;
+    border-top-left-radius: 10px; border-top-right-radius: 10px;
+    background-color: silver; color: darkblue; font-weight: bold; cursor: pointer;
+  }
+  .tab-folder button.active { color: darkblue; background-color: gold; }
+
+  .about-container { max-width: 800px; margin: 0 auto; }
+  .about-tagline {
+    color: gold; font-size: 1.4rem; font-weight: bold;
+    text-shadow: 1px 1px 4px #000; text-align: center; margin: 0.5rem auto;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.3rem 0.6rem; border-radius: 8px; cursor: pointer;
+  }
+  .about-tagline:hover { background-color: gray; border-radius: 8px; }
+  .about-tagline span { margin-left: 8px; font-size: 1.4rem; vertical-align: middle; }
+
+  #tackleBoxInfo {
+    max-width: 800px; width: 100%; display: none; margin: 1rem auto;
+    padding: 1.5rem; background-color: #f0f8ff; border: 1px solid #2196f3;
+    border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); line-height: 1.6; text-align: left;
+  }
+  #tackleBoxInfo p { margin-bottom: 1rem; }
+  #tackleBoxInfo p:last-child { margin-bottom: 0; }
+
+  .fishing-link {
+    text-decoration: none; color: #0077b6; font-weight: bold; transition: all 0.3s ease;
+  }
+  .fishing-link:hover { color: #0096c7; text-decoration: underline; transform: scale(1.05); }
 
   /* Responsive tweaks */
   @media (orientation: landscape) and (max-width: 1024px) {
-    .title-row h1 {
-      font-size: 4vw;
-    }
+    .title-row h1 { font-size: 4vw; }
   }
-
   @media (min-width: 768px) {
-    .title-row h1 {
-      font-size: 3vw;
-    }
+    .title-row h1 { font-size: 3vw; }
   }
-
   @media (max-width: 600px) {
-    .nav {
-      gap: 0.3rem;
-      padding: 0 0.5rem;
-      flex-wrap: nowrap;
-    }
-    .tooltip-container {
-      flex: 1 1 auto;
-      display: flex;
-      justify-content: center;
-    }
+    .nav { gap: 0.3rem; padding: 0 0.5rem; flex-wrap: nowrap; }
+    .tooltip-container { flex: 1 1 auto; display: flex; justify-content: center; }
     .nav button {
-      font-size: 0.65rem;
-      padding: 6px 10px;
-      min-width: 58px;
-      max-width: 80px;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
+      font-size: 0.65rem; padding: 6px 10px; min-width: 58px; max-width: 80px;
+      white-space: nowrap; text-overflow: ellipsis; overflow: hidden;
     }
   }
 </style>
@@ -214,13 +189,13 @@
 
   <div class="header">
     <div class="title-row">
-     <a href="https://hookedonporta.com" target="_blank">
-       <img class="logo" src="https://github.com/jaime62/hookedonporta-site/blob/main/images/HookedOnPortA-logo-fogged_bg.png?raw=true" alt="HookedOnPortA.com">
-     </a>
+      <a href="https://hookedonporta.com" target="_blank">
+        <img class="logo" src="https://github.com/jaime62/hookedonporta-site/blob/main/images/HookedOnPortA-logo-fogged_bg.png?raw=true" alt="HookedOnPortA.com">
+      </a>
       &nbsp;<h1>Tech Tackle Box</h1>
     </div>
-    <div class="nav">
 
+    <div class="nav">
       <div class="tooltip-container">
         <a href="https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits" target="_blank">
           <button>Bag & Length</button>
@@ -255,52 +230,119 @@
         </a>
         <div class="custom-tooltip">Check wind, wave & tide conditions around Port A!</div>
       </div>
-
     </div>
   </div>
 
   <div style="text-align: center; margin-top: 2rem;">
     <h2 style="color: #1a237e;">Welcome Port Aransas Saltwater Anglers!</h2>
-    <p style="color: black;">
-      Use the menu buttons above to navigate to the various tools that we have in our "tackle box".
-    </p>
-    <p style="color: black;">
-      <i>(All external links on this site will open in a separate window)</i>
-    </p>
+    <p style="color: black;">Use the menu buttons above to navigate to the various tools that we have in our "tackle box".</p>
+    <p style="color: black;"><i>(All external links on this site will open in a separate window)</i></p>
   </div>
 
-  <!-- About Section -->
-  <div class="about-container" style="text-align: center; margin-top: 1rem;">
-    <div class="about-tagline" onclick="toggleTackleBox()" style="color: gold; font-weight: bold; cursor: pointer;">
-      About Tech Tackle Box <span id="arrow-icon">▶</span>
+  <!-- About section -->
+  <div class="about-container">
+    <div style="text-align: center;">
+      <div class="about-tagline" onclick="toggleTackleBox()">About Tech Tackle Box<span id="arrow-icon">▶</span></div>
     </div>
   </div>
 
-  <div id="tackleBoxInfo" style="display: none; max-width: 800px; margin: 1rem auto; padding: 1rem; background: #f0f8ff; border-radius: 8px;">
-    <p><strong>Tech Tackle Box</strong> is a mobile-friendly hub of fishing tools and resources for the Port Aransas area.</p>
-    <p>Quickly access bait cams, reef maps, interactive fishing maps, weather, tide, and regulation links — all without clutter.</p>
+  <div id="tackleBoxInfo">
+    <p><strong>Tech Tackle Box</strong> is a mobile-friendly hub of fishing tools and resources for the Port Aransas area. Whether you're fishing the bay or offshore, it puts helpful info right at your fingertips.</p>
+    <p>Quickly access bait cams, reef maps, interactive fishing-related maps, weather, tide, and regulation links — all without clutter.</p>
     <p>Built for locals and visitors alike, this site will keep growing with new tools, gear picks, affiliate deals, and time-saving features.</p>
   </div>
 
-  <div style="text-align: center; margin-top: 2rem;">
-    <a href="#" class="fishing-link" onclick="openFishingReport(); return false;">
-      Read our latest Fishing Report!
-    </a>
+  <!-- STORE EMBED -->
+  <div id="amazon-ads" style="text-align: center; margin-bottom: 0; padding-bottom: 0;">
+    <div class="tab-folder">
+      <button class="active" data-src="Products.html">Shop Gear</button>
+      <button data-src="Guides.html">Local Fishing Guides</button>
+    </div>
+
+    <iframe
+      id="product-iframe"
+      src="Products.html"
+      title="Fishing Products"
+      loading="lazy"
+      allowtransparency="true"
+      style="background-color: transparent; width: 100%; border: none;"
+    ></iframe>
   </div>
 
-</div> <!-- End content-wrapper -->
+  <div style="text-align: center; padding: 0 0 0.2rem;">
+    <p style="font-size: .9rem;"><i>As an Amazon Associate, I earn from qualifying purchases.</i></p>
+  </div>
+  <!-- STORE END -->
+
+  <div class="fishing-tagline">
+    <p style="text-align: center; margin-top: 2rem;">
+      🎣 <i>Tight lines out there, friends — stay sharp, trust your instincts, and go get 'em!</i>
+    </p>
+  </div>
+
+</div> <!-- /content-wrapper -->
 
 <footer class="site-footer">
-  <p><i>Tech Tackle Box™ is a proud part of <a href="https://wheatonsworld.com" target="_blank" style="color: #1a237e; text-decoration: none;"><b>Wheaton’s World™</b></a> - All rights reserved.</i></p>
+  <p style="text-align: center; font-size: 0.95rem; color: #333; margin-top: 0;">
+    <i>Tech Tackle Box™ is a proud part of
+      <a href="https://wheatonsworld.com" target="_blank" style="color: #1a237e; text-decoration: none;"><b>Wheaton’s World™</b></a>
+      &nbsp;&nbsp;-&nbsp;&nbsp;All rights reserved.</i>
+  </p>
+  <div style="text-align:center; margin-top:.75rem;">
+    <a href="#" class="fishing-link" onclick="openFishingReport(); return false;">Read our latest Fishing Report!</a>
+  </div>
 </footer>
 
+<!-- Scripts -->
 <script>
+  // Tabs -> iframe swap
+  const tabButtons = document.querySelectorAll(".tab-folder button");
+  const productFrame = document.getElementById("product-iframe");
+  tabButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      tabButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      productFrame.src = btn.dataset.src;
+    });
+  });
+
+  // Iframe auto-resize from child postMessage
+  window.addEventListener('message', function (event) {
+    if (event.data && event.data.type === 'resize-iframe') {
+      const iframe = document.querySelector('#amazon-ads iframe');
+      if (iframe && typeof event.data.height === 'number') {
+        iframe.style.height = event.data.height + 'px';
+      }
+    }
+  });
+
+  // About panel toggle
   function toggleTackleBox() {
     const info = document.getElementById("tackleBoxInfo");
     const arrow = document.getElementById("arrow-icon");
     const isHidden = info.style.display === "none" || info.style.display === "";
     info.style.display = isHidden ? "block" : "none";
     arrow.textContent = isHidden ? "▼" : "▶";
+  }
+
+  // Popup fishing report (centered)
+  function openFishingReport() {
+    const popupWidth = 900;
+    const popupHeight = 700;
+
+    const openerWidth = window.innerWidth;
+    const openerHeight = window.innerHeight;
+    const openerLeft = window.screenX || window.screenLeft || 0;
+    const openerTop = window.screenY || window.screenTop || 0;
+
+    const left = openerLeft + Math.max(0, (openerWidth - popupWidth) / 2);
+    const top = openerTop + Math.max(0, (openerHeight - popupHeight) / 2);
+
+    window.open(
+      'https://hookedonporta.com/reports/fr08072025.html',
+      'FishingReport',
+      `width=${popupWidth},height=${popupHeight},left=${left},top=${top},resizable=yes,scrollbars=yes`
+    );
   }
 </script>
 
