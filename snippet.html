@@ -343,6 +343,41 @@
     }, false);
   })();
 </script>
+<script>
+  (function () {
+    const iframe = document.getElementById('product-iframe');
+    if (!iframe) return;
+
+    let lastH = 0;
+    let rafId = null;
+    let lastTick = 0;
+    const MIN_DELTA = 14;      // ignore tiny +/- jitters
+    const MAX_H = 20000;       // safety cap
+    const FPS_LIMIT = 30;      // don't apply faster than ~30fps
+
+    function apply(h) {
+      const now = performance.now();
+      if (now - lastTick < (1000 / FPS_LIMIT)) return;
+      const next = Math.max(200, Math.min(Math.round(h), MAX_H));
+      if (Math.abs(next - lastH) < MIN_DELTA) return;
+      iframe.style.height = next + 'px';
+      lastH = next;
+      lastTick = now;
+    }
+
+    window.addEventListener('message', (e) => {
+      const d = e.data;
+      if (!d || d.type !== 'resize-iframe') return;
+      if (e.source !== iframe.contentWindow) return;
+
+      const h = Number(d.height);
+      if (!Number.isFinite(h) || h <= 0) return;
+
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => apply(h));
+    }, false);
+  })();
+</script>
 
 </body>
 </html>
