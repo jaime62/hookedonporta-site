@@ -14,10 +14,11 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  /* Full-page, fixed ocean background */
   html, body {
     font-family: Arial, sans-serif;
     background-image: url('https://github.com/jaime62/hookedonporta-site/blob/main/images/Underwater%20Ocean%20scene.png?raw=true');
-    background-attachment: fixed;   /* static background */
+    background-attachment: fixed;   /* keep the image static */
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -25,16 +26,10 @@
     overflow-x: hidden;
   }
 
-  /* Wrapper for readability over the photo */
-  .content-wrapper {
-    background-color: rgba(255,255,255,0.85);
-    padding-bottom: 2rem;
-  }
-
+  /* Only the header gets white @ 72% */
   .header {
     width: 100%;
-    height: auto;
-    background: rgba(255,255,255,0.72); /* 72% opacity white */
+    background: rgba(255,255,255,0.72);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -50,9 +45,7 @@
     flex-wrap: wrap;
     text-align: center;
   }
-
   .title-row img { max-height: 80px; width: auto; }
-
   .title-row h1 {
     font-size: 6vw;
     font-weight: bold;
@@ -67,7 +60,6 @@
     justify-content: center;
     margin-top: 1.8rem;
   }
-
   .nav button {
     background-color: #2196f3;
     color: white;
@@ -113,9 +105,9 @@
   }
 
   .site-footer {
-    text-align: center; font-size: 1rem; color: #666;
+    text-align: center; font-size: 1rem; color: #333;
     padding: 1rem; margin-top: 1rem; border-top: 1px solid #ddd;
-    background: rgba(255,255,255,0.85);
+    /* footer sits on top of the background image, no overlay */
   }
 
   /* Amazon Affiliate Section */
@@ -125,9 +117,6 @@
     width: 95%; max-width: 1400px; text-align: center; border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
   }
-  #amazon-ads h2 { color: #1a237e; margin-bottom: 1rem; font-size: 2rem; }
-  #amazon-ads p { color: #444; font-size: 1.1rem; margin-bottom: 0.75rem; }
-
   #amazon-ads iframe {
     width: 100%; display: block; height: auto;
     border: none; border-radius: 5px; background-color: transparent;
@@ -185,8 +174,7 @@
 </head>
 <body>
 
-<div class="content-wrapper">
-
+  <!-- Header (only this has semi-transparent white) -->
   <div class="header">
     <div class="title-row">
       <a href="https://hookedonporta.com" target="_blank">
@@ -233,13 +221,14 @@
     </div>
   </div>
 
+  <!-- Opening section (sits directly over the ocean background) -->
   <div style="text-align: center; margin-top: 2rem;">
     <h2 style="color: #1a237e;">Welcome Port Aransas Saltwater Anglers!</h2>
     <p style="color: black;">Use the menu buttons above to navigate to the various tools that we have in our "tackle box".</p>
     <p style="color: black;"><i>(All external links on this site will open in a separate window)</i></p>
   </div>
 
-  <!-- About section -->
+  <!-- About -->
   <div class="about-container">
     <div style="text-align: center;">
       <div class="about-tagline" onclick="toggleTackleBox()">About Tech Tackle Box<span id="arrow-icon">▶</span></div>
@@ -280,20 +269,18 @@
     </p>
   </div>
 
-</div> <!-- /content-wrapper -->
+  <!-- Footer with fishing report link -->
+  <footer class="site-footer">
+    <p style="text-align: center; font-size: 0.95rem; color: #333; margin-top: 0;">
+      <i>Tech Tackle Box™ is a proud part of
+        <a href="https://wheatonsworld.com" target="_blank" style="color: #1a237e; text-decoration: none;"><b>Wheaton’s World™</b></a>
+        &nbsp;&nbsp;-&nbsp;&nbsp;All rights reserved.</i>
+    </p>
+    <div style="text-align:center; margin-top:.75rem;">
+      <a href="#" class="fishing-link" onclick="openFishingReport(); return false;">Read our latest Fishing Report!</a>
+    </div>
+  </footer>
 
-<footer class="site-footer">
-  <p style="text-align: center; font-size: 0.95rem; color: #333; margin-top: 0;">
-    <i>Tech Tackle Box™ is a proud part of
-      <a href="https://wheatonsworld.com" target="_blank" style="color: #1a237e; text-decoration: none;"><b>Wheaton’s World™</b></a>
-      &nbsp;&nbsp;-&nbsp;&nbsp;All rights reserved.</i>
-  </p>
-  <div style="text-align:center; margin-top:.75rem;">
-    <a href="#" class="fishing-link" onclick="openFishingReport(); return false;">Read our latest Fishing Report!</a>
-  </div>
-</footer>
-
-<!-- Scripts -->
 <script>
   // Tabs -> iframe swap
   const tabButtons = document.querySelectorAll(".tab-folder button");
