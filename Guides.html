@@ -32,12 +32,15 @@
   border-left: 4px solid #3b9c9c;
 }
 
+/* replace your existing .sub-subcategory rule with this (or add this AFTER it) */
 .sub-subcategory {
-  background: #f0fcfc; /* slightly different shade for contrast */
-  padding: 0.25rem 0.5rem;
+  display: none;              /* collapse on load */
   margin-left: 1rem;
-  border-radius: 4px;
+  padding: 0.25rem 0;
+  background: #DCFAF7;        /* optional: give it a visible bg */
+  border-left: 4px solid #3b9c9c;
 }
+
 
     .sub-subcategory h4 {
       margin: 0.5rem 0 0.25rem;
@@ -183,6 +186,27 @@ function toggle(element) {
 
 </script>
 
+<script>
+  // Ensure collapsed even if something else tried to open them
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".sub-subcategory").forEach(el => {
+      el.style.display = "none";
+    });
+  });
+
+  // Click a category to toggle its next sub-subcategory
+  function toggle(element) {
+    const panel = element.nextElementSibling;
+    if (!panel || !panel.classList.contains('sub-subcategory')) return;
+
+    const isOpen = panel.style.display === "block";
+    // (optional) close others
+    document.querySelectorAll(".sub-subcategory").forEach(el => {
+      if (el !== panel) el.style.display = "none";
+    });
+    panel.style.display = isOpen ? "none" : "block";
+  }
+</script>
 
 </body>
 </html>
