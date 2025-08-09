@@ -20,11 +20,9 @@
   }
 
   *{margin:0;padding:0;box-sizing:border-box}
+  html, body{height:100%}
 
-  html, body{
-    height:100%;
-  }
-
+  /* Full-page fixed ocean background */
   body{
     font-family: Arial, sans-serif;
     background-image: var(--ocean);
@@ -35,6 +33,7 @@
     overflow-x:hidden;
   }
 
+  /* Header only has semi-transparent white */
   .header{
     width:100%;
     background: rgba(255,255,255,0.72);
@@ -50,14 +49,8 @@
   }
 
   .title-row{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:1rem;
-    flex-wrap:wrap;
-    text-align:center;
+    display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;text-align:center;
   }
-
   .title-row img{max-height:80px;width:auto}
   .title-row h1{
     font-size: clamp(28px, 6vw, 56px);
@@ -67,21 +60,15 @@
   }
 
   .nav{
-    display:flex;
-    gap:1rem;
-    flex-wrap:wrap;
-    justify-content:center;
-    margin-top:1rem;
+    display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:1rem;
   }
   .nav button{
     background-color: var(--brand-blue);
     color:#fff;
     font-size:1.05rem;
     font-weight:bold;
-    border:none;
-    border-radius:10px;
-    padding:12px 20px;
-    cursor:pointer;
+    border:none;border-radius:10px;
+    padding:12px 20px;cursor:pointer;
     transition: background-color .3s ease, box-shadow .3s ease, transform .05s ease;
     box-shadow:0 2px 6px rgba(0,0,0,.3);
   }
@@ -96,97 +83,67 @@
 
   .logo{height:auto;width:auto;transform:scale(2.5);transform-origin:center}
 
-  .welcome{
-    text-align:center;
-    margin: 1.25rem auto;
-    color:#1a237e;
-  }
-  .welcome h2{
-    color:#1a237e;
-    font-size: clamp(20px, 3.2vw, 32px);
-    text-shadow: 1px 1px 3px #0006;
-  }
-  .welcome p{
-    color:#000;
-  }
+  .welcome{text-align:center;margin: 1.25rem auto;color:#1a237e}
+  .welcome h2{color:#1a237e;font-size: clamp(20px, 3.2vw, 32px);text-shadow: 1px 1px 3px #0006}
+  .welcome p{color:#000}
   .welcome i{opacity:.85}
 
   .about-container{max-width: 900px; margin: 0 auto;}
   .about-tagline{
-    color: var(--gold);
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-shadow: 1px 1px 4px #000;
-    text-align: center;
-    margin: .35rem auto;
-    display: inline-flex;
-    align-items:center;
-    gap:.4rem;
-    padding:.25rem .55rem;
-    border-radius:8px;
-    cursor:pointer;
+    color: var(--gold);font-size: 1.2rem;font-weight: bold;
+    text-shadow: 1px 1px 4px #000;text-align:center;margin:.35rem auto;
+    display:inline-flex;align-items:center;gap:.4rem;padding:.25rem .55rem;border-radius:8px;cursor:pointer;
   }
   .about-tagline:hover{background-color: rgba(255,255,255,.18)}
 
   #tackleBoxInfo{
     max-width:900px;width:100%;display:none;margin: .75rem auto 0;
-    padding: 1rem 1.25rem;
-    background: rgba(255,255,255,0.85);
-    border: 1px solid #2196f355;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,.08);
-    line-height: 1.6;
-    text-align:left;
+    padding: 1rem 1.25rem;background: rgba(255,255,255,0.85);
+    border: 1px solid #2196f355;border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);line-height: 1.6;text-align:left;
   }
 
-  .report-row{
-    text-align:center;
-    margin: .65rem auto 1rem;
-  }
+  .report-row{text-align:center;margin: .65rem auto 1rem}
   .fishing-link{
-    text-decoration:none;
-    color:#0077b6;
-    font-weight:bold;
+    text-decoration:none;color:#0077b6;font-weight:bold;
     background: rgba(255,255,255,.85);
-    padding:.35rem .6rem;
-    border-radius:8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,.12);
-    transition: all .25s ease;
+    padding:.35rem .6rem;border-radius:8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.12);transition: all .25s ease;
   }
-  .fishing-link:hover{
-    color:#0096c7;
-    text-decoration:underline;
-    transform: translateY(-1px);
-  }
+  .fishing-link:hover{color:#0096c7;text-decoration:underline;transform: translateY(-1px)}
 
+  /* Store section — no big box; translucent chips for tabs only */
   #amazon-ads{
-    width: 95%;
-    max-width: 1400px;
-    margin: 0 auto 0;
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    padding: 0 !important;
-    text-align:center;
+    width: 95%;max-width: 1400px;margin: 0 auto;background: transparent;border: none;box-shadow: none;
+    text-align:center;padding: 0;
   }
   #amazon-ads .tab-folder{
-    display:flex;justify-content:center;gap:1rem;margin: 0 0 .5rem;
+    display:flex;justify-content:center;gap:.6rem;margin: 0 0 .6rem;
+    background: transparent;
   }
   #amazon-ads .tab-folder button{
-    padding:10px 20px;border:none;border-top-left-radius:10px;border-top-right-radius:10px;
-    background-color:silver;color:darkblue;font-weight:bold;cursor:pointer;
+    padding:10px 18px;border:1px solid rgba(255,255,255,.45);
+    border-radius: 999px; /* pill */
+    background: rgba(255,255,255,.55);
+    color:#0b2a4a;font-weight:700;cursor:pointer;
+    backdrop-filter: saturate(120%) blur(3px);
+    box-shadow: 0 2px 8px rgba(0,0,0,.12);
+    transition: transform .06s ease, box-shadow .2s ease, background-color .2s ease;
   }
-  #amazon-ads .tab-folder button.active{background-color: gold;color: darkblue}
+  #amazon-ads .tab-folder button:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,.18);
+  }
+  #amazon-ads .tab-folder button.active{
+    background: rgba(255,215,0,.85);
+    border-color: rgba(255,215,0,.9);
+    color: #0b2a4a;
+  }
   #amazon-ads iframe{
-    width:100%;
-    border:none;
-    background: transparent !important;
+    width:100%;border:none;background: transparent;
   }
 
-  .site-footer{
-    text-align:center;font-size:1rem;color:#222;padding:1rem;margin-top:1rem;text-shadow:0 1px 1px #fff8;
-  }
+  .site-footer{text-align:center;font-size:1rem;color:#222;padding:1rem;margin-top:1rem;text-shadow:0 1px 1px #fff8}
 </style>
 </head>
 <body>
@@ -254,12 +211,15 @@
   <div id="tackleBoxInfo">
     <p><strong>Tech Tackle Box</strong> is a mobile-friendly hub of fishing tools and resources for the Port Aransas area.</p>
     <p>Quickly access bait cams, reef maps, interactive fishing-related maps, weather, tide, and regulation links — all without clutter.</p>
+    <p>Built for locals and visitors alike, this site will keep growing with new tools, gear picks, affiliate deals, and time-saving features.</p>
   </div>
 
+  <!-- Fishing Report link ABOVE store -->
   <div class="report-row">
     <a href="#" class="fishing-link" onclick="openFishingReport(); return false;">Read our latest Fishing Report!</a>
   </div>
 
+  <!-- STORE -->
   <div id="amazon-ads">
     <div class="tab-folder">
       <button class="active" data-src="Products.html">Shop Gear</button>
@@ -287,7 +247,16 @@
   }
 
   function openFishingReport(){
-    window.open("https://tpwd.texas.gov/fishboat/fish/action/reports", "FishingReport", "width=900,height=700,scrollbars=yes");
+    const popupWidth = 900, popupHeight = 700;
+    const openerLeft = window.screenX || window.screenLeft;
+    const openerTop  = window.screenY || window.screenTop;
+    const left = openerLeft + (window.innerWidth  - popupWidth)  / 2;
+    const top  = openerTop  + (window.innerHeight - popupHeight) / 2;
+    window.open(
+      'https://hookedonporta.com/reports/fr08072025.html',
+      'FishingReport',
+      `width=${popupWidth},height=${popupHeight},left=${left},top=${top},resizable=yes,scrollbars=yes`
+    );
   }
 
   document.querySelectorAll(".tab-folder button").forEach(btn=>{
@@ -296,6 +265,14 @@
       btn.classList.add("active");
       document.getElementById("product-iframe").src = btn.dataset.src;
     });
+  });
+
+  // Optional: allow iframe to auto-resize if child posts a message
+  window.addEventListener('message', function (event) {
+    if (event.data && event.data.type === 'resize-iframe') {
+      const iframe = document.getElementById('product-iframe');
+      if (iframe) iframe.style.height = event.data.height + 'px';
+    }
   });
 </script>
 </body>
