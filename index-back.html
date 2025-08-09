@@ -1,121 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta charset="UTF-8">
-<title>Fishing Gear Store</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tech Tackle Box</title>
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="https://github.com/jaime62/hookedonporta-site/blob/main/images/HookedOnPortA-favicon_wbg.png?raw=true">
+<link rel="icon" type="image/png" sizes="192x192" href="https://github.com/jaime62/hookedonporta-site/blob/main/images/HookedOnPortA-favicon_wbg.png?raw=true">
+<link rel="apple-touch-icon" sizes="180x180" href="https://github.com/jaime62/hookedonporta-site/blob/main/images/HookedOnPortA-favicon_wbg.png?raw=true">
+<link rel="shortcut icon" href="https://github.com/jaime62/hookedonporta-site/blob/main/images/HookedOnPortA-favicon_wbg.png?raw=true" type="image/png">
 
 <style>
-html, body {
-  font-family: Arial, sans-serif;
-  width: 100%;
-  overflow-x: hidden;
-  margin: 0;
-  padding: 0;
+  :root{
+    --ocean: url('https://github.com/jaime62/hookedonporta-site/blob/main/images/Underwater%20Ocean%20scene.png?raw=true');
+    --brand-blue: #2196f3;
+    --brand-blue-dark: #1976d2;
+    --gold: #ffd54f;
+  }
 
-  /* Full-page fixed background image */
-  background-image: url('https://github.com/jaime62/hookedonporta-site/blob/main/images/Underwater%20Ocean%20scene.png?raw=true');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html, body{height:100%}
 
-/* Header scrolls with content */
-.header {
-  position: relative;
-  background: rgba(255, 255, 255, 0.72); /* 72% white background for readability */
-  width: 100%;
-  height: auto;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 1rem 0.9rem;
-}
+  /* Full-page fixed ocean background */
+  body{
+    font-family: Arial, sans-serif;
+    background-image: var(--ocean);
+    background-size: cover;
+    background-position: center top;
+    background-attachment: fixed;
+    color:#000;
+    overflow-x:hidden;
+  }
 
-.header img {
-  max-width: 200px;
-  height: auto;
-}
+  /* Header only has semi-transparent white */
+  .header{
+    width:100%;
+    background: rgba(255,255,255,0.72);
+    backdrop-filter: saturate(120%) blur(1px);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding: 1.25rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
 
-.header h1 {
-  margin: 0.5rem 0 0;
-}
+  .title-row{
+    display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;text-align:center;
+  }
+  .title-row img{max-height:80px;width:auto}
+  .title-row h1{
+    font-size: clamp(28px, 6vw, 56px);
+    font-weight:bold;
+    color:#f1c40f;
+    text-shadow: 1px 1px 4px #0008;
+  }
 
-.header p {
-  margin: 0.3rem 0 0;
-}
+  .nav{
+    display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:1rem;
+  }
+  .nav button{
+    background-color: var(--brand-blue);
+    color:#fff;
+    font-size:1.05rem;
+    font-weight:bold;
+    border:none;border-radius:10px;
+    padding:12px 20px;cursor:pointer;
+    transition: background-color .3s ease, box-shadow .3s ease, transform .05s ease;
+    box-shadow:0 2px 6px rgba(0,0,0,.3);
+  }
+  .nav button:hover{background-color:var(--brand-blue-dark);box-shadow:0 4px 12px rgba(0,0,0,.4)}
+  .tooltip-container{position:relative;display:inline-block}
+  .custom-tooltip{
+    visibility:hidden;opacity:0;background-color:#BBFAE5;color:#000;font-size:1rem;
+    border-radius:10px;padding:8px 10px;position:absolute;bottom:120%;left:50%;transform:translateX(-50%);
+    white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,.2);transition:opacity .3s ease;z-index:100
+  }
+  .tooltip-container:hover .custom-tooltip{visibility:visible;opacity:1}
 
-/* Fishing report link */
-.fishing-report-link {
-  margin: 1rem 0;
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-.fishing-report-link a {
-  color: #0000EE;
-  text-decoration: underline;
-}
-.fishing-report-link a:hover {
-  color: #0056b3;
-}
+  .logo{height:auto;width:auto;transform:scale(2.5);transform-origin:center}
 
-/* Store iframe */
-.store-section {
-  padding: 0;
-  margin: 0;
-}
+  .welcome{text-align:center;margin: 1.25rem auto;color:#1a237e}
+<!--  .welcome h2{color:#1a237e;font-size: clamp(20px, 3.2vw, 32px);text-shadow: 1px 1px 3px #0006} -->
+    .welcome h2{color:gold;font-size: clamp(20px, 3.2vw, 32px);text-shadow: 1px 1px 3px #0006}
+  .welcome p{color:#000}
+  .welcome i{opacity:.85}
 
-.store-iframe {
-  width: 100%;
-  height: 1200px; /* Tall enough to fit content without iframe scrolling */
-  border: none;
-}
+  .about-container{max-width: 900px; margin: 0 auto;}
+  .about-tagline{
+    color: var(--gold);font-size: 1.2rem;font-weight: bold;
+    text-shadow: 1px 1px 4px #000;text-align:center;margin:.35rem auto;
+    display:inline-flex;align-items:center;gap:.4rem;padding:.25rem .55rem;border-radius:8px;cursor:pointer;
+  }
+  .about-tagline:hover{background-color: rgba(255,255,255,.18)}
 
-/* Category images in Products.html */
-.emoji {
-  display: inline-block;
-  width: 2em;
-  height: 2em;
-  font-size: 2em;
-  margin-right: 0.5rem;
-  vertical-align: middle;
-  line-height: 1;
-  object-fit: contain;
-}
+  #tackleBoxInfo{
+    max-width:900px;width:100%;display:none;margin: .75rem auto 0;
+    padding: 1rem 1.25rem;background: rgba(255,255,255,0.85);
+    border: 1px solid #2196f355;border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);line-height: 1.6;text-align:left;
+  }
+
+  .report-row{text-align:center;margin: .65rem auto 1rem}
+  .fishing-link{
+    text-decoration:none;color:#0077b6;font-weight:bold;
+    background: rgba(255,255,255,.85);
+    padding:.7rem 1.2rem;border-radius:8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.12);transition: all .25s ease;
+  }
+  .fishing-link:hover{color:#0096c7;text-decoration:underline;transform: translateY(-1px)}
+
+  /* Store section — no big box; translucent chips for tabs only */
+  #amazon-ads{
+    width: 95%;max-width: 1400px;margin: 0 auto;background: transparent;border: none;box-shadow: none;
+    text-align:center;padding: 0;
+  }
+  #amazon-ads .tab-folder{
+    display:flex;justify-content:center;gap:.6rem;margin: 0 0 .6rem;
+    background: transparent;
+  }
+  #amazon-ads .tab-folder button{
+    padding:10px 18px;border:1px solid rgba(255,255,255,.45);
+    border-radius: 999px; /* pill */
+    background: rgba(255,255,255,.55);
+    color:#0b2a4a;font-weight:700;cursor:pointer;
+    backdrop-filter: saturate(120%) blur(3px);
+    box-shadow: 0 2px 8px rgba(0,0,0,.12);
+    transition: transform .06s ease, box-shadow .2s ease, background-color .2s ease;
+  }
+  #amazon-ads .tab-folder button:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,.18);
+  }
+  #amazon-ads .tab-folder button.active{
+    background: rgba(255,215,0,.85);
+    border-color: rgba(255,215,0,.9);
+    color: #0b2a4a;
+  }
+  #amazon-ads iframe{
+    width:100%;border:none;background: transparent;
+  }
+
+  .site-footer{text-align:center;font-size:1rem;color:#222;padding:1rem;margin-top:1rem;text-shadow:0 1px 1px #fff8}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<div class="header">
-  <img src="https://github.com/jaime62/hookedonporta-site/blob/main/images/logo.png?raw=true" alt="Hooked on Port A Logo">
-  <h1>Hooked on Port A</h1>
-  <p>Your source for fishing gear and reports</p>
-</div>
+  <div class="header">
+    <div class="title-row">
+      <a href="https://hookedonporta.com" target="_blank" rel="noopener">
+        <img class="logo" src="https://github.com/jaime62/hookedonporta-site/blob/main/images/HookedOnPortA-logo-fogged_bg.png?raw=true" alt="HookedOnPortA.com">
+      </a>
+      <h1>Tech Tackle Box</h1>
+    </div>
 
-<!-- Fishing Report Link -->
-<div class="fishing-report-link">
-  <a href="#" onclick="openFishingReport(); return false;">Read our latest Fishing Report!</a>
-</div>
+    <div class="nav">
+      <div class="tooltip-container">
+        <a href="https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits" target="_blank" rel="noopener">
+          <button>Bag &amp; Length</button>
+        </a>
+        <div class="custom-tooltip">Check TPWD for saltwater regulations</div>
+      </div>
 
-<!-- Store Section -->
-<div class="store-section">
-  <iframe class="store-iframe" src="Products.html" scrolling="no"></iframe>
-</div>
+      <div class="tooltip-container">
+        <a href="https://g1.ipcamlive.com/player/player.php?alias=portafishrack&amp;autoplay=1&amp;mute=1" target="_blank" rel="noopener">
+          <button>Bait Cam</button>
+        </a>
+        <div class="custom-tooltip">See Deep Sea HQ bait flags LIVE!</div>
+      </div>
+
+      <div class="tooltip-container">
+        <a href="https://tpwd.texas.gov/gis/ris/artificialreefs/" target="_blank" rel="noopener">
+          <button>Reef Map</button>
+        </a>
+        <div class="custom-tooltip">Locate and fish artificial reef structures!</div>
+      </div>
+
+      <div class="tooltip-container">
+        <a href="https://sfs.saltstrong.com/?lat=27.73447113880205&amp;lng=-97.16033439480708&amp;zoom=10" target="_blank" rel="noopener">
+          <button>SmartSpots</button>
+        </a>
+        <div class="custom-tooltip">Use Salt Strong's forecast &amp; planning tool!</div>
+      </div>
+
+      <div class="tooltip-container">
+        <a href="https://www.windfinder.com/forecast/mustang_island_port_aransas" target="_blank" rel="noopener">
+          <button>Windfinder</button>
+        </a>
+        <div class="custom-tooltip">Check wind, wave &amp; tide conditions around Port A!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="welcome">
+    <h2>Welcome Port Aransas Saltwater Anglers!</h2>
+    <p>Use the menu buttons above to navigate to the various tools that we have in our "tackle box".</p>
+    <p><i>(All external links on this site will open in a separate window)</i></p>
+  </div>
+
+  <div class="about-container">
+    <div style="text-align:center;">
+      <div class="about-tagline" onclick="toggleTackleBox()">
+        About Tech Tackle Box <span id="arrow-icon">▶</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="tackleBoxInfo">
+    <p><strong>Tech Tackle Box</strong> is a mobile-friendly hub of fishing tools and resources for the Port Aransas area.</p>
+    <p>Quickly access bait cams, reef maps, interactive fishing-related maps, weather, tide, and regulation links — all without clutter.</p>
+    <p>Built for locals and visitors alike, this site will keep growing with new tools, gear picks, affiliate deals, and time-saving features.</p>
+   <BR> </div>
+
+
+  <!-- Fishing Report link ABOVE store -->
+  <div class="report-row">  <BR>
+    <a href="#" class="fishing-link" onclick="openFishingReport(); return false;">Read our latest Fishing Report!</a>
+<BR>  </div>
+
+  <!-- STORE -->
+  <div id="amazon-ads">
+    <div class="tab-folder">
+      <button class="active" data-src="Products.html">Shop Gear</button>
+      <button data-src="Guides.html">Local Fishing Guides</button>
+    </div>
+    <iframe id="product-iframe" src="Products.html" title="Fishing Products" loading="lazy" allowtransparency="true"></iframe>
+    <p><i>As an Amazon Associate, I earn from qualifying purchases.</i></p>
+  </div>
+
+  <footer class="site-footer">
+    <p><i>Tech Tackle Box™ is part of <a href="https://wheatonsworld.com" target="_blank" rel="noopener"><b>Wheaton’s World™</b></a> — All rights reserved.</i></p>
+  </footer>
 
 <script>
-function openFishingReport() {
-  window.open(
-    'fishing-report.html',
-    'FishingReport',
-    'width=1000,height=800,scrollbars=yes,resizable=yes'
-  );
-}
-</script>
+  function toggleTackleBox(){
+    const info = document.getElementById("tackleBoxInfo");
+    const arrow = document.getElementById("arrow-icon");
+    if(info.style.display==="none" || info.style.display===""){
+      info.style.display="block";
+      arrow.textContent="▼";
+    } else {
+      info.style.display="none";
+      arrow.textContent="▶";
+    }
+  }
 
+  function openFishingReport(){
+    const popupWidth = 900, popupHeight = 700;
+    const openerLeft = window.screenX || window.screenLeft;
+    const openerTop  = window.screenY || window.screenTop;
+    const left = openerLeft + (window.innerWidth  - popupWidth)  / 2;
+    const top  = openerTop  + (window.innerHeight - popupHeight) / 2;
+    window.open(
+      'https://hookedonporta.com/reports/fr08072025.html',
+      'FishingReport',
+      `width=${popupWidth},height=${popupHeight},left=${left},top=${top},resizable=yes,scrollbars=yes`
+    );
+  }
+
+  document.querySelectorAll(".tab-folder button").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      document.querySelectorAll(".tab-folder button").forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById("product-iframe").src = btn.dataset.src;
+    });
+  });
+
+  // Optional: allow iframe to auto-resize if child posts a message
+  window.addEventListener('message', function (event) {
+    if (event.data && event.data.type === 'resize-iframe') {
+      const iframe = document.getElementById('product-iframe');
+      if (iframe) iframe.style.height = event.data.height + 'px';
+    }
+  });
+</script>
 </body>
 </html>
