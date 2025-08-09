@@ -329,6 +329,31 @@
     );
   }
 </script>
+<script>
+  (function () {
+    const iframe = document.getElementById('product-iframe');
+    let lastAppliedHeight = 0;
+    let rafId = null;
+
+    function applyHeightSafely(h) {
+      // normalize to an integer so tiny decimal diffs don’t cause loops
+      const next = Math.max(0, Math.round(h));
+      if (!iframe || next === lastAppliedHeight) return;
+      iframe.style.height = next + 'px';
+      lastAppliedHeight = next;
+    }
+
+    window.addEventListener('message', (event) => {
+      if (!event.data || event.data.type !== 'resize-iframe') return;
+      const h = Number(event.data.height);
+      if (!Number.isFinite(h) || h <= 0) return;
+
+      // debounce to one paint tick
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => applyHeightSafely(h));
+    });
+  })();
+</script>
 
 </body>
 </html>
