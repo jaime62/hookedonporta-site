@@ -161,6 +161,19 @@
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
   }
+  /* Desktop-only: show more of the background image height */
+@media (min-width: 1025px) {
+  .bg-fixed {
+    /* Option A: show entire image (may letterbox on sides) */
+    /* background-size: contain; */
+    /* background-position: center top; */
+
+    /* Option B (nice compromise): keep it wide but “zoom out” a bit */
+    background-size: 120% auto;   /* try 110%–140% to taste */
+    background-position: center top;
+  }
+}
+
 </style>
 </head>
 <body>
