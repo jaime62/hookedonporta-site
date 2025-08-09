@@ -173,7 +173,14 @@
     background-position: center top;
   }
 }
-
+.report-row{text-align:center;margin: .65rem auto 1rem}
+  .fishing-link{
+    text-decoration:none;color:#0077b6;font-weight:bold;
+    background: rgba(255,255,255,.85);
+    padding:.7rem 1.2rem;border-radius:8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.12);transition: all .25s ease;
+  }
+  .fishing-link:hover{color:#0096c7;text-decoration:underline;transform: translateY(-1px)}
 </style>
 </head>
 <body>
@@ -247,10 +254,10 @@
     <p>Built for locals and visitors alike, this site will keep growing with new tools, gear picks, affiliate deals, and time-saving features.</p>
   </div>
 
-  <!-- Fishing report link (above the store) -->
-  <div style="text-align:center; margin: 0.75rem 0 0.5rem;">
+  <!-- Fishing Report link ABOVE store -->
+ <BR> <div class="report-row">  <BR>
     <a href="#" class="fishing-link" onclick="openFishingReport(); return false;">Read our latest Fishing Report!</a>
-  </div>
+<BR>  </div>
 
   <!-- STORE EMBED -->
   <div id="amazon-ads" style="text-align: center;">
