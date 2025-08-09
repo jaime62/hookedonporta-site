@@ -172,11 +172,22 @@
   });
 
   window.addEventListener('resize', () => debouncedResize(200));
-
+<!--
 function toggle(element) {
   document.querySelectorAll(".subcategory").forEach(sub => sub.style.display = "none");
   const subcategory = element.nextElementSibling;
   subcategory.style.display = "block";
+} -->
+
+function toggle(element) {
+  const subSubCategory = element.nextElementSibling;
+  if (subSubCategory && subSubCategory.classList.contains('sub-subcategory')) {
+    if (subSubCategory.style.display === "block") {
+      subSubCategory.style.display = "none";
+    } else {
+      subSubCategory.style.display = "block";
+    }
+  }
 }
 
 
