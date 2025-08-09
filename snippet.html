@@ -354,6 +354,33 @@
     });
   })();
 </script>
+<script>
+(function () {
+  const iframe = document.getElementById('product-iframe');
+  if (!iframe) return;
+
+  let last = 0;
+  let rafId = null;
+  const THRESH = 8;         // ignore changes under 8px
+  const MAX = 20000;        // safety cap
+
+  function apply(h) {
+    const next = Math.max(0, Math.min(Math.round(h), MAX));
+    if (Math.abs(next - last) < THRESH) return;
+    iframe.style.height = next + 'px';
+    last = next;
+  }
+
+  window.addEventListener('message', (ev) => {
+    if (!ev.data || ev.data.type !== 'resize-iframe') return;
+    if (ev.source !== iframe.contentWindow) return; // ensure it’s our iframe
+    const h = Number(ev.data.height);
+    if (!Number.isFinite(h) || h <= 0) return;
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(() => apply(h));
+  });
+})();
+</script>
 
 </body>
 </html>
