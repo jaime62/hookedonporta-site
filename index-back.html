@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta charset="UTF-8">
+<title>Tech Tackle Box</title>
+
+<!-- Favicon links -->
+<link rel="icon" type="image/png" sizes="32x32" href="https://github.com/jaime62/hookedonporta-site/blob/main/images/HookedOnPortA-favicon_wbg.png?raw=true">
+<link rel="icon" type="image/png" sizes="192x192" href="https://github.com/jaime62/hookedonporta-site/blob/main/images/HookedOnPortA-favicon_wbg.png?raw=true">
+<link rel="apple-touch-icon" sizes="180x180" href="https://github.com/jaime62/hookedonporta-site/blob/main/images/HookedOnPortA-favicon_wbg.png?raw=true">
+<link rel="shortcut icon" href="https://github.com/jaime62/hookedonporta-site/blob/main/images/HookedOnPortA-favicon_wbg.png?raw=true" type="image/png">
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body {
+    font-family: Arial, sans-serif;
+    background-image: url('https://github.com/jaime62/hookedonporta-site/blob/main/images/Underwater%20Ocean%20scene.png?raw=true');
+    background-attachment: fixed; /* static background */
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Give main content a semi-transparent background for readability */
+  .content-wrapper {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding-bottom: 2rem;
+  }
+
+  .header {
+    width: 100%;
+    height: auto;
+    background: transparent; /* no image here now */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem 0.9rem;
+  }
+
+  .title-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .title-row img {
+    max-height: 80px;
+    width: auto;
+  }
+
+  .title-row h1 {
+    font-size: 6vw;
+    font-weight: bold;
+    color: gold;
+    text-shadow: 1px 1px 4px #000;
+  }
+
+  .nav {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1.8rem;
+  }
+
+  .nav button {
+    background-color: #2196f3;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 24px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .nav button:hover {
+    background-color: #1976d2;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  .tooltip-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .custom-tooltip {
+    visibility: hidden;
+    opacity: 0;
+    background-color: #BBFAE5;
+    color: black;
+    font-size: 1rem;
+    border-radius: 10px;
+    padding: 8px 10px;
+    position: absolute;
+    bottom: 120%;
+    left: 60%;
+    transform: translateX(-50%) translateY(0);
+    white-space: nowrap;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: opacity 0.3s ease;
+    z-index: 100;
+  }
+
+  .custom-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -6px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: #BBFAE5 transparent transparent transparent;
+  }
+
+  .tooltip-container:hover .custom-tooltip {
+    visibility: visible;
+    opacity: 1;
+    animation: fadeBounce 0.6s ease forwards;
+  }
+
+  @keyframes fadeBounce {
+    0% {
+      opacity: 0;
+      transform: translateX(-50%) translateY(10px);
+    }
+    60% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-5px);
+    }
+    100% {
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+
+  .logo {
+    height: auto;
+    width: auto;
+    transform: scale(2.5);
+    transform-origin: center;
+  }
+
+  .fishing-tagline {
+    color: gold;
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 4px #000;
+    text-align: center;
+    margin: .5rem;
+  }
+
+  .site-footer {
+    text-align: center;
+    font-size: 1rem;
+    color: #666;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-top: 1px solid #ddd;
+  }
+
+  /* Responsive tweaks */
+  @media (orientation: landscape) and (max-width: 1024px) {
+    .title-row h1 {
+      font-size: 4vw;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .title-row h1 {
+      font-size: 3vw;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .nav {
+      gap: 0.3rem;
+      padding: 0 0.5rem;
+      flex-wrap: nowrap;
+    }
+    .tooltip-container {
+      flex: 1 1 auto;
+      display: flex;
+      justify-content: center;
+    }
+    .nav button {
+      font-size: 0.65rem;
+      padding: 6px 10px;
+      min-width: 58px;
+      max-width: 80px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="content-wrapper">
+
+  <div class="header">
+    <div class="title-row">
+     <a href="https://hookedonporta.com" target="_blank">
+       <img class="logo" src="https://github.com/jaime62/hookedonporta-site/blob/main/images/HookedOnPortA-logo-fogged
