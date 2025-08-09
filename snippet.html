@@ -381,6 +381,54 @@
   });
 })();
 </script>
+<script>
+(function () {
+  const THRESH = 8;  // only send if change >= 8px
+  let last = 0;
+  let tId = null;
+
+  function send(h) {
+    const next = Math.max(0, Math.round(h));
+    if (Math.abs(next - last) < THRESH) return;
+    last = next;
+    window.parent.postMessage({ type: 'resize-iframe', height: next }, '*');
+  }
+
+  function measure() {
+    // Use the tallest of body/html to avoid oscillations
+    const h = Math.max(
+      document.documentElement.scrollHeight,
+      document.body.scrollHeight,
+      document.documentElement.offsetHeight,
+      document.body.offsetHeight
+    );
+    send(h);
+  }
+
+  function schedule(ms = 120) {
+    clearTimeout(tId);
+    tId = setTimeout(measure, ms);
+  }
+
+  // Initial + after load
+  window.addEventListener('load', () => {
+    measure();
+    // re-check after images/fonts settle
+    setTimeout(measure, 250);
+    setTimeout(measure, 600);
+  });
+
+  // Watch layout changes
+  new ResizeObserver(() => schedule(120)).observe(document.documentElement);
+  new MutationObserver(() => schedule(150)).observe(document.documentElement, {
+    childList: true, subtree: true, attributes: true, characterData: true
+  });
+
+  // Orientation / viewport changes
+  window.addEventListener('orientationchange', () => schedule(250));
+  window.addEventListener('resize', () => schedule(150));
+})();
+</script>
 
 </body>
 </html>
