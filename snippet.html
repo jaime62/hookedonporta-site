@@ -378,6 +378,60 @@
     }, false);
   })();
 </script>
+<style>
+  /* Important: keep child fully transparent */
+  html, body {
+    background: transparent !important;
+  }
+  /* Wrap your content in a stable container with this id */
+  #page-root {
+    /* nothing required, just a consistent wrapper */
+  }
+</style>
+
+<script>
+(function(){
+  const root = document.getElementById('page-root') || document.body;
+  let last = 0;
+  let tId = null;
+  const THRESH = 12; // don't spam for <12px changes
+
+  function send(h) {
+    const next = Math.max(0, Math.round(h));
+    if (Math.abs(next - last) < THRESH) return;
+    last = next;
+    window.parent.postMessage({ type: 'resize-iframe', height: next }, '*');
+  }
+
+  function measure() {
+    // Measure the root container only (prevents doc/viewport feedback loops)
+    const h = root.scrollHeight;
+    send(h);
+  }
+
+  function schedule(ms = 120) {
+    clearTimeout(tId);
+    tId = setTimeout(measure, ms);
+  }
+
+  // Initial + after load settle
+  window.addEventListener('load', () => {
+    measure();
+    setTimeout(measure, 250);
+    setTimeout(measure, 600);
+  });
+
+  // Watch layout changes inside the root only
+  new ResizeObserver(() => schedule(120)).observe(root);
+  new MutationObserver(() => schedule(150)).observe(root, {
+    childList: true, subtree: true, attributes: true, characterData: true
+  });
+
+  // Orientation / viewport changes in child
+  window.addEventListener('orientationchange', () => schedule(250));
+  window.addEventListener('resize', () => schedule(150));
+})();
+</script>
 
 </body>
 </html>
