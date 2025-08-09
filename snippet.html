@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobile Background Test</title>
+<style>
+  /* Ensure html & body cover the full viewport */
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Fixed ocean background */
+  body {
+    background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+
+  /* Simple header */
+  .header {
+    background: rgba(255,255,255,0.72);
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+  /* Test content */
+  .content {
+    padding: 1rem;
+    color: white;
+  }
+
+  iframe {
+    width: 100%;
+    height: 800px; /* tall so you can scroll */
+    border: none;
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  Fixed Background Mobile Test
+</div>
+
+<div class="content">
+  <p>Scroll down and check if the ocean background stays fixed.</p>
+</div>
+
+<iframe src="https://example.com"></iframe>
+
+<div class="content">
+  <p>More content here...</p>
+</div>
+
+</body>
+</html>
