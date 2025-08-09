@@ -172,6 +172,14 @@
   });
 
   window.addEventListener('resize', () => debouncedResize(200));
+
+function toggle(element) {
+  document.querySelectorAll(".subcategory").forEach(sub => sub.style.display = "none");
+  const subcategory = element.nextElementSibling;
+  subcategory.style.display = "block";
+}
+
+
 </script>
 
 
