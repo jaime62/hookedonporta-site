@@ -4,24 +4,21 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-      <!-- Open Graph (Facebook & Messenger) -->
+<title>Tech Tackle Box</title>
+
+<!-- Open Graph -->
 <meta property="og:title" content="Tech Tackle Box">
 <meta property="og:description" content="Port Aransas, TX local fishing information and product source!">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://hookedonporta.com/">
 <meta property="og:site_name" content="HookedOnPortA.com">
-
-<!-- Large preview image -->
-<meta property="og:title" content="Tech Tackle Box">
-<meta property="og:description" content="Your #1 local fishing information and product source!">
 <meta property="og:image" content="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/HOPA-desktop-1200x630.png">
-<meta property="og:url" content="https://hookedonporta.com/">
-<meta property="og:type" content="website">
-      
-<title>Tech Tackle Box</title>
+
 <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
-<link rel="preload" as="image"
-      href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/sunrise-over-ocean-floor-fish.png">
+<!-- Preload the mobile image by default -->
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/HOPA-bg-sunrise-n-fish.png">
+<!-- Preload the desktop image only on wider screens -->
+<link rel="preload" as="image" media="(min-width:768px)" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/sunrise-over-ocean-floor-fish2.png">
 
 <!-- Favicon links -->
 <link rel="icon" type="image/png" sizes="32x32" href="https://github.com/jaime62/hookedonporta-site/blob/main/images/HookedOnPortA-favicon_wbg.png?raw=true">
@@ -36,23 +33,30 @@
   body { color: #000; background: transparent; }
   html, body { overscroll-behavior-y: none; }
 
-  /* ---- FIXED FULL-PAGE OCEAN BACKGROUND (desktop + iOS) ---- */
+  /* ---- Single fixed full-page background via ::before ----
+     Default (mobile) image; desktop swap below */
   body::before {
     content: "";
     position: fixed;
     inset: 0;
     z-index: -1;
-    background-image: url("https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/sunrise-over-ocean-floor-fish2.png");
+    background-image: url("https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/HOPA-bg-sunrise-n-fish.png");
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: 120% auto;
+    background-size: 120% auto; /* keep your current zoom */
     pointer-events: none;
-    height: 100svh;           /* iOS friendly */
-    transform: translateZ(0); /* reduce jank */
+    height: 100svh;          /* iOS friendly */
+    transform: translateZ(0);
     will-change: transform;
   }
   @supports not (height: 100svh) {
     body::before { height: 100vh; }
+  }
+  /* Desktop/tablet: switch to desktop background image */
+  @media (min-width: 768px) {
+    body::before {
+      background-image: url("https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/sunrise-over-ocean-floor-fish2.png");
+    }
   }
 
   /* Header (scrolls with page) */
@@ -109,7 +113,7 @@
 
   /* Headline & intro */
   .intro { text-align: center; margin-top: 2rem; }
-  .intro h2 { color: gold; } <!-- #1a237e; -->
+  .intro h2 { color: gold; }
   .intro p { color: black; }
 
   /* About collapsible */
@@ -131,20 +135,24 @@
   #tackleBoxInfo p { margin-bottom: 1rem; }
   #tackleBoxInfo p:last-child { margin-bottom: 0; }
 
-  /* “Read our latest Fishing Report!” link */
-  .fishing-link {
-    text-decoration: none; color: white; font-weight: bold; transition: all 0.3s ease;
+  /* Report link styling */
+  .report-row { text-align:center; margin: .65rem auto 1rem; }
+  .fishing-link{
+    text-decoration:none; color:#0077b6; font-weight:bold;
+    background: rgba(255,255,255,.85);
+    padding:.7rem 1.2rem; border-radius:8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.12); transition: all .25s ease;
   }
-  .fishing-link:hover { color: #0096c7; text-decoration: underline; transform: scale(1.05); }
+  .fishing-link:hover{ color:#0096c7; text-decoration:underline; transform: translateY(-1px); }
 
-  /* Store / iframe area — no white box, fully transparent */
+  /* Store / iframe area — transparent */
   #amazon-ads { margin: 2rem auto 0; padding: 0; width: 95%; max-width: 1400px; text-align: center; border-radius: 8px; background: transparent; }
   #amazon-ads iframe {
     width: 100%;
     display: block;
     border: none;
     background: transparent;
-    height: auto; /* JS will size it */
+    height: auto; /* sized by postMessage */
   }
   .tab-folder { display: flex; justify-content: center; margin: 1.5rem 0 -0.5rem; gap: 1rem; }
   .tab-folder button {
@@ -179,26 +187,6 @@
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
   }
-  /* Desktop-only: show more of the background image height */
-@media (min-width: 1025px) {
-  .bg-fixed {
-    /* Option A: show entire image (may letterbox on sides) */
-    /* background-size: contain; */
-    /* background-position: center top; */
-
-    /* Option B (nice compromise): keep it wide but “zoom out” a bit */
-    background-size: 120% auto;   /* try 110%–140% to taste */
-    background-position: center top;
-  }
-}
-.report-row{text-align:center;margin: .65rem auto 1rem}
-  .fishing-link{
-    text-decoration:none;color:#0077b6;font-weight:bold;
-    background: rgba(255,255,255,.85);
-    padding:.7rem 1.2rem;border-radius:8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,.12);transition: all .25s ease;
-  }
-  .fishing-link:hover{color:#0096c7;text-decoration:underline;transform: translateY(-1px)}
 </style>
 </head>
 <body>
@@ -253,7 +241,7 @@
   <!-- Intro -->
   <div class="intro">
     <h2>Welcome Port Aransas Saltwater Anglers!</h2>
-<!--    <p style="color: white;">Use the menu buttons above to navigate to the various tools that we have in our "tackle box".</p>
+    <!-- <p style="color: white;">Use the menu buttons above to navigate to the various tools that we have in our "tackle box".</p>
     <p style="color: white;"><i>(All external links on this site will open in a separate window)</i></p> -->
   </div>
 
@@ -273,9 +261,12 @@
   </div>
 
   <!-- Fishing Report link ABOVE store -->
- <BR> <div class="report-row">  <BR>
+  <br>
+  <div class="report-row">
+    <br>
     <a href="#" class="fishing-link" onclick="openFishingReport(); return false;">Read our latest Fishing Report!</a>
-<BR>  </div>
+    <br>
+  </div>
 
   <!-- STORE EMBED -->
   <div id="amazon-ads" style="text-align: center;">
@@ -310,7 +301,7 @@
     <p style="text-align: center; font-size: 0.95rem; color: black; margin-top: 2rem;">
       <i>Tech Tackle Box™ is a proud part of
         <a href="https://wheatonsworld.com" target="_blank" style="color: gold; text-decoration: none;"><b>Wheaton’s World™</b></a>
-        &nbsp;&nbsp;-&nbsp;&nbsp;<span style="color: black;">All rights reserved.</span></p></i>
+        &nbsp;&nbsp;-&nbsp;&nbsp;<span style="color: black;">All rights reserved.</span></i>
     </p>
   </footer>
 
