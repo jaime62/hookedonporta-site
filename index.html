@@ -184,6 +184,7 @@
       font-size: 0.65rem; padding: 6px 10px; min-width: 58px; max-width: 80px;
       white-space: nowrap; text-overflow: ellipsis; overflow: hidden;
     }
+      br.mobile-break { display: inline; } /* any non-none value works */
   }
   @media (max-width: 850px) and (orientation: landscape) {
     .nav { gap: 0.4rem; padding: 0 0.75rem; flex-wrap: nowrap; }
@@ -193,9 +194,6 @@
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
     br.mobile-break { display: none; }
-@media (max-width: 600px) {
-  br.mobile-break { display: inline; } /* any non-none value works */
-}
   }
 </style>
 </head>
