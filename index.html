@@ -192,6 +192,10 @@
       font-size: 0.85rem; padding: 8px 16px; min-width: 90px; max-width: 130px;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
+    br.mobile-break { display: none; }
+@media (max-width: 600px) {
+  br.mobile-break { display: inline; } /* any non-none value works */
+}
   }
 </style>
 </head>
@@ -306,7 +310,7 @@
 
   <footer class="site-footer">
     <p style="text-align: center; font-size: 0.95rem; color: rgba(150, 255, 255, 1); margin-top: 2rem;">
-      <i>Tech Tackle Box™ is a proud part of<span class="mobile-break"></span>
+      <i>Tech Tackle Box™ is a proud part of<br class="mobile-break">
         <a href="https://wheatonsworld.com" target="_blank" style="color: gold; text-decoration: none;"><b>Wheaton’s World™</b></a>
         &nbsp;&nbsp;-&nbsp;&nbsp;<span style="color: rgba(150, 255, 255, 1);">All rights reserved.</span></i>
     </p>
