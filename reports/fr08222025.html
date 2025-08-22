@@ -13,7 +13,6 @@
       --shadow: 0 0 15px rgba(0,0,0,0.1);
       --radius: 12px;
     }
-
     html, body {
       padding: 0;
       margin: 0;
@@ -22,7 +21,6 @@
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       line-height: 1.55;
     }
-
     .container {
       max-width: 800px;
       margin: 60px auto;
@@ -31,28 +29,9 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
     }
-
-    /* Letterhead layout */
-    .header {
-      position: relative;
-      margin-bottom: 20px;
-    }
-
-    .logo {
-      top: 0;
-      left: 0;
-      transform: scale(1.8);
-      max-height: 120px;
-      width: auto;
-    }
-
-    .report-img {
-      display: block;
-      margin: 0 auto;
-      max-height: 80px;
-      width: auto;
-    }
-
+    .header { position: relative; margin-bottom: 20px; }
+    .logo { transform: scale(1.8); max-height: 120px; width: auto; }
+    .report-img { display: block; margin: 0 auto; max-height: 80px; width: auto; }
     img { max-width: 100%; height: auto; }
     em { color: var(--muted); }
     hr { border: none; border-top: 1px solid #e5e7eb; margin: 24px 0; }
@@ -60,7 +39,6 @@
     ul { padding-left: 1.2em; }
     table { width: 100%; border-collapse: collapse; margin: 12px 0; }
     th, td { border: 1px solid #e5e7eb; padding: 8px 10px; text-align: left; }
-
     @media (max-width: 640px) {
       .container { margin: 30px 16px; padding: 20px; }
       .logo { max-height: 90px; position: static; display: block; margin-bottom: 10px; }
@@ -89,55 +67,26 @@
     <p align="left">August 22, 2025</p><br>
     <p><b>Hey there, fellow anglers!</b><br><br>
     Welcome to my Port Aransas fishing diary—where the salt meets the soul and the stories are just as good as the catch.
-    Let’s dive into what’s biting right now, the best surf-fishing times, offshore highlights, marine conditions, and the latest on season rules.</p>
+    Here’s what’s biting, the best surf windows, rules to know, and today’s marine conditions.</p>
     <hr />
 
+    <!-- 1) Best Times for Surf Fishing -->
     <h2>Best Times for Surf Fishing</h2>
-    <p>If you're chasing fish from the shoreline, <strong>twilight hours</strong>—early morning and evening—are your golden window,
-    especially when they align with <strong>moving water</strong> around tide turns.</p>
+    <p>If you're chasing fish from the shoreline, <strong>twilight hours</strong>—early morning and evening—are your golden window, especially when they align with <strong>moving water</strong> around tide turns.</p>
     <ul>
-      <li><strong>Dawn:</strong> Work the first and second guts with live shrimp or croaker; move to the jetties as current picks up.</li>
-      <li><strong>Afternoon tide push:</strong> Fish the turn with spoons, shrimp, or finger mullet; bump leader size for smacks/kings near rocks.</li>
-      <li><strong>Evening:</strong> Target points and cuts as water drains—topwaters and soft plastics can shine if winds stay light.</li>
+      <li><strong>Dawn strategy:</strong> Work the first and second guts with live shrimp or croaker; slide to the jetties as current picks up.</li>
+      <li><strong>Afternoon push:</strong> Fish the tide turn with spoons, shrimp, or finger mullet; bump leader size for smacks/kings near rocks.</li>
+      <li><strong>Evening:</strong> Target points and cuts as water drains—topwaters and soft plastics shine if winds stay light.</li>
     </ul>
     <hr />
 
-    <h2>Marine Conditions (Port Aransas)</h2>
-    <h3>Wind</h3>
-    <table>
-      <thead><tr><th>When</th><th>Direction / Speed</th><th>Notes</th></tr></thead>
-      <tbody>
-        <tr><td>Today</td><td>NW → SE ~5 kts</td><td>Smooth bay waters; showers/storms possible.</td></tr>
-        <tr><td>Tonight</td><td>SE ~5 kts → S late</td><td>Smooth; isolated storms.</td></tr>
-        <tr><td>Saturday</td><td>Light & variable → E ~5 kts</td><td>Light winds continue; watch for pop‑ups.</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Waves / Seas (Nearshore)</h3>
-    <table>
-      <thead><tr><th>Zone</th><th>Seas</th><th>Wave Detail</th></tr></thead>
-      <tbody>
-        <tr><td>GMZ250 (Baffin Bay → Port A, out 20 NM)</td><td>~2 ft or less</td><td>~1 ft @ 2–4 s (light chop)</td></tr>
-        <tr><td>GMZ255 (Port A → Matagorda, out 20 NM)</td><td>~2 ft or less</td><td>~1 ft @ 2–3 s; higher near storms</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Tide (NOAA Station 8775237)</h3>
-    <table>
-      <thead><tr><th>Day</th><th>High</th><th>Low</th><th>Sunrise</th><th>Sunset</th></tr></thead>
-      <tbody>
-        <tr><td>Today</td><td>Mid‑day high (see NOAA)</td><td>Late‑evening low (see NOAA)</td><td>~7:01 AM</td><td>~8:00 PM</td></tr>
-      </tbody>
-    </table>
-    <em>Tip: Fish 60–90 minutes around tide turns; give extra buffer when thunderstorms are nearby.</em>
-    <hr />
-
+    <!-- 2) Offshore & Nearshore Species Targeting -->
     <h2>Offshore &amp; Nearshore Species Targeting</h2>
     <h3>Nearshore &amp; Surf Reports</h3>
-    <p><em>Latest TPWD Port Aransas weekly report (Aug 20, 2025):</em></p>
+    <p><em>TPWD Port Aransas (week of Aug 20, 2025):</em></p>
     <ul>
-      <li><strong>Redfish</strong> are <strong>good</strong> on the <strong>north &amp; south jetties</strong> with live shrimp and finger mullet; <strong>oversize reds great</strong> on cut crab or mullet.</li>
-      <li><strong>Speckled trout</strong> are <strong>great</strong> freelined with croaker or shrimp along jetty rocks; trout &amp; reds also <strong>great in the surf</strong> on live shrimp/croaker.</li>
+      <li><strong>Redfish</strong> are <strong>good</strong> along the <strong>north &amp; south jetties</strong> on live shrimp and finger mullet; <strong>oversize reds great</strong> on cut crab or mullet.</li>
+      <li><strong>Speckled trout</strong> are <strong>great</strong> freelined with croaker or shrimp along jetty rocks; reds &amp; trout also <strong>great in the surf</strong> on live shrimp/croaker.</li>
       <li><strong>King mackerel &amp; Spanish mackerel</strong> are <strong>great</strong> on ribbonfish or by trolling shiny spoons/plugs along the beach and jetties.</li>
     </ul>
 
@@ -163,6 +112,7 @@
     <p>Planning an offshore trip? Summer is your jackpot season.</p>
     <hr />
 
+    <!-- 3) Regulatory Seasons & Limits -->
     <h2>Regulatory Seasons &amp; Limits<sup>*</sup></h2>
     <ul>
       <li><strong>Red Snapper</strong>:
@@ -183,13 +133,36 @@
     </p>
     <hr />
 
-    <h2>Final Cast</h2>
-    <ul>
-      <li>Work dawn/dusk windows and tide turns on the beach.</li>
-      <li>Jetty playbook: shrimp, croaker, and mullet for trout &amp; reds; ribbonfish or shiny plugs for kings and smacks.</li>
-      <li>Offshore: snapper, kings, mahi—watch weather and weedlines.</li>
-      <li>Stay legal: double‑check bag &amp; size limits and federal vs. state snapper rules.</li>
-    </ul>
+    <!-- 4) Marine Conditions (Port Aransas) -->
+    <h2>Marine Conditions (Port Aransas)</h2>
+
+    <h3>Wind</h3>
+    <table>
+      <thead><tr><th>When</th><th>Direction / Speed</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Today</td><td>NW → SE ~5 kts</td><td>Smooth bay waters; showers/storms possible.</td></tr>
+        <tr><td>Tonight</td><td>SE ~5 kts → S late</td><td>Smooth; isolated storms.</td></tr>
+        <tr><td>Saturday</td><td>Light &amp; variable → E ~5 kts</td><td>Light winds continue; watch for pop‑ups.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Waves / Seas (Nearshore)</h3>
+    <table>
+      <thead><tr><th>Zone</th><th>Seas</th><th>Wave Detail</th></tr></thead>
+      <tbody>
+        <tr><td>GMZ250 (Baffin Bay → Port A, out 20 NM)</td><td>~2 ft or less</td><td>~1 ft @ 2–4 s (light chop)</td></tr>
+        <tr><td>GMZ255 (Port A → Matagorda, out 20 NM)</td><td>~2 ft or less</td><td>~1 ft @ 2–3 s; higher near storms</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Tide (NOAA Station 8775237)</h3>
+    <table>
+      <thead><tr><th>Day</th><th>High</th><th>Low</th><th>Sunrise</th><th>Sunset</th></tr></thead>
+      <tbody>
+        <tr><td>Today</td><td>See NOAA predictions</td><td>See NOAA predictions</td><td>~7:01 AM</td><td>~8:00 PM</td></tr>
+      </tbody>
+    </table>
+    <em>Tip: Fish 60–90 minutes around tide turns; give extra buffer when thunderstorms are nearby.</em>
 
     <div style="text-align:center; margin-top:50px;">
       <button onclick="window.close()" style="transform: scale(1.25);">Close Report</button>
