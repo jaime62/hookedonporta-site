@@ -1,499 +1,323 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta charset="UTF-8">
-  <title>Tech Tackle Box</title>
-  <!-- Favicon links -->
-  <link rel="icon" type="image/png" sizes="32x32" href="https://github.com/jaime62/Wheatons-World/blob/main/app/Tech-Tackle-Box/blue-tackle-box_192x192.png?raw=true">
-  <link rel="icon" type="image/png" sizes="192x192" href="https://github.com/jaime62/Wheatons-World/blob/main/app/Tech-Tackle-Box/blue-tackle-box_192x192.png?raw=true">
-  <link rel="apple-touch-icon" sizes="180x180" href="https://github.com/jaime62/Wheatons-World/blob/main/app/Tech-Tackle-Box/blue-tackle-box_192x192.png?raw=true">
-  <link rel="shortcut icon" href="https://github.com/jaime62/Wheatons-World/blob/main/app/Tech-Tackle-Box/blue-tackle-box_192x192.png?raw=true" type="image/png">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<title>Tech Tackle Box</title>
 
-    html, body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #BBFAE5 0%, white 50%, #BBFAE5 100%);
-      width: 100%;
-      overflow-x: hidden;
-    }
+<!-- Open Graph -->
+<meta property="og:title" content="Tech Tackle Box">
+<meta property="og:description" content="Port Aransas, TX local fishing information and related product source!">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hookedonporta.com/">
+<meta property="og:site_name" content="HookedOnPortA.com">
+<meta property="og:image" content="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/HOPA-desktop-v2-1200x630.png">
 
-    .header {
-      width: 100%;
-      height: auto;
-      background-image: url('https://github.com/jaime62/hookedonporta-site/blob/main/images/Underwater%20Ocean%20scene%202.png?raw=true');
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem 1rem 0.9rem;
-    }
+<link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+<!-- Preload the mobile image by default -->
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/HOPA-bg-sunrise-n-fish.png">
+<!-- Preload the desktop image only on wider screens -->
+<link rel="preload" as="image" media="(min-width:768px)" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/sunrise-over-ocean-floor-fish2.png">
 
-    .title-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      text-align: center;
-    }
+<!-- Favicon links -->
+<link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/HookedOnPortA-favicon_wbg.png">
+<link rel="icon" type="image/png" sizes="192x192" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/HookedOnPortA-favicon_wbg.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/HookedOnPortA-favicon_wbg.png">
+<link rel="shortcut icon" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/HookedOnPortA-favicon_wbg.png" type="image/png">
 
-    .title-row img {
-      max-height: 80px;
-      width: auto;
-    }
-
-    .title-row h1 {
-      font-size: 6vw;
-      font-weight: bold;
-      color: gold;
-      text-shadow: 1px 1px 4px #000;
-    }
-
-    .nav {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 1.8rem;
-    }
-
-    .nav button {
-      background-color: #2196f3;
-      color: white;
-      font-size: 1.2rem;
-      font-weight: bold;
-      border: none;
-      border-radius: 10px;
-      padding: 12px 24px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    }
-
-    .nav button:hover {
-      background-color: #1976d2;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    }
-
-    .tooltip-container {
-      position: relative;
-      display: inline-block;
-    }
-
-    .custom-tooltip {
-      visibility: hidden;
-      opacity: 0;
-      background-color: #BBFAE5;
-      color: black;
-      font-size: 1rem;
-      border-radius: 10px;
-      padding: 8px 10px;
-      position: absolute;
-      bottom: 120%;
-      left: 60%;
-      transform: translateX(-50%) translateY(0);
-      white-space: nowrap;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      transition: opacity 0.3s ease;
-      z-index: 100;
-    }
-
-    .custom-tooltip::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      margin-left: -6px;
-      border-width: 6px;
-      border-style: solid;
-      border-color: #BBFAE5 transparent transparent transparent;
-    }
-
-    .tooltip-container:hover .custom-tooltip {
-      visibility: visible;
-      opacity: 1;
-      animation: fadeBounce 0.6s ease forwards;
-    }
-
-    @keyframes fadeBounce {
-      0% {
-        opacity: 0;
-        transform: translateX(-50%) translateY(10px);
-      }
-      60% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(-5px);
-      }
-      100% {
-        transform: translateX(-50%) translateY(0);
-      }
-    }
-
-    .logo {
-      height: auto;
-      width: auto;
-      transform: scale(2.5);
-      transform-origin: center;
-    }
-
-    .fishing-tagline {
-      color: gold;
-      font-size: 1.3rem;
-      font-weight: bold;
-      text-shadow: 1px 1px 4px #000;
-      text-align: center;
-      margin: .5rem;
-    }
-
-    .site-footer {
-      text-align: center;
-      font-size: 1rem;
-      color: #666;
-      padding: 1rem;
-      margin-top: 1rem;
-      border-top: 1px solid #ddd;
-    }
-
-    @media (orientation: landscape) and (max-width: 1024px) {
-      .title-row h1 {
-        font-size: 4vw;
-      }
-    }
-
-    @media (min-width: 768px) {
-      .title-row h1 {
-        font-size: 3vw;
-      }
-    }
-
-@media (max-width: 600px) {
-  .nav {
-    gap: 0.3rem;
-    padding: 0 0.5rem;
-    flex-wrap: nowrap;
-  }
-
-  .tooltip-container {
-    flex: 1 1 auto;
-    display: flex;
-    justify-content: center;
-  }
-
-  .nav button {
-    font-size: 0.65rem;
-    padding: 6px 10px;
-    min-width: 58px;
-    max-width: 80px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-}
-@media (max-width: 850px) and (orientation: landscape) {
-  .nav {
-    gap: 0.4rem;
-    padding: 0 0.75rem;
-    flex-wrap: nowrap;
-  }
-
-  .tooltip-container {
-    flex: 1 1 auto;
-    display: flex;
-    justify-content: center;
-  }
-
-  .nav button {
-    font-size: 0.85rem;
-    padding: 8px 16px;
-    min-width: 90px;
-    max-width: 130px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-}
-
-
-<!-- Updated style block -->
 <style>
-  /* ... all your existing styles ... */
+  /* Reset + base */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; overflow-x: hidden; font-family: Arial, sans-serif; }
+  body { color: #000; background: transparent; }
+  html, body { overscroll-behavior-y: none; }
 
-  /* New Amazon Affiliate Section Styles */
-  #amazon-ads {
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: #f0f8ff;
-    border-top: 3px solid #2196f3;
-    width: 95%;
-    max-width: 1400px;
-    text-align: center;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  /* ---- Single fixed full-page background via ::before ----
+     Default (mobile) image; desktop swap below */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: url("https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/HOPA-bg-sunrise-n-fish.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 120% auto; /* keep your current zoom */
+    pointer-events: none;
+    height: 100svh;          /* iOS friendly */
+    transform: translateZ(0);
+    will-change: transform;
+  }
+  @supports not (height: 100svh) {
+    body::before { height: 100vh; }
+  }
+  /* Desktop/tablet: switch to desktop background image */
+  @media (min-width: 768px) {
+    body::before {
+      background-image: url("https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/sunrise-over-ocean-floor-fish2.png");
+    }
   }
 
-  #amazon-ads h2 {
-    color: #1a237e;
-    margin-bottom: 1rem;
-    font-size: 2rem;
+  /* Header (scrolls with page) */
+  .header {
+    width: 100%;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: saturate(120%) blur(1px);
+    -webkit-backdrop-filter: saturate(120%) blur(1px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem 0.9rem;
+  }
+  .title-row {
+    display: flex; align-items: center; justify-content: center;
+    gap: 1rem; flex-wrap: wrap; text-align: center;
+  }
+  .title-row img { max-height: 80px; width: auto; }
+  .title-row h1 {
+    font-size: 6vw; font-weight: bold; color: aqua; text-shadow: 0px 4px 4px #000;
   }
 
-  #amazon-ads p {
-    color: #444;
-    font-size: 1.1rem;
-    margin-bottom: 0.75rem;
+  /* Nav buttons + tooltips */
+  .nav { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 1.8rem; }
+  .nav button {
+    background-color: #1A3E50; color: white; font-size: 1.2rem; font-weight: bold;
+    border: none; border-radius: 10px; padding: 12px 24px; cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
   }
+  .nav button:hover { background-color: #1976d2; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
 
-#amazon-ads iframe {
-  width: 100%;
-  display: block;
-  height: auto; /* fallback for browsers */
-  border: none;
-  border-radius: 5px;
-  background-color: transparent;
+  .tooltip-container { position: relative; display: inline-block; }
+  .custom-tooltip {
+    visibility: hidden; opacity: 0; background-color: #BBFAE5; color: black; font-size: 1rem;
+    border-radius: 10px; padding: 8px 10px; position: absolute; bottom: 120%; left: 60%;
+    transform: translateX(-50%) translateY(0); white-space: nowrap;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2); transition: opacity 0.3s ease; z-index: 100;
+  }
+  .custom-tooltip::after {
+    content: ""; position: absolute; top: 100%; left: 50%; margin-left: -6px;
+    border-width: 6px; border-style: solid; border-color: #BBFAE5 transparent transparent transparent;
+  }
+  .tooltip-container:hover .custom-tooltip {
+    visibility: visible; opacity: 1; animation: fadeBounce 0.6s ease forwards;
+  }
+  @keyframes fadeBounce {
+    0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+    60% { opacity: 1; transform: translateX(-50%) translateY(-5px); }
+    100% { transform: translateX(-50%) translateY(0); }
+  }
+  .logo { height: auto; width: auto; transform: scale(2.5); transform-origin: center; }
+
+  /* Headline & intro */
+  .intro { text-align: center; margin-top: 2rem; }
+  .intro h2 { color: gold; }
+  .intro p { color: black; }
+
+  /* About collapsible */
+  .about-container { max-width: 800px; margin: 0 auto; }
+  .about-tagline {
+    color: gold; font-size: 1.4rem; font-weight: bold; text-shadow: 1px 1px 4px #000;
+    text-align: center; margin: 0.5rem auto; display: inline-flex; align-items: center;
+    gap: 0.4rem; padding: 0.3rem 0.6rem; border-radius: 8px; cursor: pointer;
+  }
+  .about-tagline:hover { background-color: #FBEE8E; border-radius: 8px; }
+  .about-tagline span { margin-left: 8px; font-size: 1.4rem; vertical-align: middle; }
+
+  #tackleBoxInfo {
+    max-width: 800px; width: 100%; display: none; margin: 1rem auto;
+    padding: 1.5rem; background-color: rgba(240,248,255,0.9);
+    border: 1px solid #2196f3; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    line-height: 1.6; text-align: left; color: #000;
+  }
+  #tackleBoxInfo p { margin-bottom: 1rem; }
+  #tackleBoxInfo p:last-child { margin-bottom: 0; }
+
+  /* Report link styling */
+  .report-row { text-align:center; margin: .65rem auto 1rem; }
+  .fishing-link{
+    text-decoration:none; color:#093D38; font-weight:bold;
+    background: rgba(0,255,255,.85);
+    padding:.7rem 1.2rem; border-radius:8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.12); transition: all .25s ease;
+  }
+.fishing-link:hover {
+  background-color: rgba(0, 200, 230, 0.95); /* darker aqua */
+  color: #003c54; /* deeper blue for contrast */
+  transform: translateY(-1px);
 }
-
-.tab-folder {
-  display: flex;
-  justify-content: center;
-  margin: 1.5rem 0 -0.5rem;
-  gap: 1rem;
+  /* Store / iframe area — transparent */
+  #amazon-ads { margin: 2rem auto 0; padding: 0; width: 95%; max-width: 1400px; text-align: center; border-radius: 8px; background: transparent; }
+  #amazon-ads iframe {
+    width: 100%;
+    display: block;
+    border: none;
+    background: transparent;
+    height: auto; /* sized by postMessage */
+  }
+  .tab-folder { display: flex; justify-content: center; margin: 1.5rem 0 -0.5rem; gap: 1rem; }
+  .tab-folder button {
+    padding: 10px 20px; border: none; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; background-color: silver; color: darkblue; font-weight: bold; cursor: pointer;
+  }
+  .tab-folder button:hover {
+  background-color: #FBEE8E;
 }
+  .tab-folder button.active { color: darkblue; background-color: gold; }
 
-.tab-folder button {
-  padding: 10px 20px;
-  border: none;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  background-color: silver;
-  color: darkblue;
-  font-weight: bold;
-  cursor: pointer;
-}
+  .fishing-tagline { color: gold; font-size: 1.3rem; font-weight: bold; text-shadow: 1px 1px 4px #000; text-align: center; margin: .5rem; }
+  .site-footer { text-align: center; font-size: 1rem; color: #666; padding: 1rem; margin-top: 1rem; border-top: 0; }
 
-.tab-folder button.active {
-  color: darkblue;
-  background-color: gold;
-}
-
-  .about-container {
-      max-width: 800px;
-      margin: 0 auto;
+  /* Responsive tweaks */
+  @media (orientation: landscape) and (max-width: 1024px) {
+    .title-row h1 { font-size: 4vw; }
+  }
+  @media (min-width: 768px) {
+    .title-row h1 { font-size: 3vw; }
+  }
+  @media (max-width: 600px) {
+    .nav { gap: 0.3rem; padding: 0 0.5rem; flex-wrap: nowrap; }
+    .tooltip-container { flex: 1 1 auto; display: flex; justify-content: center; }
+    .footer-text {max-width: 200px; text-align: center; }
+    .nav button {
+      font-size: 0.65rem; padding: 6px 10px; min-width: 58px; max-width: 80px;
+      white-space: nowrap; text-overflow: ellipsis; overflow: hidden;
     }
-
-.about-tagline {
-  color: gold;
-  font-size: 1.4rem;
-  font-weight: bold;
-  text-shadow: 1px 1px 4px #000;
-  text-align: center;
-  margin: 0.5rem auto;
-  display: inline-flex;       /* changed from inline-block to inline-flex */
-  align-items: center;        /* vertical alignment */
-  gap: 0.4rem;                /* spacing between text and arrow */
-  padding: 0.3rem 0.6rem;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-
- .about-tagline:hover {
-  background-color: gray;
-  border-radius: 8px; /* Or any radius you prefer */
-}
-
-.about-tagline span {
-  margin-left: 8px;
-  font-size: 1.4rem;
-  vertical-align: middle;
-}
-
-
-#tackleBoxInfo {
-  max-width: 800px;
-  width: 100%;
-  display: none;
-  margin: 1rem auto;  /* <-- Centers it horizontally */
-  padding: 1.5rem;
-  background-color: #f0f8ff;
-  border: 1px solid #2196f3;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  line-height: 1.6;
-  text-align: left;
-}
-
-
-    #tackleBoxInfo p {
-      margin-bottom: 1rem;
+      br.mobile-break { display: inline; } /* any non-none value works */
+  }
+  @media (max-width: 850px) and (orientation: landscape) {
+    .nav { gap: 0.4rem; padding: 0 0.75rem; flex-wrap: nowrap; }
+    .tooltip-container { flex: 1 1 auto; display: flex; justify-content: center; }
+    .nav button {
+      font-size: 0.85rem; padding: 8px 16px; min-width: 90px; max-width: 130px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
-
-    #tackleBoxInfo p:last-child {
-      margin-bottom: 0;
-    }
-    
+    br.mobile-break { display: none; }
+  }
 </style>
-
-
-
-  </style>
 </head>
 <body>
 
+  <!-- Header (scrolls with page) -->
   <div class="header">
     <div class="title-row">
-     <a href="https://hookedonporta.com" target="_blank"><img class="logo" src="https://github.com/jaime62/hookedonporta-site/blob/main/images/HookedOnPortA-logo-fogged_bg.png?raw=true" alt="HookedOnPortA.com"></a>
+      <a href="https://hookedonporta.com" target="_blank" rel="noopener">
+        <img class="logo" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/HookedOnPortA-logo-fogged_bg.png" alt="HookedOnPortA.com">
+      </a>
       &nbsp;<h1>Tech Tackle Box</h1>
     </div>
-    <div class="nav">
 
+    <div class="nav">
       <div class="tooltip-container">
-        <a href="https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits" target="_blank">
-          <button>Bag & Length</button>
+        <a href="https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits" target="_blank" rel="noopener">
+          <button>TX Regs</button>
         </a>
-        <div class="custom-tooltip">Check TPWD for saltwater regulations so you know what's currently legal!</div>
+        <div class="custom-tooltip">Check TPWD for saltwater regulations</div>
       </div>
 
       <div class="tooltip-container">
-        <a href="https://g1.ipcamlive.com/player/player.php?alias=portafishrack&#038;autoplay=1&#038;mute=1" target="_blank">
+        <a href="https://g1.ipcamlive.com/player/player.php?alias=portafishrack&#038;autoplay=1&#038;mute=1" target="_blank" rel="noopener">
           <button>Bait Cam</button>
         </a>
-        <div class="custom-tooltip">View the Deep Sea Headquarters LIVE bait cam for current bait flags!</div>
+        <div class="custom-tooltip">Check what Deep Sea HQ bait flags are flying, LIVE!</div>
       </div>
 
       <div class="tooltip-container">
-        <a href="https://tpwd.texas.gov/gis/ris/artificialreefs/" target="_blank">
-          <button>Reef Map</button>
+        <a href="https://tpwd.texas.gov/gis/ris/artificialreefs/" target="_blank" rel="noopener">
+          <button>TX Reefs</button>
         </a>
         <div class="custom-tooltip">Locate and fish artificial reef structures!</div>
       </div>
 
       <div class="tooltip-container">
-        <a href="https://sfs.saltstrong.com/?lat=27.73447113880205&lng=-97.16033439480708&zoom=10" target="_blank">
+        <a href="https://sfs.saltstrong.com/?lat=27.73447113880205&lng=-97.16033439480708&zoom=10" target="_blank" rel="noopener">
           <button>SmartSpots</button>
         </a>
-        <div class="custom-tooltip">Use Salt Strong's awesome forecast & planning tool!</div>
+        <div class="custom-tooltip">Use Salt Strong's forecast & planning tool!</div>
       </div>
 
       <div class="tooltip-container">
-        <a href="https://www.windfinder.com/forecast/mustang_island_port_aransas" target="_blank">
-          <button>Windfinder</button>
+        <a href="https://www.windfinder.com/forecast/mustang_island_port_aransas" target="_blank" rel="noopener">
+          <button>Seas</button>
         </a>
-        <div class="custom-tooltip">Check wind, wave & tide conditions around Port A before you go!</div>
+        <div class="custom-tooltip">Check wind, wave & tide conditions around Port A!</div>
       </div>
-
     </div>
   </div>
 
+  <!-- Intro -->
+  <div class="intro">
+    <h2>Welcome Port Aransas Saltwater Anglers!</h2>
+    <!-- <p style="color: white;">Use the menu buttons above to navigate to the various tools that we have in our "tackle box".</p>
+    <p style="color: white;"><i>(All external links on this site will open in a separate window)</i></p> -->
+  </div>
 
-<!-- OPENING PARAGRAPH START -->
-
-<div class="about-container">
-  <!-- Clickable Header -->
-  <div style="text-align: center;">
-    <div class="about-tagline" onclick="toggleTackleBox()">
-      About Tech Tackle Box<span id="arrow-icon">▶</span>
+  <!-- About collapsible -->
+  <div class="about-container">
+    <div style="text-align: center;">
+      <div class="about-tagline" onclick="toggleTackleBox()">
+        About Tech Tackle Box<span id="arrow-icon">▶</span>
+      </div>
     </div>
   </div>
-</div>
 
-
-    <!-- Collapsible Info Panel -->
-    <div id="tackleBoxInfo">
-      <p><strong> Tech Tackle Box</strong> is a mobile-friendly hub of fishing tools and resources for the Port Aransas area. Whether you're fishing the bay or offshore, it puts helpful info right at your fingertips.</p>
-
-      <p>Quickly access bait cams, reef maps, interactive fishing-related maps, weather, tide, and regulation links — all without clutter.</p>
-
-      <p>Built for locals and visitors alike, this site will keep growing with new tools, gear picks, affiliate deals, and time-saving features.</p>
-    </div>
+  <div id="tackleBoxInfo">
+    <p><strong>Tech Tackle Box</strong> is a mobile-friendly hub of fishing tools and resources for the Port Aransas area. Whether you're fishing the bay or offshore, it puts helpful info right at your fingertips.</p>
+    <p>Quickly access bait cams, reef maps, interactive fishing-related maps, weather, tide, and regulation links — all without clutter.</p>
+    <p>Built for locals and visitors alike, this site will keep growing with new tools, more gear picks, and time-saving features.</p>
   </div>
-<!--<div style="text-align: center;"><a href="#" onclick="openFishingReport(); return false;">
-  Read our latest Fishing Report!
-</a>
-</div>-->
-  <style>
-.fishing-link {
-  text-decoration: none;
-  color: #0077b6; /* ocean blue */
-  font-weight: bold;
-  transition: all 0.3s ease;
-}
-.fishing-link:hover {
-  background-color: rgba(0, 200, 230, 0.95); /* darker aqua */
-  color: #0096c7;        /* lighter blue */
-  transform: scale(1.05);
-}
-</style>
 
-<div style="text-align: center;">
-  <a href="#" class="fishing-link" onclick="openFishingReport(); return false;">
-    Read our latest Fishing Report!
-  </a>
-</div>
+  <!-- Fishing Report link ABOVE store -->
+  <p style="margin-top:3em;"></p>
 
-  
-<!-- OPENING PARAGRAPH END -->
- <!-- STORE EMBED -->
-<div id="amazon-ads" style="text-align: center; margin-bottom: 0; padding-bottom: 0;">
-<!--  <h2>Shop Fishing Gear</h2> -->
-<div class="tab-folder">
-  <button class="active" data-src="Products3.html">Shop Gear</button>
-  <button data-src="Guides.html">Local Fishing Guides</button>
-</div>
+  <div class="report-row">
+    <a href="#" class="fishing-link" onclick="openFishingReport(); return false;">Read our latest Fishing Report!</a>
+  </div>
+<p style="margin-top:3em;"></p>
 
-<iframe
-  id="product-iframe"
-  src="Products3.html"
-  title="Fishing Products"
-  loading="lazy"
-  allowtransparency="true"
-  style="background-color: transparent; width: 100%; border: none;"
-></iframe>
+  <!-- STORE EMBED -->
+  <div id="amazon-ads" style="text-align: center;">
+    <div class="tab-folder">
+      <button class="active" data-src="Products.html">Shop Gear</button>
+      <button data-src="Guides.html">Local Fishing Guides</button>
+    </div>
+<p style="margin-top:0em; margin-bottom:0em"></p>
 
+    <iframe
+      id="product-iframe"
+      src="Products.html"
+      title="Fishing Products"
+      loading="lazy"
+      allowtransparency="true"
+    ></iframe>
+  </div>
 
-</div>
-    <div style="text-align: center; padding: 0 0 0.2rem;">
-    <p font-size: .4rem;>
+  <div style="text-align: center; padding: 0 0 0.2rem;">
+    <p style="font-size: .95rem; color: white;">
       <i>As an Amazon Associate, I earn from qualifying purchases.</i>
     </p>
   </div>
-<!-- STORE END -->
-<script>
-  window.addEventListener('message', function (event) {
-    if (event.data.type === 'resize-iframe') {
-      const iframe = document.querySelector('#amazon-ads iframe');
-      if (iframe) {
-        iframe.style.height = event.data.height + 'px';
-      }
-    }
-  });
-</script>
+  <!-- STORE END -->
 
-
-<div class="fishing-tagline">
-  <p style="text-align: center; margin-top: 2rem;">
-  🎣 <i>Tight lines out there, friends — stay sharp, trust your instincts, and go get 'em!</i>
-</p>
-</div>
+  <div class="fishing-tagline">
+    <p style="text-align: center; margin-top: 2rem;">
+      <i>Tight lines out there, friends — stay sharp, trust your instincts, and go get 'em!</i>
+    </p>
+  </div>
 
   <footer class="site-footer">
-    <p style="text-align: center; font-size: 0.95rem; color: #333; margin-top: 2rem;">
-  <i>Tech Tackle Box™ is a proud part of <a href="https://wheatonsworld.com" target="_blank" style="color: #1a237e; text-decoration: none;"><b>Wheaton’s World™</b></a>&nbsp;&nbsp;-&nbsp;&nbsp;All rights reserved.</i>
-</p>
+    <p style="text-align: center; font-size: 0.95rem; color: rgba(150, 255, 255, 1); margin-top: 2rem;">
+      <i>Tech Tackle Box™ is a proud part of<br class="mobile-break">
+        <a href="https://wheatonsworld.com" target="_blank" style="color: gold; text-decoration: none;"><b>Wheaton’s World™</b></a>
+        &nbsp;&nbsp;-&nbsp;&nbsp;<span style="color: rgba(150, 255, 255, 1);">All rights reserved.</span></i>
+    </p>
   </footer>
 
-  <script>
+<script>
+  // Tabs -> swap iframe src
   const tabButtons = document.querySelectorAll(".tab-folder button");
   const productFrame = document.getElementById("product-iframe");
-
   tabButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       tabButtons.forEach(b => b.classList.remove("active"));
@@ -501,43 +325,63 @@
       productFrame.src = btn.dataset.src;
     });
   });
-</script>
 
-<script>
+  // About panel toggle
   function toggleTackleBox() {
     const info = document.getElementById("tackleBoxInfo");
     const arrow = document.getElementById("arrow-icon");
     const isHidden = info.style.display === "none" || info.style.display === "";
-
     info.style.display = isHidden ? "block" : "none";
     arrow.textContent = isHidden ? "▼" : "▶";
   }
-</script>
-  <script>
-function openFishingReport() {
-  const popupWidth = 900;
-  const popupHeight = 700;
 
-  // Get the opener window's dimensions and position
-  const openerWidth = window.innerWidth;
-  const openerHeight = window.innerHeight;
-  const openerLeft = window.screenX || window.screenLeft;
-  const openerTop = window.screenY || window.screenTop;
+  // Fishing Report popup (centered)
+  function openFishingReport() {
+    const popupWidth = 900;
+    const popupHeight = 700;
+    const openerWidth = window.innerWidth;
+    const openerHeight = window.innerHeight;
+    const openerLeft = window.screenX || window.screenLeft || 0;
+    const openerTop = window.screenY || window.screenTop || 0;
+    const left = openerLeft + (openerWidth - popupWidth) / 2;
+    const top = openerTop + (openerHeight - popupHeight) / 2;
 
-  // Calculate centered position
-  const left = openerLeft + (openerWidth - popupWidth) / 2;
-  const top = openerTop + (openerHeight - popupHeight) / 2;
+    window.open(
+      'https://hookedonporta.com/reports/fr08222025.html',
+      'FishingReport',
+      `width=${popupWidth},height=${popupHeight},left=${left},top=${top},resizable=yes,scrollbars=yes`
+    );
+  }
 
-  // Open centered popup
-  window.open(
-    'https://hookedonporta.com/reports/fr08072025.html',
-    'FishingReport',
-    `width=${popupWidth},height=${popupHeight},left=${left},top=${top},resizable=yes,scrollbars=yes`
-  );
-}
+  /* Single, stable iframe height listener (no loops, no bounce) */
+  (function () {
+    const iframe = document.getElementById('product-iframe');
+    if (!iframe) return;
 
+    let lastApplied = 0;
+    let rafId = null;
+    const MIN_DELTA = 14; // ignore tiny jitters
+    const MAX_H = 20000;
+
+    function apply(h) {
+      const next = Math.max(200, Math.min(Math.round(h), MAX_H));
+      if (Math.abs(next - lastApplied) < MIN_DELTA) return;
+      iframe.style.height = next + 'px';
+      lastApplied = next;
+    }
+
+    window.addEventListener('message', (e) => {
+      const d = e.data;
+      if (!d || d.type !== 'resize-iframe') return;
+      if (e.source !== iframe.contentWindow) return; // only our iframe
+      const h = Number(d.height);
+      if (!Number.isFinite(h) || h <= 0) return;
+
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => apply(h));
+    }, false);
+  })();
 </script>
 
 </body>
-
 </html>
