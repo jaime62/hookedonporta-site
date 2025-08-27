@@ -38,17 +38,45 @@
   h1 { font-size:20px; margin:0; letter-spacing:-0.02em; }
   main { padding:20px 22px 30px; }
   .intro { color:var(--muted); margin:0 0 16px; }
-  .grid { display:grid; grid-template-columns:repeat(12,1fr); gap:18px; }
+  /* Use the same gap value everywhere to keep math consistent */
+:root { --gap: 18px; }
+
+/* Center rows and keep current card widths */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+  justify-content: center;   /* centers the partial last row */
+}
+
+/* 1) Remove underline from the whole card link by default */
+.card,
+.card:link,
+.card:visited {
+  text-decoration: none;
+}
+
+
+/* 2 per row ≥760px — width = (100% - 1 gap) / 2 */
+@media (min-width: 760px) {
   .card {
-    grid-column:span 12; border:1px solid var(--border); border-radius:var(--radius); background:#fff; box-shadow:var(--shadow);
-    overflow:hidden; text-decoration:none; color:inherit; transition: transform .12s ease, box-shadow .12s ease;
+    flex: 0 0 calc((100% - var(--gap)) / 2);
   }
+}
+
+/* 3 per row ≥1080px — width = (100% - 2 gaps) / 3 */
+@media (min-width: 1080px) {
+  .card {
+    flex: 0 0 calc((100% - (2 * var(--gap))) / 3);
+  }
+}
+
   @media (min-width:760px) { .card { grid-column:span 6; } }
   @media (min-width:1080px) { .card { grid-column:span 4; } }
   .card:hover { transform: translateY(-2px); box-shadow:0 14px 30px rgba(2,8,23,0.14); }
   figure { margin:0; }
   img { width:100%; height:auto; display:block; aspect-ratio: 16 / 9; object-fit: cover; }
-  figcaption { padding:12px 14px; font-weight:800; color:aqua; letter-spacing:-0.01em; border-top:1px solid var(--border); background:#fff; }
+  figcaption { padding:12px 14px; font-weight:400; color:teal; text-align:block; letter-spacing:-0.01em; border-top:1px solid var(--border); background:#fff; }
   footer { text-align:center; color:var(--muted); border-top:1px solid var(--border); padding:18px 22px; }
 </style>
 </head>
