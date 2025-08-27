@@ -1,4 +1,4 @@
- <!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <!-- Speed up connection to the image host -->
@@ -95,7 +95,26 @@
       border-radius:10px; cursor:pointer; text-decoration:none; color:var(--text);
     }
     .modal-actions button { border-color:#cbd5e1; }
-    .modal-iframe { flex:1; border:0; width:100%; height:100%; }
+
+    /* The iframe should fill the modal body */
+    .modal-iframe { border:0; width:100%; height:100%; }
+    /* Wrapper needs to flex to fill modal */
+    .iframe-wrap { position: relative; width: 100%; height: 100%; flex: 1; }
+
+    /* --- Hide Google My Maps fullscreen button with overlay guard --- */
+    .fs-guard {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 88px;         /* adjust if needed */
+      height: 88px;
+      background: transparent;
+      border: 0;
+      padding: 0;
+      cursor: default;
+      pointer-events: auto; /* intercept clicks */
+    }
+    .fs-guard:focus { outline: none; }
   </style>
 </head>
 <body>
@@ -180,14 +199,18 @@
       <div class="modal-header">
         <h2 class="modal-title" id="mapTitle">Map</h2>
         <div class="modal-actions">
-<!--          <a id="openStandalone" href="#" rel="noopener">Open full screen in this tab</a> -->
           <button type="button" id="closeModal" aria-label="Close">Close</button>
         </div>
       </div>
-      <iframe id="mapFrame" class="modal-iframe" src="" referrerpolicy="no-referrer"></iframe>
 
-</div>
-
+      <!-- IFRAME WRAPPED WITH OVERLAY GUARD -->
+      <div class="iframe-wrap">
+        <iframe id="mapFrame" class="modal-iframe" src=""
+                referrerpolicy="no-referrer"
+                title="Embedded map"></iframe>
+        <button class="fs-guard" aria-hidden="true" tabindex="-1"></button>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -199,7 +222,6 @@
       var modal = document.getElementById('mapModal');
       var frame = document.getElementById('mapFrame');
       var titleEl = document.getElementById('mapTitle');
-      var openStandalone = document.getElementById('openStandalone');
       var closeBtn = document.getElementById('closeModal');
 
       function embedUrl(mapId){ return "https://www.google.com/maps/d/embed?mid=" + encodeURIComponent(mapId); }
@@ -221,9 +243,6 @@
             // Load embed inside the page (prevents any app interception)
             var url = embedUrl(id);
             frame.src = url;
-
-            // Provide an in-page "full screen" link that stays in the browser
-   <!--         openStandalone.href = url; -->
 
             // Show modal
             modal.classList.add('open');
