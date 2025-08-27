@@ -71,6 +71,31 @@
     }
 
     footer{ text-align:center; color:var(--muted); border-top:1px solid #e2e8f0; padding:18px 22px; }
+
+    /* ---------- Modal for mobile embed ---------- */
+    .modal {
+      position: fixed; inset: 0; background: rgba(15,23,42,.65);
+      display: none; align-items: center; justify-content: center; z-index: 1000;
+      backdrop-filter: blur(2px);
+    }
+    .modal.open { display: flex; }
+    .modal-inner {
+      background: #fff; width: 100%; height: 100%;
+      max-width: 100vw; max-height: 100vh; border-radius: 0;
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    .modal-header {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 12px; border-bottom:1px solid var(--border);
+      background:#fff;
+    }
+    .modal-title { font-size:16px; margin:0; }
+    .modal-actions a, .modal-actions button {
+      font: inherit; border:1px solid var(--border); background:#fff; padding:6px 10px;
+      border-radius:10px; cursor:pointer; text-decoration:none; color:var(--text);
+    }
+    .modal-actions button { border-color:#cbd5e1; }
+    .modal-iframe { flex:1; border:0; width:100%; height:100%; }
   </style>
 </head>
 <body>
@@ -84,10 +109,10 @@
   </header>
 
   <main class="wrap">
-    <p class="intro">Tap a card to open the corresponding Google My Map in a new tab. Save the map to your Google account to quickly access it on your phone.</p>
+    <p class="intro">Tap a card to open the corresponding Google My Map. On phones, the map opens right here so it stays in your browser (not the Maps app).</p>
 
     <div class="grid">
-      <!-- DESKTOP: viewer; MOBILE: script forces embed + window.open -->
+      <!-- DESKTOP: opens viewer in new tab; MOBILE: opens embedded modal -->
       <a class="card mymaps"
          href="https://www.google.com/maps/d/viewer?mid=1I4QjlGG_yINeKpvlZAwnCLuP_kO2mac&usp=sharing"
          data-mapid="1I4QjlGG_yINeKpvlZAwnCLuP_kO2mac"
@@ -149,42 +174,86 @@
     © 2025 Hooked on Port A
   </footer>
 
+  <!-- Mobile modal markup -->
+  <div class="modal" id="mapModal" aria-hidden="true">
+    <div class="modal-inner" role="dialog" aria-modal="true" aria-labelledby="mapTitle">
+      <div class="modal-header">
+        <h2 class="modal-title" id="mapTitle">Map</h2>
+        <div class="modal-actions">
+          <a id="openStandalone" href="#" rel="noopener">Open full screen in this tab</a>
+          <button type="button" id="closeModal" aria-label="Close">Close</button>
+        </div>
+      </div>
+      <iframe id="mapFrame" class="modal-iframe" src="" allowfullscreen referrerpolicy="no-referrer"></iframe>
+    </div>
+  </div>
+
   <script>
-    // ---- My Maps mobile hardening -----------------------------------------
-    // Goal: On phones (iOS & Android, all browsers & most in-app browsers),
-    // open the My Map in a *browser tab* (embed) and avoid the Google Maps app.
     (function () {
-      // Device/browser checks (broad, resilient)
       var ua = navigator.userAgent || "";
       var isMobile = /Mobi|Android|iP(hone|od|ad)/i.test(ua) ||
                      (navigator.userAgentData && navigator.userAgentData.mobile);
-      if (!isMobile) return; // desktop stays on viewer URLs
 
-      // Helper to build a clean embed URL from a map id
-      function embedUrl(mapId) {
-        return "https://www.google.com/maps/d/embed?mid=" + encodeURIComponent(mapId);
-      }
+      var modal = document.getElementById('mapModal');
+      var frame = document.getElementById('mapFrame');
+      var titleEl = document.getElementById('mapTitle');
+      var openStandalone = document.getElementById('openStandalone');
+      var closeBtn = document.getElementById('closeModal');
 
-      // Rewrite hrefs to embed on mobile, and force open via window.open
-      document.querySelectorAll('a.mymaps[data-mapid]').forEach(function (a) {
+      function embedUrl(mapId){ return "https://www.google.com/maps/d/embed?mid=" + encodeURIComponent(mapId); }
+      function viewerUrl(mapId){ return "https://www.google.com/maps/d/viewer?mid=" + encodeURIComponent(mapId) + "&usp=sharing"; }
+
+      // Desktop: keep your current behavior (new tab to viewer)
+      // Mobile: intercept and show an in-page modal with iframe (no app handoff)
+      document.querySelectorAll('a.mymaps[data-mapid]').forEach(function(a){
         var id = a.getAttribute('data-mapid');
-        if (!id) return;
+        var title = a.getAttribute('title') || 'Map';
 
-        // Swap visible href to embed to discourage app interception
-        a.href = embedUrl(id);
+        if (isMobile) {
+          a.addEventListener('click', function(e){
+            e.preventDefault();
 
-        // Harden click behavior: prevent default and open via window.open
-        // using explicit features to avoid universal-link takeover.
-        a.addEventListener('click', function (e) {
-          e.preventDefault();
-          try {
-            // Use noreferrer to further reduce app handoff in some in-app browsers
-            window.open(embedUrl(id), '_blank', 'noopener,noreferrer');
-          } catch (err) {
-            // Fallback: set location (still stays in browser because it's /embed)
-            location.href = embedUrl(id);
-          }
-        }, { passive: false });
+            // Set modal title
+            titleEl.textContent = title.replace(/^Open map:\s*/i, '');
+
+            // Load embed inside the page (prevents any app interception)
+            var url = embedUrl(id);
+            frame.src = url;
+
+            // Provide an in-page "full screen" link that stays in the browser
+            openStandalone.href = url;
+
+            // Show modal
+            modal.classList.add('open');
+            modal.setAttribute('aria-hidden','false');
+          }, { passive:false });
+        } else {
+          // Desktop still goes to viewer in a new tab (your existing href)
+          a.href = viewerUrl(id);
+        }
+      });
+
+      // Close modal handlers
+      closeBtn.addEventListener('click', function(){
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden','true');
+        frame.src = ""; // stop loading
+      });
+      modal.addEventListener('click', function(e){
+        if (e.target === modal) {
+          modal.classList.remove('open');
+          modal.setAttribute('aria-hidden','true');
+          frame.src = "";
+        }
+      });
+
+      // Escape to close
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape' && modal.classList.contains('open')) {
+          modal.classList.remove('open');
+          modal.setAttribute('aria-hidden','true');
+          frame.src = "";
+        }
       });
     })();
   </script>
