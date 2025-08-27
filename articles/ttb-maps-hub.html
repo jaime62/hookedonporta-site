@@ -184,8 +184,14 @@
           <button type="button" id="closeModal" aria-label="Close">Close</button>
         </div>
       </div>
-      <iframe id="mapFrame" class="modal-iframe" src="" referrerpolicy="no-referrer"></iframe>
-    </div>
+<!--      <iframe id="mapFrame" class="modal-iframe" src="" referrerpolicy="no-referrer"></iframe> -->
+<div class="iframe-wrap">
+  <iframe id="mapFrame" class="modal-iframe" src=""
+          referrerpolicy="no-referrer"
+          title="Embedded map"></iframe>
+  <button class="fs-guard" aria-hidden="true" tabindex="-1"></button>
+</div>
+
   </div>
 
   <script>
