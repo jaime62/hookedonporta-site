@@ -21,11 +21,11 @@
       --bg:#ffffff;
       --text:#0f172a;
       --muted:#475569;
-      --border:#e5e7eb;          /* light gray (updated) */
+      --border:#e5e7eb;
       --brand:#0ea5e9;
       --radius:16px;
-      --shadow:3px 4px 10px rgba(2, 8, 23, 0.08); /* subtle bottom-right */
-      --gap:18px;                /* unified gap variable */
+      --shadow:3px 4px 10px rgba(2, 8, 23, 0.08);
+      --gap:18px;
     }
     *{ box-sizing:border-box; }
     body{
@@ -43,67 +43,34 @@
     main{ padding:20px 22px 30px; }
     .intro{ color:var(--muted); margin:0 0 16px; }
 
-    /* Center rows and keep your card widths consistent */
     .grid{
-      display:flex;
-      flex-wrap:wrap;
-      gap:var(--gap);
-      justify-content:center;              /* centers the partial last row */
+      display:flex; flex-wrap:wrap; gap:var(--gap); justify-content:center;
     }
-    /* 1 per row (mobile) */
     .card{ flex:0 0 100%; }
 
-    /* 2 per row ≥760px — width = (100% - gap) / 2 */
-    @media (min-width:760px){
-      .card{ flex:0 0 calc((100% - var(--gap)) / 2); }
-    }
-    /* 3 per row ≥1080px — width = (100% - 2*gap) / 3 */
-    @media (min-width:1080px){
-      .card{ flex:0 0 calc((100% - (2 * var(--gap))) / 3); }
-    }
+    @media (min-width:760px){ .card{ flex:0 0 calc((100% - var(--gap)) / 2); } }
+    @media (min-width:1080px){ .card{ flex:0 0 calc((100% - (2 * var(--gap))) / 3); } }
 
-    /* Card chrome: thin border + subtle bottom-right shadow */
     .card{
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      background:#fff;
-      box-shadow:var(--shadow);
-      overflow:hidden;
-      text-decoration:none;                /* remove underline from entire link */
-      color:inherit;
+      border:1px solid var(--border); border-radius:var(--radius); background:#fff;
+      box-shadow:var(--shadow); overflow:hidden; text-decoration:none; color:inherit;
       transition: transform .12s ease, box-shadow .12s ease;
     }
-    .card:hover{
-      transform:translateY(-1px);
-      box-shadow:5px 7px 16px rgba(2, 8, 23, 0.12);
-    }
+    .card:hover{ transform:translateY(-1px); box-shadow:5px 7px 16px rgba(2, 8, 23, 0.12); }
 
     figure{ margin:0; }
     img{ width:100%; height:auto; display:block; aspect-ratio:16 / 9; object-fit:cover; }
 
-    /* Caption: centered, no underline until hover */
     figcaption{
-      padding:12px 14px;
-      font-weight:400;
-      color:teal;
-      text-align:center;                   /* center text below the image */
-      letter-spacing:-0.01em;
-      border-top:1px solid var(--border);  /* divider line inside card */
-      background:#fff;
+      padding:12px 14px; font-weight:400; color:teal; text-align:center;
+      letter-spacing:-0.01em; border-top:1px solid var(--border); background:#fff;
     }
-    .card:link,
-    .card:visited{ text-decoration:none; } /* ensure no underline by default */
-
-    .card:hover figcaption,
-    .card:focus-visible figcaption{
-      text-decoration:underline;           /* underline only on hover/focus */
-      text-underline-offset:3px;
+    .card:link, .card:visited{ text-decoration:none; }
+    .card:hover figcaption, .card:focus-visible figcaption{
+      text-decoration:underline; text-underline-offset:3px;
     }
 
-    footer{
-      text-align:center; color:var(--muted);
-      border-top:1px solid #e2e8f0; padding:18px 22px;
-    }
+    footer{ text-align:center; color:var(--muted); border-top:1px solid #e2e8f0; padding:18px 22px; }
   </style>
 </head>
 <body>
@@ -120,35 +87,56 @@
     <p class="intro">Tap a card to open the corresponding Google My Map in a new tab. Save the map to your Google account to quickly access it on your phone.</p>
 
     <div class="grid">
-      <a class="card" href="https://www.google.com/maps/d/u/0/viewer?mid=1I4QjlGG_yINeKpvlZAwnCLuP_kO2mac&usp=sharing" target="_blank" rel="noopener" title="Open map: Bait & Tackle">
+      <!-- DESKTOP: viewer; MOBILE: script forces embed + window.open -->
+      <a class="card mymaps"
+         href="https://www.google.com/maps/d/viewer?mid=1I4QjlGG_yINeKpvlZAwnCLuP_kO2mac&usp=sharing"
+         data-mapid="1I4QjlGG_yINeKpvlZAwnCLuP_kO2mac"
+         target="_blank" rel="noopener"
+         title="Open map: Bait & Tackle">
         <figure>
           <img src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/Map-Bait-Tackle.png" alt="Bait & Tackle thumbnail" loading="lazy">
           <figcaption>Find live or frozen bait in the Port Aransas area.</figcaption>
         </figure>
       </a>
 
-      <a class="card" href="https://www.google.com/maps/d/u/0/viewer?mid=1urXs9I2PUQzl4RjXnc39fkeFr4P2a7M&usp=sharing" target="_blank" rel="noopener" title="Open map: Boat & Kayak Launches">
+      <a class="card mymaps"
+         href="https://www.google.com/maps/d/viewer?mid=1urXs9I2PUQzl4RjXnc39fkeFr4P2a7M&usp=sharing"
+         data-mapid="1urXs9I2PUQzl4RjXnc39fkeFr4P2a7M"
+         target="_blank" rel="noopener"
+         title="Open map: Boat & Kayak Launches">
         <figure>
           <img src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/Map-Boat-Kayak-Launches.png" alt="Boat & Kayak Launches thumbnail" loading="lazy">
           <figcaption>Map of public boat and kayak launch locations in the area.</figcaption>
         </figure>
       </a>
 
-      <a class="card" href="https://www.google.com/maps/d/u/0/viewer?mid=14Luav3YbX4d6CQfrYZYmk2UB02wHQws&usp=sharing" target="_blank" rel="noopener" title="Open map: BYOF Restaurants">
+      <a class="card mymaps"
+         href="https://www.google.com/maps/d/viewer?mid=14Luav3YbX4d6CQfrYZYmk2UB02wHQws&usp=sharing"
+         data-mapid="14Luav3YbX4d6CQfrYZYmk2UB02wHQws"
+         target="_blank" rel="noopener"
+         title="Open map: BYOF Restaurants">
         <figure>
           <img src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/Map-BYOF-Restaurants.png" alt="BYOF Restaurants thumbnail" loading="lazy">
           <figcaption>Find Port A restaurants that will cook and serve your catch!</figcaption>
         </figure>
       </a>
 
-      <a class="card" href="https://www.google.com/maps/d/u/0/viewer?mid=1J013ecUUx-w31mhr99sVzmkhvApQzR4&usp=sharing" target="_blank" rel="noopener" title="Open map: On-Shore Fishing">
+      <a class="card mymaps"
+         href="https://www.google.com/maps/d/viewer?mid=1J013ecUUx-w31mhr99sVzmkhvApQzR4&usp=sharing"
+         data-mapid="1J013ecUUx-w31mhr99sVzmkhvApQzR4"
+         target="_blank" rel="noopener"
+         title="Open map: On-Shore Fishing">
         <figure>
           <img src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/Map-On-Shore-Fishing.png" alt="On-Shore Fishing thumbnail" loading="lazy">
           <figcaption>Don't have a boat? No problem! There are lots of areas to fish from. Also see the Piers & Jetties map if you want to get out further!</figcaption>
         </figure>
       </a>
 
-      <a class="card" href="https://www.google.com/maps/d/u/0/viewer?mid=1mLZVzRpe11MDjWg74JIoFs_6JwpCFGA&usp=sharing" target="_blank" rel="noopener" title="Open map: Piers & Jetties">
+      <a class="card mymaps"
+         href="https://www.google.com/maps/d/viewer?mid=1mLZVzRpe11MDjWg74JIoFs_6JwpCFGA&usp=sharing"
+         data-mapid="1mLZVzRpe11MDjWg74JIoFs_6JwpCFGA"
+         target="_blank" rel="noopener"
+         title="Open map: Piers & Jetties">
         <figure>
           <img src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/Map-Piers-Jetties.png" alt="Piers & Jetties thumbnail" loading="lazy">
           <figcaption>A map with local fishing pier and jetty locations in the Mustang Island area.</figcaption>
@@ -160,5 +148,45 @@
   <footer>
     © 2025 Hooked on Port A
   </footer>
+
+  <script>
+    // ---- My Maps mobile hardening -----------------------------------------
+    // Goal: On phones (iOS & Android, all browsers & most in-app browsers),
+    // open the My Map in a *browser tab* (embed) and avoid the Google Maps app.
+    (function () {
+      // Device/browser checks (broad, resilient)
+      var ua = navigator.userAgent || "";
+      var isMobile = /Mobi|Android|iP(hone|od|ad)/i.test(ua) ||
+                     (navigator.userAgentData && navigator.userAgentData.mobile);
+      if (!isMobile) return; // desktop stays on viewer URLs
+
+      // Helper to build a clean embed URL from a map id
+      function embedUrl(mapId) {
+        return "https://www.google.com/maps/d/embed?mid=" + encodeURIComponent(mapId);
+      }
+
+      // Rewrite hrefs to embed on mobile, and force open via window.open
+      document.querySelectorAll('a.mymaps[data-mapid]').forEach(function (a) {
+        var id = a.getAttribute('data-mapid');
+        if (!id) return;
+
+        // Swap visible href to embed to discourage app interception
+        a.href = embedUrl(id);
+
+        // Harden click behavior: prevent default and open via window.open
+        // using explicit features to avoid universal-link takeover.
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          try {
+            // Use noreferrer to further reduce app handoff in some in-app browsers
+            window.open(embedUrl(id), '_blank', 'noopener,noreferrer');
+          } catch (err) {
+            // Fallback: set location (still stays in browser because it's /embed)
+            location.href = embedUrl(id);
+          }
+        }, { passive: false });
+      });
+    })();
+  </script>
 </body>
 </html>
