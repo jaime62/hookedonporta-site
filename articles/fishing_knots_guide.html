@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ultimate Fishing Knots — Gallery & Recommendations</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --card: #ffffff;
+      --muted: #48556a;
+      --text: #0b1220;
+      --accent: #23c4b8;
+      --chip:#f1f5f9;
+      --border:#e2e8f0;
+    }
+    * { box-sizing: border-box }
+    html,body { margin:0; padding:0; background:var(--bg); color:var(--text); font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji" }
+    a { color: var(--accent); text-decoration: none }
+    a:hover { text-decoration: underline }
+    header { position: sticky; top:0; z-index:5; backdrop-filter: blur(8px); background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.78)); border-bottom:1px solid var(--border)}
+    .wrap { max-width: 1200px; margin:auto; padding: 20px }
+    .title { display:flex; align-items:center; gap:14px }
+    .title h1 { margin:0; font-size: clamp(22px, 3vw, 34px); letter-spacing:.3px }
+    .badge { font-size:12px; border:1px solid var(--border); background: var(--chip); color: var(--muted); padding:4px 8px; border-radius:999px }
+    .toolbar { display:grid; grid-template-columns: 1.1fr .9fr .9fr .8fr; gap:10px; margin-top:14px }
+    .toolbar .group { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:10px }
+    .search input { width:100%; padding:10px 12px; background:#fff; color:var(--text); border:1px solid var(--border); outline: none; border-radius:10px }
+    .chips { display:flex; flex-wrap:wrap; gap:8px }
+    .chip { background: var(--chip); border:1px solid var(--border); color: var(--muted); padding:6px 10px; border-radius:999px; cursor:pointer; user-select:none }
+    .chip.active { background: aqua; color: #0b1220; border-color: #23c4b8 }
+    .grid { display:grid; grid-template-columns: repeat( auto-fill, minmax(240px, 1fr) ); gap:14px }
+    .card { background: var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden; display:flex; flex-direction:column; box-shadow: 0 10px 24px rgba(0,0,0,.25) }
+    .thumb { aspect-ratio: 16/10; background:#f3f4f6; display:grid; place-items:center; border-bottom:1px solid var(--border) }
+    .thumb img { width:100%; height:100%; object-fit:cover; display:block }
+    .card .pad { padding:12px 14px }
+    .kname { margin:0 0 2px 0; font-size:18px }
+    .meta { display:flex; gap:8px; flex-wrap:wrap; margin-top:6px }
+    .meta .tag { font-size:11px; padding:4px 8px; border-radius:999px; border:1px solid var(--border); background:#f6f8fb; color:var(--muted) }
+    .actions { display:flex; gap:8px; margin-top:10px }
+    .btn { flex:1; text-align:center; padding:10px 12px; border-radius:10px; border:1px solid var(--border); background:#f6f8fb; color:var(--text); cursor:pointer; font-weight:600 }
+    .btn:hover { filter: brightness(1.1) }
+    .legend { display:flex; gap:8px; align-items:center; flex-wrap: wrap }
+    .legend .dot { width:10px; height:10px; border-radius:50%; display:inline-block; margin-right:6px; border:1px solid var(--border) }
+    .legend .join { background:#2e7bdb }
+    .legend .term { background:#2bb673 }
+    .legend .loop { background:#e79a3a }
+    .legend .double { background:#c458f1 }
+    .legend .fly { background:#db3f6a }
+    .legend .spec { background:#9096a8 }
+    section { scroll-margin-top: 84px }
+    h2 { margin: 14px 0 10px 0; font-size: 22px }
+    table { width:100%; border-collapse: collapse; background: var(--card); border:1px solid var(--border); border-radius: 12px; overflow:hidden }
+    th, td { border-bottom:1px solid var(--border); padding: 10px 12px; vertical-align: top }
+    th { text-align:left; color: var(--muted); font-weight: 600; background:#f6f8fb }
+    tr:last-child td { border-bottom:none }
+    .muted { color: var(--muted) }
+    .footer { margin: 18px 0 60px }
+    .small { font-size: 13px }
+    .right { text-align:right }
+    .print { margin-left:auto }
+    .note { border-left:3px solid var(--accent); padding:10px 12px; background:#f6f8fb; border-radius: 8px; color: var(--muted) }
+    @media (max-width: 980px){ .toolbar { grid-template-columns: 1fr; } }
+  </style>
+  <!--
+    IMAGES
+    ======
+    Add illustration images at: ./assets/knots/<knot-id>.svg|png|jpg (e.g., ./assets/knots/fg-knot.svg).
+    If a local image is missing, the card will try the YouTube thumbnail from the video link.
+    If that also fails, the card shows a simple generated placeholder.
+  -->
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="title">
+<!--        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 12c2-1.5 4.5-1.5 7 0s5 1.5 7 0" stroke="#23c4b8" stroke-width="2" stroke-linecap="round"/><path d="M6 8.5c1.5-1 3.5-1 5 0s3.5 1 5 0" stroke="#6ab7ff" stroke-width="2" stroke-linecap="round"/><circle cx="20" cy="6" r="2" fill="#23c4b8"/></svg>
+ -->       <h1>Ultimate Fishing Knots</h1>
+<!--        <span class="badge">Gallery • Videos • What to use when</span> -->
+      </div>
+      <div class="toolbar" role="region" aria-label="Filters and search">
+        <div class="group search"><input id="q" type="search" placeholder="Search knots, e.g. ‘FG’, ‘clinch’, ‘snell’…" aria-label="Search knots"/></div>
+        <div class="group">
+          <div class="muted small" style="margin-bottom:6px">Category</div>
+          <div id="cats" class="chips" aria-label="Category filter"></div>
+        </div>
+        <div class="group">
+          <div class="muted small" style="margin-bottom:6px">Line type</div>
+          <div id="lines" class="chips" aria-label="Line type filter"></div>
+        </div>
+        <div class="group">
+          <div class="muted small" style="margin-bottom:6px">Difficulty</div>
+          <div id="diffs" class="chips" aria-label="Difficulty filter"></div>
+        </div>
+        
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="gallery">
+      <h2>📚 Knot Gallery</h2>
+     
+      <div id="grid" class="grid" aria-live="polite"></div>
+    </section>
+
+    <section id="recommendations" style="margin-top:26px">
+      <h2>🧭 Which knot should I use?</h2>
+      <table aria-label="Recommended knots by situation">
+        <thead>
+          <tr>
+            <th style="width:26%">Situation / Tackle</th>
+            <th style="width:18%">Line Type</th>
+            <th>Best Choice(s)</th>
+            <th>Alternatives</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody id="recbody"></tbody>
+      </table>
+      <p class="wrap" style="margin-top:8px; color:red;"">Always lubricate, seat smoothly, and test knots before fishing. Match wraps to line: more with braid; fewer with heavy mono/fluoro.</p>
+    </section>
+
+    
+  </main>
+
+  <script>
+    // ======= DATA =======
+    /**
+     * id: slug used for image path (./assets/knots/<id>.jpg|png|svg)
+     * name: display
+     * category: joining|terminal|loop|double|fly|special
+     * lines: array of line tags -> braid|mono|fluoro|flyline|wire|all
+     * difficulty: easy|moderate|advanced
+     * video: YouTube URL
+     * aka: alias list (optional)
+     * notes: tip string (optional)
+     */
+    const knots = [
+      { id:'fg-knot', name:'FG Knot', category:'joining', lines:['braid','mono','fluoro'], difficulty:'advanced', video:'https://www.youtube.com/watch?v=pjzUb5QRKuk', aka:['FG'], notes:'Slimmest, strongest braid→leader connection when tied well.' },
+      { id:'double-uni', name:'Double Uni (Uni‑to‑Uni)', category:'joining', lines:['all'], difficulty:'easy', video:'https://www.youtube.com/watch?v=tzpVkakRyAI', aka:['Uni to Uni'] },
+      { id:'blood-knot', name:'Blood Knot', category:'joining', lines:['mono','fluoro'], difficulty:'moderate', video:'https://www.youtube.com/watch?v=q06QKib1AEQ', notes:'Best with similar diameters (5–7 wraps/side).' },
+      { id:'surgeons-knot', name:"Surgeon's Knot (2–3 turn)", category:'joining', lines:['all'], difficulty:'easy', video:'https://www.youtube.com/watch?v=yftA2kvFERU', aka:['Double/Triple Surgeon\'s'] },
+      { id:'alberto-knot', name:'Alberto (Improved Albright)', category:'joining', lines:['braid','mono','fluoro'], difficulty:'moderate', video:'https://www.youtube.com/watch?v=ySyK8uPbv88', aka:['Crazy Alberto','Albright Special'] },
+      { id:'yucatan-knot', name:'Yucatan Knot', category:'joining', lines:['braid','mono','fluoro'], difficulty:'moderate', video:'https://www.youtube.com/watch?v=MG-nlg6luQ8' },
+      { id:'pr-bobbin', name:'PR Bobbin Knot', category:'joining', lines:['braid','mono','fluoro'], difficulty:'advanced', video:'https://www.youtube.com/watch?v=Q732bsTF940', notes:'Requires a bobbin; outstanding for heavy leader.' },
+      { id:'uni-knot', name:'Uni Knot (terminal)', category:'terminal', lines:['all'], difficulty:'easy', video:'https://www.youtube.com/watch?v=MtCKGnZwOb0' },
+      { id:'improved-clinch', name:'Improved Clinch', category:'terminal', lines:['mono','fluoro'], difficulty:'easy', video:'https://www.youtube.com/watch?v=hMdFPk_hjjU' },
+      { id:'trilene-knot', name:'Trilene Knot', category:'terminal', lines:['mono','fluoro'], difficulty:'easy', video:'https://www.youtube.com/watch?v=Z-OVHsjoHlA' },
+      { id:'palomar-knot', name:'Palomar Knot', category:'terminal', lines:['braid','mono','fluoro'], difficulty:'easy', video:'https://www.youtube.com/watch?v=q0ZXzR4z4WY', notes:'Excellent with braid; avoid with big eyes or thick line unless doubled carefully.' },
+      { id:'san-diego-jam', name:'San Diego Jam', category:'terminal', lines:['braid','mono','fluoro'], difficulty:'moderate', video:'https://www.youtube.com/watch?v=OFtGENt160I' },
+      { id:'snell-knot', name:'Snell (Knotless/Traditional)', category:'terminal', lines:['mono','fluoro','braid'], difficulty:'moderate', video:'https://www.youtube.com/watch?v=PK7h5HiMasI', notes:'Great with circle hooks for straight pull.' },
+      { id:'nonslip-loop', name:"Non‑Slip Mono Loop (Lefty Kreh)", category:'loop', lines:['mono','fluoro'], difficulty:'moderate', video:'https://www.youtube.com/watch?v=pXfahEga21s' },
+      { id:'rapala-knot', name:'Rapala Knot', category:'loop', lines:['mono','fluoro'], difficulty:'moderate', video:'https://www.youtube.com/watch?v=nO0DttvTxwk' },
+      { id:'perfection-loop', name:'Perfection Loop', category:'loop', lines:['mono','fluoro'], difficulty:'easy', video:'https://www.youtube.com/watch?v=XbTELsLXQJk', notes:'Great for loop‑to‑loop leader connections.' },
+      { id:'dropper-loop', name:'Dropper Loop', category:'loop', lines:['mono','fluoro','braid'], difficulty:'easy', video:'https://www.youtube.com/watch?v=c0Q57HrnHLk' },
+      { id:'bimini-twist', name:'Bimini Twist (double line)', category:'double', lines:['mono','fluoro','braid'], difficulty:'advanced', video:'https://www.youtube.com/watch?v=jMm_zIuAdQE', notes:'Creates a super‑strong double line for offshore rigs.' },
+      { id:'spider-hitch', name:'Spider Hitch (double line)', category:'double', lines:['mono','fluoro','braid'], difficulty:'easy', video:'https://www.youtube.com/watch?v=FXTZxfbc3-Y', notes:'Fast double line; a quick alternative to Bimini.' },
+      { id:'nail-knot', name:'Nail Knot (fly line → leader)', category:'fly', lines:['flyline','mono','fluoro'], difficulty:'moderate', video:'https://www.youtube.com/watch?v=l5a-Ptb3-kE' },
+      { id:'orvis-knot', name:'Orvis Knot (terminal)', category:'terminal', lines:['mono','fluoro'], difficulty:'easy', video:'https://www.youtube.com/watch?v=IWtZLnvRUQY' },
+      { id:'davy-knot', name:'Davy Knot (terminal)', category:'terminal', lines:['mono','fluoro'], difficulty:'easy', video:'https://www.youtube.com/watch?v=qAxpbfOpus4', notes:'Tiny, fast knot ideal for small flies.' },
+      { id:'arbor-knot', name:'Arbor Knot (line → reel)', category:'special', lines:['all'], difficulty:'easy', video:'https://www.youtube.com/watch?v=2UPtjqJX-zo' },
+      { id:'slim-beauty', name:'Slim Beauty (shock leader)', category:'joining', lines:['mono','fluoro','braid'], difficulty:'moderate', video:'https://www.youtube.com/watch?v=7wRswCcowgQ', notes:'Great for heavy shock tippet to lighter leader.' },
+      { id:'surgeons-loop', name:"Surgeon's Loop", category:'loop', lines:['mono','fluoro','braid'], difficulty:'easy', video:'https://www.youtube.com/watch?v=bvxByMpo3oI' },
+    ];
+
+    // Scenarios for recommendation table
+    const scenarios = [
+      { sit:'Braid → fluorocarbon/mono leader (inshore)', line:'Braid + Fluoro/Mono', best:['FG Knot'], alt:['Alberto','Yucatan','Double Uni'], notes:'Slim join to pass guides quietly.' },
+      { sit:'Braid → heavy mono/fluoro (offshore/heavy jigging)', line:'Braid + Heavy Leader', best:['PR Bobbin'], alt:['FG Knot (well‑set)'], notes:'Requires bobbin; extreme strength.' },
+      { sit:'Mono ↔ mono (similar diameter)', line:'Mono/Fluoro', best:['Blood Knot'], alt:["Surgeon’s Knot","Double Uni"], notes:'5–7 wraps/side.' },
+      { sit:'Different diameters (quick join)', line:'Any', best:["Surgeon’s Knot (3‑turn)"], alt:['Double Uni'], notes:'Fast and reliable on the water.' },
+      { sit:'Hook/lure with braid', line:'Braid', best:['Palomar'], alt:['San Diego Jam','Uni'], notes:'Double line through eye if needed.' },
+      { sit:'Hook/lure with mono/fluoro', line:'Mono/Fluoro', best:['Improved Clinch','Trilene'], alt:['Uni','San Diego Jam'], notes:'Add wraps with lighter line.' },
+      { sit:'Circle hooks (catfish/surf/salmon)', line:'Mono/Fluoro', best:['Snell'], alt:['Knotless Snell'], notes:'Keeps straight pull for corner‑of‑mouth hookups.' },
+      { sit:'Lures needing extra action', line:'Mono/Fluoro', best:['Non‑Slip Mono Loop'], alt:['Rapala'], notes:'Loop lets lure swing freely.' },
+      { sit:'Loop‑to‑loop leader system', line:'Mono/Fluoro', best:['Perfection Loop'], alt:["Surgeon’s Loop"], notes:'For quick leader swaps.' },
+      { sit:'Build bottom/sabiki/dropper rigs', line:'Mono/Fluoro/Braid', best:['Dropper Loop'], alt:['Triple Surgeon\'s Loop'], notes:'Strong branch loop in mainline.' },
+      { sit:'Make a doubled mainline', line:'Mono/Fluoro/Braid', best:['Bimini Twist'], alt:['Spider Hitch'], notes:'Doubled line before snaps/shock leader.' },
+      { sit:'Fly line → leader (no factory loop)', line:'Fly line + Mono/Fluoro', best:['Nail Knot'], alt:['Loop‑to‑Loop (welded/perfection)'], notes:'Finish with a smooth coating.' },
+      { sit:'Small flies, low bulk terminal knot', line:'Mono/Fluoro', best:['Davy Knot'], alt:['Orvis Knot'], notes:'Great for tiny dry flies.' },
+      { sit:'Attach line to reel spool', line:'Any', best:['Arbor Knot'], alt:[], notes:'Simple, secure backing/mainline start.' },
+      { sit:'Heavy shock leader to class tippet', line:'Mono/Fluoro', best:['Slim Beauty'], alt:['FG Knot'], notes:'Popular for tarpon/GT leaders.' },
+      { sit:'Emergency fast re‑tie after break‑off', line:'Any', best:['Double Uni'], alt:["Surgeon’s Knot"], notes:'Quick and dependable.' },
+    ];
+
+    // ======= RENDER =======
+    const catMap = {
+      joining: { label:'Joining', color:'join', emoji:'🤝' },
+      terminal:{ label:'Terminal', color:'term', emoji:'🎣' },
+      loop:    { label:'Loop', color:'loop', emoji:'🔁' },
+      double:  { label:'Doubled line', color:'double', emoji:'🧵' },
+      fly:     { label:'Fly line', color:'fly', emoji:'🪰' },
+      special: { label:'Specialty', color:'spec', emoji:'🧰' },
+    };
+    const lineTags = [
+      { id:'braid', label:'Braid' },
+      { id:'mono', label:'Mono' },
+      { id:'fluoro', label:'Fluoro' },
+      { id:'flyline', label:'Fly line' },
+      { id:'all', label:'All' },
+    ];
+    const diffs = [
+      { id:'easy', label:'Easy' },
+      { id:'moderate', label:'Moderate' },
+      { id:'advanced', label:'Advanced' },
+    ];
+
+    const state = { q:'', cats:new Set(), lines:new Set(), diffs:new Set() };
+
+    function el(tag, attrs={}, ...children){ const e=document.createElement(tag); for(const k in attrs){ if(k==='class') e.className=attrs[k]; else if(k==='html') e.innerHTML=attrs[k]; else e.setAttribute(k, attrs[k]); } for(const c of children){ if(c==null) continue; e.appendChild(typeof c==='string'? document.createTextNode(c): c) } return e }
+
+    // Controls
+    function makeChips(container, items, key){
+      for(const it of items){
+        const chip = el('span', { class:'chip', title:`Filter by ${it.label}` }, it.label);
+        chip.addEventListener('click', ()=>{
+          const set = state[key];
+          if(set.has(it.id)) set.delete(it.id); else set.add(it.id);
+          chip.classList.toggle('active');
+          render();
+        });
+        container.appendChild(chip);
+      }
+    }
+
+    function getYouTubeId(url){
+      try{
+        const u = new URL(url);
+        if(u.hostname.includes('youtu.be')) return u.pathname.slice(1);
+        if(u.searchParams.get('v')) return u.searchParams.get('v');
+        const m = url.match(/\/embed\/([^?]+)/);
+        if(m) return m[1];
+      }catch(e){}
+      return null;
+    }
+
+    function fallbackDataUrl(text){
+      const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='800' height='500'>
+        <defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#eef2f7'/><stop offset='1' stop-color='#e2e8f0'/></linearGradient></defs>
+        <rect width='100%' height='100%' fill='url(#g)'/>
+        <text x='50%' y='52%' dominant-baseline='middle' text-anchor='middle' font-family='ui-sans-serif,system-ui,Segoe UI,Roboto' font-weight='700' font-size='42' fill='#64748b'>${text}</text>
+      </svg>`;
+      return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+    }
+
+    function card(k){
+      const img = el('img', { alt: k.name + ' illustration', src: `./assets/knots/${k.id}.svg`, loading:'lazy', referrerpolicy:'no-referrer' });
+      img.onerror = () => {
+        const vid = getYouTubeId(k.video);
+        if(vid){
+          img.onerror = () => { img.replaceWith(el('img', { alt:k.name + ' placeholder', src:fallbackDataUrl(k.name), loading:'lazy' })); };
+          img.src = `https://img.youtube.com/vi/${vid}/hqdefault.jpg`;
+        } else {
+          img.replaceWith(el('img', { alt:k.name + ' placeholder', src:fallbackDataUrl(k.name), loading:'lazy' }));
+        }
+      };
+      const thumb = el('div', { class:'thumb', title:`Image: ./assets/knots/${k.id}.(svg|png|jpg) • Fallback: YouTube thumbnail` }, img);
+
+      const meta = el('div', { class:'meta' });
+      meta.append(
+        el('span', { class:'tag', title:k.category }, `${catMap[k.category].emoji} ${catMap[k.category].label}`),
+        el('span', { class:'tag' }, `Line: ${(k.lines||[]).join(', ')}`),
+        el('span', { class:'tag' }, `Difficulty: ${k.difficulty}`)
+      );
+
+      const actions = el('div', { class:'actions' });
+      const btnWatch = el('a', { class:'btn', href:k.video, target:'_blank', rel:'noopener', title:'Open tutorial on YouTube' }, '▶︎ How‑to Video');
+      actions.append(btnWatch);
+
+      const pad = el('div', { class:'pad' },
+        el('h3', { class:'kname' }, k.name),
+        k.aka? el('div', { class:'muted small' }, 'aka: ' + k.aka.join(', ')) : null,
+        meta,
+        k.notes? el('div', { class:'muted small', style:'margin-top:8px' }, k.notes): null,
+        actions
+      );
+
+      const card = el('article', { class:'card', 'data-id':k.id });
+      card.append(thumb, pad);
+      return card;
+    }
+
+    function render(){
+      const g = document.getElementById('grid');
+      g.innerHTML='';
+      let list = knots.slice();
+      const q = state.q.trim().toLowerCase();
+      if(q){ list = list.filter(k => (k.name + ' ' + (k.aka||[]).join(' ')).toLowerCase().includes(q)); }
+      if(state.cats.size){ list = list.filter(k => state.cats.has(k.category)); }
+      if(state.lines.size){ list = list.filter(k => k.lines.some(t => state.lines.has(t))); }
+      if(state.diffs.size){ list = list.filter(k => state.diffs.has(k.difficulty)); }
+      if(!list.length){ g.append(el('div', { class:'muted' }, 'No knots match your filters. Try clearing some filters.')); return }
+      list.forEach(k => g.append(card(k)));
+    }
+
+    function renderRecs(){
+      const tb = document.getElementById('recbody');
+      tb.innerHTML = '';
+      for(const r of scenarios){
+        const best = r.best.map(n => `<span class="tag">${n}</span>`).join(' ');
+        const alt  = (r.alt||[]).map(n => `<span class="tag">${n}</span>`).join(' ');
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${r.sit}</td><td>${r.line}</td><td>${best}</td><td>${alt||''}</td><td class="muted">${r.notes||''}</td>`;
+        tb.appendChild(tr);
+      }
+    }
+
+    // Build filters
+    makeChips(document.getElementById('cats'), Object.entries(catMap).map(([id, v]) => ({ id, label: v.label })), 'cats');
+    makeChips(document.getElementById('lines'), lineTags, 'lines');
+    makeChips(document.getElementById('diffs'), diffs, 'diffs');
+
+    document.getElementById('q').addEventListener('input', (e)=>{ state.q = e.target.value; render(); });
+
+    // Initial render
+    render();
+    renderRecs();
+  </script>
+</body>
+</html>
