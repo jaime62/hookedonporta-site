@@ -8,11 +8,11 @@
 
 <!-- Open Graph -->
 <meta property="og:title" content="Tech Tackle Box">
-<meta property="og:description" content="Port Aransas, TX local fishing information and product source!">
+<meta property="og:description" content="Port Aransas, TX local fishing information and related product source!">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://hookedonporta.com/">
 <meta property="og:site_name" content="HookedOnPortA.com">
-<meta property="og:image" content="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/HOPA-desktop-1200x630.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/HOPA-desktop-v2-1200x630.png">
 
 <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
 <!-- Preload the mobile image by default -->
@@ -21,10 +21,10 @@
 <link rel="preload" as="image" media="(min-width:768px)" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/sunrise-over-ocean-floor-fish2.png">
 
 <!-- Favicon links -->
-<link rel="icon" type="image/png" sizes="32x32" href="https://github.com/jaime62/hookedonporta-site/blob/main/images/HookedOnPortA-favicon_wbg.png?raw=true">
-<link rel="icon" type="image/png" sizes="192x192" href="https://github.com/jaime62/hookedonporta-site/blob/main/images/HookedOnPortA-favicon_wbg.png?raw=true">
-<link rel="apple-touch-icon" sizes="180x180" href="https://github.com/jaime62/hookedonporta-site/blob/main/images/HookedOnPortA-favicon_wbg.png?raw=true">
-<link rel="shortcut icon" href="https://github.com/jaime62/hookedonporta-site/blob/main/images/HookedOnPortA-favicon_wbg.png?raw=true" type="image/png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/HookedOnPortA-favicon_wbg.png">
+<link rel="icon" type="image/png" sizes="192x192" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/HookedOnPortA-favicon_wbg.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/HookedOnPortA-favicon_wbg.png">
+<link rel="shortcut icon" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/HookedOnPortA-favicon_wbg.png" type="image/png">
 
 <style>
   /* Reset + base */
@@ -77,13 +77,13 @@
   }
   .title-row img { max-height: 80px; width: auto; }
   .title-row h1 {
-    font-size: 6vw; font-weight: bold; color: gold; text-shadow: 1px 1px 4px #000;
+    font-size: 6vw; font-weight: bold; color: aqua; text-shadow: 0px 4px 4px #000;
   }
 
   /* Nav buttons + tooltips */
   .nav { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 1.8rem; }
   .nav button {
-    background-color: #2196f3; color: white; font-size: 1.2rem; font-weight: bold;
+    background-color: #1A3E50; color: white; font-size: 1.2rem; font-weight: bold;
     border: none; border-radius: 10px; padding: 12px 24px; cursor: pointer;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 2px 6px rgba(0,0,0,0.3);
@@ -123,7 +123,7 @@
     text-align: center; margin: 0.5rem auto; display: inline-flex; align-items: center;
     gap: 0.4rem; padding: 0.3rem 0.6rem; border-radius: 8px; cursor: pointer;
   }
-  .about-tagline:hover { background-color: gray; border-radius: 8px; }
+  .about-tagline:hover { background-color: #FBEE8E; border-radius: 8px; }
   .about-tagline span { margin-left: 8px; font-size: 1.4rem; vertical-align: middle; }
 
   #tackleBoxInfo {
@@ -138,13 +138,16 @@
   /* Report link styling */
   .report-row { text-align:center; margin: .65rem auto 1rem; }
   .fishing-link{
-    text-decoration:none; color:#0077b6; font-weight:bold;
-    background: rgba(255,255,255,.85);
+    text-decoration:none; color:#093D38; font-weight:bold;
+    background: rgba(0,255,255,.85);
     padding:.7rem 1.2rem; border-radius:8px;
     box-shadow: 0 2px 8px rgba(0,0,0,.12); transition: all .25s ease;
   }
-  .fishing-link:hover{ color:#0096c7; text-decoration:underline; transform: translateY(-1px); }
-
+.fishing-link:hover {
+  background-color: rgba(0, 200, 230, 0.95); /* darker aqua */
+  color: #003c54; /* deeper blue for contrast */
+  transform: translateY(-1px);
+}
   /* Store / iframe area — transparent */
   #amazon-ads { margin: 2rem auto 0; padding: 0; width: 95%; max-width: 1400px; text-align: center; border-radius: 8px; background: transparent; }
   #amazon-ads iframe {
@@ -156,13 +159,15 @@
   }
   .tab-folder { display: flex; justify-content: center; margin: 1.5rem 0 -0.5rem; gap: 1rem; }
   .tab-folder button {
-    padding: 10px 20px; border: none; border-top-left-radius: 10px; border-top-right-radius: 10px;
-    background-color: silver; color: darkblue; font-weight: bold; cursor: pointer;
+    padding: 10px 20px; border: none; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; background-color: silver; color: darkblue; font-weight: bold; cursor: pointer;
   }
+  .tab-folder button:hover {
+  background-color: #FBEE8E;
+}
   .tab-folder button.active { color: darkblue; background-color: gold; }
 
   .fishing-tagline { color: gold; font-size: 1.3rem; font-weight: bold; text-shadow: 1px 1px 4px #000; text-align: center; margin: .5rem; }
-  .site-footer { text-align: center; font-size: 1rem; color: #666; padding: 1rem; margin-top: 1rem; border-top: 1px solid #ddd; }
+  .site-footer { text-align: center; font-size: 1rem; color: #666; padding: 1rem; margin-top: 1rem; border-top: 0; }
 
   /* Responsive tweaks */
   @media (orientation: landscape) and (max-width: 1024px) {
@@ -174,10 +179,12 @@
   @media (max-width: 600px) {
     .nav { gap: 0.3rem; padding: 0 0.5rem; flex-wrap: nowrap; }
     .tooltip-container { flex: 1 1 auto; display: flex; justify-content: center; }
+    .footer-text {max-width: 200px; text-align: center; }
     .nav button {
       font-size: 0.65rem; padding: 6px 10px; min-width: 58px; max-width: 80px;
       white-space: nowrap; text-overflow: ellipsis; overflow: hidden;
     }
+      br.mobile-break { display: inline; } /* any non-none value works */
   }
   @media (max-width: 850px) and (orientation: landscape) {
     .nav { gap: 0.4rem; padding: 0 0.75rem; flex-wrap: nowrap; }
@@ -186,6 +193,7 @@
       font-size: 0.85rem; padding: 8px 16px; min-width: 90px; max-width: 130px;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
+    br.mobile-break { display: none; }
   }
 </style>
 </head>
@@ -195,7 +203,7 @@
   <div class="header">
     <div class="title-row">
       <a href="https://hookedonporta.com" target="_blank" rel="noopener">
-        <img class="logo" src="https://github.com/jaime62/hookedonporta-site/blob/main/images/HookedOnPortA-logo-fogged_bg.png?raw=true" alt="HookedOnPortA.com">
+        <img class="logo" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/HookedOnPortA-logo-fogged_bg.png" alt="HookedOnPortA.com">
       </a>
       &nbsp;<h1>Tech Tackle Box</h1>
     </div>
@@ -203,7 +211,7 @@
     <div class="nav">
       <div class="tooltip-container">
         <a href="https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits" target="_blank" rel="noopener">
-          <button>Bag & Length</button>
+          <button>TX Regs</button>
         </a>
         <div class="custom-tooltip">Check TPWD for saltwater regulations</div>
       </div>
@@ -212,12 +220,12 @@
         <a href="https://g1.ipcamlive.com/player/player.php?alias=portafishrack&#038;autoplay=1&#038;mute=1" target="_blank" rel="noopener">
           <button>Bait Cam</button>
         </a>
-        <div class="custom-tooltip">See Deep Sea HQ bait flags LIVE!</div>
+        <div class="custom-tooltip">Check what Deep Sea HQ bait flags are flying, LIVE!</div>
       </div>
 
       <div class="tooltip-container">
         <a href="https://tpwd.texas.gov/gis/ris/artificialreefs/" target="_blank" rel="noopener">
-          <button>Reef Map</button>
+          <button>TX Reefs</button>
         </a>
         <div class="custom-tooltip">Locate and fish artificial reef structures!</div>
       </div>
@@ -231,7 +239,7 @@
 
       <div class="tooltip-container">
         <a href="https://www.windfinder.com/forecast/mustang_island_port_aransas" target="_blank" rel="noopener">
-          <button>Windfinder</button>
+          <button>Seas</button>
         </a>
         <div class="custom-tooltip">Check wind, wave & tide conditions around Port A!</div>
       </div>
@@ -261,19 +269,22 @@
   </div>
 
   <!-- Fishing Report link ABOVE store -->
-  <br>
+  <p style="margin-top:3em;"></p>
+
   <div class="report-row">
-    <br>
     <a href="#" class="fishing-link" onclick="openFishingReport(); return false;">Read our latest Fishing Report!</a>
-    <br>
   </div>
+<p style="margin-top:3em;"></p>
 
   <!-- STORE EMBED -->
   <div id="amazon-ads" style="text-align: center;">
     <div class="tab-folder">
       <button class="active" data-src="Products.html">Shop Gear</button>
       <button data-src="Guides.html">Local Fishing Guides</button>
+      <button data-src="/articles/">Articles & Info</button>
+
     </div>
+<p style="margin-top:0em; margin-bottom:0em"></p>
 
     <iframe
       id="product-iframe"
@@ -293,15 +304,15 @@
 
   <div class="fishing-tagline">
     <p style="text-align: center; margin-top: 2rem;">
-      🎣 <i>Tight lines out there, friends — stay sharp, trust your instincts, and go get 'em!</i>
+      <i>Tight lines out there, friends — stay sharp, trust your instincts, and go get 'em!</i>
     </p>
   </div>
 
   <footer class="site-footer">
-    <p style="text-align: center; font-size: 0.95rem; color: black; margin-top: 2rem;">
-      <i>Tech Tackle Box™ is a proud part of
+    <p style="text-align: center; font-size: 0.95rem; color: rgba(150, 255, 255, 1); margin-top: 2rem;">
+      <i>Tech Tackle Box™ is a proud part of<br class="mobile-break">
         <a href="https://wheatonsworld.com" target="_blank" style="color: gold; text-decoration: none;"><b>Wheaton’s World™</b></a>
-        &nbsp;&nbsp;-&nbsp;&nbsp;<span style="color: black;">All rights reserved.</span></i>
+        &nbsp;&nbsp;-&nbsp;&nbsp;<span style="color: rgba(150, 255, 255, 1);">All rights reserved.</span></i>
     </p>
   </footer>
 
@@ -338,7 +349,7 @@
     const top = openerTop + (openerHeight - popupHeight) / 2;
 
     window.open(
-      'https://hookedonporta.com/reports/fr08072025.html',
+      'https://hookedonporta.com/reports/fr08312025.html',
       'FishingReport',
       `width=${popupWidth},height=${popupHeight},left=${left},top=${top},resizable=yes,scrollbars=yes`
     );
