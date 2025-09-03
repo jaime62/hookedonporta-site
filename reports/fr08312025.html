@@ -59,12 +59,69 @@
       .report-img { max-height: 64px; }
       .header { text-align: center; }
     }
+
+  .hop-btn {
+    appearance: none;
+    background: #1C5A98;           /* logo blue */
+    color: #fff;
+    border: none;
+    border-radius: 9999px;         /* full pill */
+    padding: 12px 22px;
+    font-weight: 700;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    line-height: 1;
+    box-shadow:
+      0 4px 0 #0e3a66,            /* hard “pressable” base */
+      0 8px 16px rgba(0,0,0,.15); /* soft ambient */
+    cursor: pointer;
+    transition: transform .06s ease, box-shadow .15s ease, filter .15s ease, background-color .15s ease;
+  }
+  .hop-btn:hover {
+    filter: brightness(1.05);
+    transform: translateY(-1px);
+    box-shadow:
+      0 5px 0 #0e3a66,
+      0 12px 20px rgba(0,0,0,.18);
+  }
+  .hop-btn:active {
+    transform: translateY(2px);
+    box-shadow:
+      0 2px 0 #0e3a66,
+      0 6px 12px rgba(0,0,0,.18);
+  }
+  /* Orange variant if you want an accent button */
+  .hop-btn--orange {
+    background: #F77E17;          /* logo orange */
+    box-shadow:
+      0 4px 0 #b25610,
+      0 8px 16px rgba(0,0,0,.15);
+  }
+  .hop-btn--orange:hover {
+    filter: brightness(1.05);
+    box-shadow:
+      0 5px 0 #b25610,
+      0 12px 20px rgba(0,0,0,.18);
+  }
+  .hop-btn--orange:active {
+    transform: translateY(2px);
+    box-shadow:
+      0 2px 0 #b25610,
+      0 6px 12px rgba(0,0,0,.18);
+  }
+
+  /* Optional: make anchor links look like buttons too */
+  .hop-link-btn {
+    display: inline-block;
+    text-decoration: none;
+  }
+    
   </style>
 </head>
 <body>
-  <div style="text-align:center; margin-top:50px;">
-    <button onclick="window.close()" style="transform: scale(1.25);">Close Report</button>
-  </div>
+<div style="text-align:center; margin-top:50px;">
+  <button class="hop-btn" onclick="window.close()">Close</button>
+</div>
   <div class="container">
 
     <!-- Letterhead-style header -->
@@ -180,9 +237,10 @@
     </table>
     <em>Tip: Fish 60–90 minutes around tide turns; give extra buffer when thunderstorms are nearby.</em>
 
-    <div style="text-align:center; margin-top:50px;">
-      <button onclick="window.close()" style="transform: scale(1.25);">Close Report</button>
-    </div>
+<div style="text-align:center; margin-top:50px;">
+  <button class="hop-btn" onclick="window.close()">Close</button>
+</div>
+
   </div>
 </body>
 </html>
