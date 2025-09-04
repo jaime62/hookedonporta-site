@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Preload category emoji images -->
+<link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fishing-map.png" as="image">
+<link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fishing-knots.png" as="image">
+<link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-shore-fishing.png" as="image">
+<link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-boat-launch.png" as="image">
+<link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fish-skillet.png" as="image">
+<link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-bait-tackle.png" as="image">
+<link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fish-cleaning-station.png" as="image">
+  
+  <title>Articles & Information</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+     body {
+      font-family: Arial, sans-serif;
+      background: #f0f8ff;
+      margin: 0;
+      padding: 1rem;
+      background-color: transparent;
+    }
+
+     .category {
+      background: #7CCFCF; <!-- was #92D6B5 -->
+      color: #1a237e;
+      padding: .5rem;
+      margin-bottom: 0.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+.subcategory {
+  display: none;
+  background: #DCFAF7; <!-- was #e6fafa */ -->
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  border-left: 4px solid #3b9c9c;
+}
+
+/* replace your existing .sub-subcategory rule with this (or add this AFTER it) */
+.sub-subcategory {
+  display: none;              /* collapse on load */
+  margin-left: 1rem;
+  padding: 0.25rem .25rem;
+  background: rgba(220, 250, 247, 0.80); <!-- was #DCFAF7 -->
+  border-left: 4px solid #3b9c9c;
+}
+
+
+    .sub-subcategory h4 {
+      margin: 0.5rem 0 0.25rem;
+      color: #006666;
+    }
+
+    .sub-subcategory ul {
+      padding-left: 1rem;
+      padding-top: .15rem;
+      list-style-type: none;
+      margin: 0;
+    }
+
+    .sub-subcategory li {
+      margin: 0.25rem 0;
+    }
+
+    .sub-subcategory a {
+      color: #003333;
+      text-decoration: none;
+    }
+
+    .sub-subcategory a:hover {
+      text-decoration: underline;
+    }
+
+    @media (min-width: 600px) {
+      body {
+        max-width: 600px;
+        margin: auto;
+      }
+    }
+
+    body {
+      background-color: transparent;
+    }
+        .emoji {
+      height: 36px;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="category" onclick="toggle(this)">
+        <img class="emoji" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-bait-tackle.png" alt="Bait & Tackle Shops">Bait & Tackle Shops</div>
+  <div class="sub-subcategory">
+    <ul><li><a href='/articles/bait-and-tackle-shops.html' target='_blank'>🚧 Where to buy bait and tackle locally</a></li></ul>
+    </div>
+
+ <div class="category" onclick="toggle(this)">
+       <img class="emoji" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fish-cleaning-station.png" alt="Clean Your Catch">Clean Your Catch</div>
+  <div class="sub-subcategory">
+<ul><li><a href='/articles/clean-your-catch.html' target='_blank'>🚧 Locations that have Fish Cleaning Stations</a></li></ul>
+    </div>
+
+  <div class="category" onclick="toggle(this)">
+          <img class="emoji" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fish-skillet.png" alt="Cook Your Catch">Cook Your Catch</div>
+  <div class="sub-subcategory">
+    <ul><li><a href='/articles/cook-your-catch.html' target='_blank'>🚧 Cook at home or have a restaurant cook and serve it up!</a></li></ul>
+   </div>
+
+  <div class="category" onclick="toggle(this)">
+          <img class="emoji" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-shore-fishing.png" alt="Shore Fishing">Shore Fishing</div>
+  <div class="sub-subcategory">
+    <ul><li><a href='/articles/shore-fishing.html' target='_blank'>🚧 Best places to fish from the shore!</a></li></ul>
+    <ul><li><a href='/articles/surf-fishing-beginner-guide.html' target='_blank'>✔ Surf Fishing Beginner's Quick Guide</a></li></ul>
+
+   </div>
+
+  
+  
+  <div class="category" onclick="toggle(this)">
+          <img class="emoji" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fishing-knots.png" alt="Knot Tying">Tie One On (Knot Tying)</div>
+  <div class="sub-subcategory">
+    <ul><li><a href='/articles/fishing_knots_guide.html' target='_blank'>🚧 Various Knots for certain needs!</a></li></ul>
+   </div>
+
+  <div class="category" onclick="toggle(this)">
+          <img class="emoji" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fishing-map.png" alt="Fishing Maps">Fishing Maps</div>
+  <div class="sub-subcategory">
+    <ul><li><a href='/articles/ttb-maps-hub.html' target='_blank'>✔ Fishing Maps around Mustand Island and beyond!</a></li></ul>
+   </div>
+
+<script>
+  let resizeTimeout;
+  let lastSentHeight = 0;
+
+  function sendHeightToParent() {
+    const currentHeight = document.documentElement.scrollHeight;
+    if (currentHeight !== lastSentHeight) {
+      window.parent.postMessage({ type: 'resize-iframe', height: currentHeight }, '*');
+      lastSentHeight = currentHeight;
+    }
+  }
+
+  function debouncedResize(delay = 150) {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(sendHeightToParent, delay);
+  }
+
+  // ResizeObserver to watch layout shifts
+  const resizeObserver = new ResizeObserver(() => debouncedResize(100));
+  resizeObserver.observe(document.body);
+
+  // MutationObserver to catch attribute changes or added/removed nodes
+  const mutationObserver = new MutationObserver(() => debouncedResize(200));
+  mutationObserver.observe(document.body, {
+    attributes: true,
+    childList: true,
+    subtree: true
+  });
+
+  // Category toggle logic with height fix
+  document.addEventListener('DOMContentLoaded', function () {
+    const categories = document.querySelectorAll('.category');
+
+    categories.forEach(category => {
+      category.addEventListener('click', () => {
+        const next = category.nextElementSibling;
+        if (!next || !next.classList.contains('sub-subcategory')) return;
+
+        const isVisible = next.style.display === 'block';
+
+        // Collapse all other subcategories
+        document.querySelectorAll('.sub-subcategory').forEach(sub => {
+          if (sub !== next) sub.style.display = 'none';
+        });
+
+        // Toggle current one
+        next.style.display = isVisible ? 'none' : 'block';
+
+        // Resize twice: once immediately, once after layout settles
+        debouncedResize(100);
+        setTimeout(sendHeightToParent, 600); // catch late style changes
+      });
+    });
+
+    // Initial resize
+    setTimeout(sendHeightToParent, 300);
+  });
+
+  window.addEventListener('resize', () => debouncedResize(200));
+<!--
+function toggle(element) {
+  document.querySelectorAll(".subcategory").forEach(sub => sub.style.display = "none");
+  const subcategory = element.nextElementSibling;
+  subcategory.style.display = "block";
+} -->
+
+
+
+</script>
+
+<script>
+  // Ensure collapsed even if something else tried to open them
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".sub-subcategory").forEach(el => {
+      el.style.display = "none";
+    });
+  });
+
+  // Click a category to toggle its next sub-subcategory
+  function toggle(element) {
+    const panel = element.nextElementSibling;
+    if (!panel || !panel.classList.contains('sub-subcategory')) return;
+
+    const isOpen = panel.style.display === "block";
+    // (optional) close others
+    document.querySelectorAll(".sub-subcategory").forEach(el => {
+      if (el !== panel) el.style.display = "none";
+    });
+    panel.style.display = isOpen ? "none" : "block";
+  }
+</script>
+
+</body>
+</html>
