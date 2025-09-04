@@ -212,84 +212,55 @@ body {
 </script>
 
 <!-- ↓↓↓ Added: open all links in a single centered popup window ↓↓↓ -->
-<!-- Open links in a single centered popup window -->
 <script>
-  (function () {
-    const POPUP_NAME = "HookedPopup";
-    const POPUP_W = 900;
-    const POPUP_H = 700;
+  // Opens URL in a centered, reusable popup window
+  function openCustomPopup(url) {
+    const popupWidth = 900;
+    const popupHeight = 700;
+    const openerWidth = window.innerWidth;
+    const openerHeight = window.innerHeight;
+    const openerLeft = window.screenX || window.screenLeft || 0;
+    const openerTop  = window.screenY || window.screenTop  || 0;
+    const left = Math.max(0, openerLeft + (openerWidth  - popupWidth)  / 2);
+    const top  = Math.max(0, openerTop  + (openerHeight - popupHeight) / 2);
 
-    function centerOverOpener(w, h) {
-      // Prefer outer size (includes browser chrome), fallback to inner
-      const ow = window.outerWidth  || window.innerWidth  || screen.width;
-      const oh = window.outerHeight || window.innerHeight || screen.height;
+    // Reuse the same window name so subsequent clicks replace contents
+    window.open(
+      url,
+      "HookedPopup",
+      `width=${popupWidth},height=${popupHeight},left=${left},top=${top},resizable=yes,scrollbars=yes,noopener=yes`
+    );
+  }
 
-      // Position of the current window on the virtual desktop
-      const sx = (typeof window.screenX === "number" ? window.screenX : window.screenLeft) || 0;
-      const sy = (typeof window.screenY === "number" ? window.screenY : window.screenTop)  || 0;
+  // Apply popup behavior to (almost) all links on the page
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("a[href]").forEach(link => {
+      link.addEventListener("click", function (e) {
+        const href = this.getAttribute("href") || "";
 
-      let left = Math.round(sx + (ow - w) / 2);
-      let top  = Math.round(sy + (oh - h) / 2);
+        // Let these behave normally:
+        const isHash = href.startsWith("#");
+        const isJs = href.startsWith("javascript:");
+        const isMail = href.startsWith("mailto:");
+        const isTel = href.startsWith("tel:");
+        const hasDownload = this.hasAttribute("download");
+        const noPopup = this.dataset.noPopup !== undefined; // opt-out via data-no-popup
 
-      // Keep the popup on-screen as best we can
-      const availLeft = screen.availLeft ?? 0;
-      const availTop  = screen.availTop  ?? 0;
-      const availW    = screen.availWidth  ?? screen.width;
-      const availH    = screen.availHeight ?? screen.height;
-      left = Math.max(availLeft, Math.min(left, availLeft + availW - w));
-      top  = Math.max(availTop,  Math.min(top,  availTop  + availH - h));
+        // Respect user intent: new-tab/middle click or modifier keys
+        const isModified = e.defaultPrevented ||
+                           e.button === 1 || // middle click
+                           e.metaKey || e.ctrlKey || e.shiftKey || e.altKey;
 
-      return { left, top };
-    }
+        if (isHash || isJs || isMail || isTel || hasDownload || noPopup || isModified) {
+          return; // allow default behavior
+        }
 
-    function openCustomPopup(url) {
-      const { left, top } = centerOverOpener(POPUP_W, POPUP_H);
-      // Reuse same window name so subsequent clicks replace contents
-      window.open(
-        url,
-        POPUP_NAME,
-        [
-          `width=${POPUP_W}`,
-          `height=${POPUP_H}`,
-          `left=${left}`,
-          `top=${top}`,
-          "resizable=yes",
-          "scrollbars=yes",
-          "noopener=yes"
-        ].join(",")
-      );
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll("a[href]").forEach(link => {
-        link.addEventListener("click", function (e) {
-          const href = this.getAttribute("href") || "";
-
-          // Allow default behavior for these cases
-          const isHash = href.startsWith("#");
-          const isJs = href.startsWith("javascript:");
-          const isMail = href.startsWith("mailto:");
-          const isTel = href.startsWith("tel:");
-          const hasDownload = this.hasAttribute("download");
-          const noPopup = this.dataset.noPopup !== undefined;
-
-          // Respect user intent: middle click or modifier keys
-          const isModified = e.defaultPrevented ||
-                             e.button === 1 ||
-                             e.metaKey || e.ctrlKey || e.shiftKey || e.altKey;
-
-          if (isHash || isJs || isMail || isTel || hasDownload || noPopup || isModified) {
-            return; // let the browser handle it normally
-          }
-
-          e.preventDefault();
-          openCustomPopup(this.href);
-        });
+        e.preventDefault();
+        openCustomPopup(this.href);
       });
     });
-  })();
+  });
 </script>
-
 <!-- ↑↑↑ End popup behavior ↑↑↑ -->
 
 </body>
