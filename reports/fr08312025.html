@@ -126,6 +126,27 @@
   </style>
 </head>
 <body>
+  <!-- Open-in-Popup URL control -->
+<form id="popup-url-form" style="margin: 14px auto; max-width: 640px; display: flex; gap: 8px; align-items: stretch;">
+  <input
+    id="popup-url-input"
+    type="text"
+    inputmode="url"
+    placeholder="Type or paste a URL…"
+    aria-label="Popup URL"
+    style="flex: 1; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px;"
+    list="popup-suggestions"
+  />
+  <button type="submit" class="hop-btn" style="white-space: nowrap;">Open</button>
+
+  <!-- Optional: quick suggestions -->
+  <datalist id="popup-suggestions">
+    <option value="https://hookedonporta.com/"></option>
+    <option value="https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits"></option>
+    <option value="https://www.windfinder.com/forecast/mustang_island_port_aransas"></option>
+  </datalist>
+</form>
+
 <div style="text-align:center; margin-top:50px;">
   <button class="hop-btn" onclick="window.close()">Close</button>
 </div>
