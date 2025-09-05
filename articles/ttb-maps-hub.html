@@ -1,68 +1,82 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <!-- Speed up connection to the image host -->
-  <link rel="preconnect" href="https://raw.githubusercontent.com">
-  <link rel="dns-prefetch" href="https://raw.githubusercontent.com">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hooked on Port A — Maps Hub</title>
+  <meta name="description" content="Thumbnails linking to Hooked on Port A Google My Maps: Bait & Tackle, Boat & Kayak Launches, BYOF Restaurants, Piers & Jetties, and On-Shore Fishing.">
 
-  <!-- Preload thumbnails (only do this for above-the-fold images) -->
+  <!-- Speed/preload -->
+  <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+  <link rel="dns-prefetch" href="https://raw.githubusercontent.com">
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/Map-Bait-Tackle.png" type="image/png">
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/Map-Boat-Kayak-Launches.png" type="image/png">
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/Map-BYOF-Restaurants.png" type="image/png">
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/Map-On-Shore-Fishing.png" type="image/png">
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/Map-Piers-Jetties.png" type="image/png">
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hooked on Port A — Maps Hub</title>
-  <meta name="description" content="Thumbnails linking to Hooked on Port A Google My Maps: Bait & Tackle, Boat & Kayak Launches, BYOF Restaurants, Piers & Jetties, and On-Shore Fishing.">
   <style>
     :root{
-      --bg:#ffffff;
-      --text:#0f172a;
-      --muted:#475569;
-      --border:#e5e7eb;
-      --brand:#0ea5e9;
-      --radius:16px;
-      --shadow:3px 4px 10px rgba(2, 8, 23, 0.08);
-      --gap:18px;
-    }
-    *{ box-sizing:border-box; }
-    body{
-      margin:0; font-family:system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color:var(--text); background:var(--bg); line-height:1.6;
-    }
-    header{
-      padding:18px 22px; border-bottom:1px solid #e2e8f0;
-      position:sticky; top:0; background:#fff; z-index:10;
-    }
-    .wrap{ max-width:1100px; margin:0 auto; }
-    .brand{ display:flex; align-items:center; gap:12px; color:inherit; text-decoration:none; }
-    .brand .dot{ width:14px; height:14px; border-radius:50%; background:var(--brand); }
-    h1{ font-size:20px; margin:0; letter-spacing:-0.02em; }
-    main{ padding:20px 22px 30px; }
-    .intro{ color:var(--muted); margin:0 0 16px; }
+      --bg:#f8f8f8;
+      --card:#ffffff;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --border:#e2e8f0;
+      --shadow:0 0 15px rgba(0,0,0,0.1);
+      --radius:12px;
 
-    .grid{
-      display:flex; flex-wrap:wrap; gap:var(--gap); justify-content:center;
+      --primary:#0ea5e9;
+      --accent:#f97316;
+
+      --gap:18px;         
+      --map-radius:16px;  
     }
+    html, body {
+      padding:0; margin:0; background:var(--bg); color:var(--text);
+      font-family:system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+      line-height:1.55;
+    }
+    .container{
+      max-width:850px; margin:60px auto; padding:30px; background:var(--card);
+      border-radius:var(--radius); box-shadow:var(--shadow);
+      overflow:visible;
+    }
+
+    /* Header with centered TTB logo */
+    .header{ position:relative; margin-bottom:20px; text-align:center; overflow:visible; }
+    .logo{
+      display:block;
+      margin:0 auto;
+      max-height:90px;
+      height:auto;
+      width:auto;
+      max-width:min(520px,92vw);
+      object-fit:contain;
+      padding-inline:8px;
+    }
+    .subhead{ color:#F77E17; margin-top:12px; }
+
+    /* Intro */
+    .intro{ color:#334155; margin:0 0 16px; }
+
+    /* Card grid */
+    .grid{ display:flex; flex-wrap:wrap; gap:var(--gap); justify-content:center; }
     .card{ flex:0 0 100%; }
-
     @media (min-width:760px){ .card{ flex:0 0 calc((100% - var(--gap)) / 2); } }
     @media (min-width:1080px){ .card{ flex:0 0 calc((100% - (2 * var(--gap))) / 3); } }
 
     .card{
-      border:1px solid var(--border); border-radius:var(--radius); background:#fff;
-      box-shadow:var(--shadow); overflow:hidden; text-decoration:none; color:inherit;
+      border:1px solid var(--border); border-radius:var(--map-radius); background:#fff;
+      box-shadow:0 0 0 rgba(0,0,0,0.02); overflow:hidden; text-decoration:none; color:inherit;
       transition: transform .12s ease, box-shadow .12s ease;
     }
-    .card:hover{ transform:translateY(-1px); box-shadow:5px 7px 16px rgba(2, 8, 23, 0.12); }
+    .card:hover{ transform:translateY(-1px); box-shadow:0 8px 22px rgba(2,8,23,.10); }
 
     figure{ margin:0; }
     img{ width:100%; height:auto; display:block; aspect-ratio:16 / 9; object-fit:cover; }
 
     figcaption{
-      padding:12px 14px; font-weight:400; color:teal; text-align:center;
+      padding:12px 14px; font-weight:500; color:#0f766e; text-align:center;
       letter-spacing:-0.01em; border-top:1px solid var(--border); background:#fff;
     }
     .card:link, .card:visited{ text-decoration:none; }
@@ -70,9 +84,14 @@
       text-decoration:underline; text-underline-offset:3px;
     }
 
-    footer{ text-align:center; color:var(--muted); border-top:1px solid #e2e8f0; padding:18px 22px; }
+    /* Footer */
+    footer{
+      margin:30px auto 10px; border-top:1px solid var(--border);
+      padding:20px; text-align:center; color:var(--muted); font-size:14px;
+      max-width:1100px;
+    }
 
-    /* ---------- Modal for mobile embed ---------- */
+    /* Modal for mobile embed */
     .modal {
       position: fixed; inset: 0; background: rgba(15,23,42,.65);
       display: none; align-items: center; justify-content: center; z-index: 1000;
@@ -95,43 +114,41 @@
       border-radius:10px; cursor:pointer; text-decoration:none; color:var(--text);
     }
     .modal-actions button { border-color:#cbd5e1; }
-
-    /* The iframe should fill the modal body */
     .modal-iframe { border:0; width:100%; height:100%; }
-    /* Wrapper needs to flex to fill modal */
     .iframe-wrap { position: relative; width: 100%; height: 100%; flex: 1; }
 
-    /* --- Hide Google My Maps fullscreen button with overlay guard --- */
+    /* Guard overlay */
     .fs-guard {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 88px;         /* adjust if needed */
-      height: 88px;
-      background: transparent;
-      border: 0;
-      padding: 0;
-      cursor: default;
-      pointer-events: auto; /* intercept clicks */
+      position: absolute; top: 0; right: 0; width: 88px; height: 88px;
+      background: transparent; border: 0; padding: 0; cursor: default; pointer-events: auto;
     }
     .fs-guard:focus { outline: none; }
+
+    @media (max-width:640px){
+      .container{ margin:30px 16px; padding:20px; }
+      .logo{ max-height:90px; transform:none; margin-bottom:10px; }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <div class="wrap">
-      <a class="brand" href="https://hookedonporta.com" target="_blank" rel="noopener">
-        <span class="dot" aria-hidden="true"></span>
-        <h1>Hooked on Port A — Maps Hub</h1>
-      </a>
-    </div>
-  </header>
 
-  <main class="wrap">
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <a href="https://HookedOnPortA.com" target="_blank"
+         onclick="window.open(this.href, '_blank'); window.close(); return false;">
+        <img class="logo"
+             src="https://github.com/jaime62/hookedonporta-site/blob/main/images/TTB-Logo.png?raw=true"
+             alt="HookedOnPortA.com">
+      </a>
+      <h2 class="subhead">Maps Hub</h2>
+    </div>
+
+    <!-- Intro -->
     <p class="intro">Tap a card to open the corresponding Google My Map. On phones, the map opens right here so it stays in your browser (not the Maps app).</p>
 
+    <!-- Cards -->
     <div class="grid">
-      <!-- DESKTOP: opens viewer in new tab; MOBILE: opens embedded modal -->
       <a class="card mymaps"
          href="https://www.google.com/maps/d/viewer?mid=1I4QjlGG_yINeKpvlZAwnCLuP_kO2mac&usp=sharing"
          data-mapid="1I4QjlGG_yINeKpvlZAwnCLuP_kO2mac"
@@ -187,13 +204,14 @@
         </figure>
       </a>
     </div>
-  </main>
+  </div>
 
+  <!-- Footer -->
   <footer>
-    © 2025 Hooked on Port A
+    <div>© 2025 Hooked on Port A • Disclosure: As an Amazon Associate, we earn from qualifying purchases.</div>
   </footer>
 
-  <!-- Mobile modal markup -->
+  <!-- Modal -->
   <div class="modal" id="mapModal" aria-hidden="true">
     <div class="modal-inner" role="dialog" aria-modal="true" aria-labelledby="mapTitle">
       <div class="modal-header">
@@ -202,8 +220,6 @@
           <button type="button" id="closeModal" aria-label="Close">Close</button>
         </div>
       </div>
-
-      <!-- IFRAME WRAPPED WITH OVERLAY GUARD -->
       <div class="iframe-wrap">
         <iframe id="mapFrame" class="modal-iframe" src=""
                 referrerpolicy="no-referrer"
@@ -227,8 +243,6 @@
       function embedUrl(mapId){ return "https://www.google.com/maps/d/embed?mid=" + encodeURIComponent(mapId); }
       function viewerUrl(mapId){ return "https://www.google.com/maps/d/viewer?mid=" + encodeURIComponent(mapId) + "&usp=sharing"; }
 
-      // Desktop: keep your current behavior (new tab to viewer)
-      // Mobile: intercept and show an in-page modal with iframe (no app handoff)
       document.querySelectorAll('a.mymaps[data-mapid]').forEach(function(a){
         var id = a.getAttribute('data-mapid');
         var title = a.getAttribute('title') || 'Map';
@@ -236,46 +250,24 @@
         if (isMobile) {
           a.addEventListener('click', function(e){
             e.preventDefault();
-
-            // Set modal title
             titleEl.textContent = title.replace(/^Open map:\s*/i, '');
-
-            // Load embed inside the page (prevents any app interception)
-            var url = embedUrl(id);
-            frame.src = url;
-
-            // Show modal
+            frame.src = embedUrl(id);
             modal.classList.add('open');
             modal.setAttribute('aria-hidden','false');
           }, { passive:false });
         } else {
-          // Desktop still goes to viewer in a new tab (your existing href)
           a.href = viewerUrl(id);
         }
       });
 
-      // Close modal handlers
-      closeBtn.addEventListener('click', function(){
+      function closeModal(){
         modal.classList.remove('open');
         modal.setAttribute('aria-hidden','true');
-        frame.src = ""; // stop loading
-      });
-      modal.addEventListener('click', function(e){
-        if (e.target === modal) {
-          modal.classList.remove('open');
-          modal.setAttribute('aria-hidden','true');
-          frame.src = "";
-        }
-      });
-
-      // Escape to close
-      document.addEventListener('keydown', function(e){
-        if (e.key === 'Escape' && modal.classList.contains('open')) {
-          modal.classList.remove('open');
-          modal.setAttribute('aria-hidden','true');
-          frame.src = "";
-        }
-      });
+        frame.src = "";
+      }
+      closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', function(e){ if (e.target === modal) closeModal(); });
+      document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
     })();
   </script>
 </body>
