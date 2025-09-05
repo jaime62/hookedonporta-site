@@ -567,6 +567,117 @@
     });
   </script>
   <!-- ↑↑↑ End custom popup behavior ↑↑↑ -->
+<style>
+  .amz-choice-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,.4);
+    display: none; align-items: center; justify-content: center; z-index: 9999;
+  }
+  .amz-choice {
+    background: #fff; width: min(92vw, 420px); border-radius: 12px; padding: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.25); font-family: system-ui, -apple-system, Arial, sans-serif;
+  }
+  .amz-choice h3 { margin: 0 0 8px; font-size: 18px; }
+  .amz-choice p { margin: 0 0 14px; font-size: 14px; color: #333; }
+  .amz-actions { display: grid; gap: 10px; }
+  .amz-actions button {
+    padding: 10px 12px; border: 0; border-radius: 10px; cursor: pointer; font-weight: 600;
+  }
+  .amz-primary { background: #0a84ff; color: #fff; }
+  .amz-secondary { background: #eef1f4; color: #111; }
+</style>
+
+<div id="amzPrompt" class="amz-choice-backdrop" role="dialog" aria-modal="true" aria-labelledby="amzTitle">
+  <div class="amz-choice">
+    <h3 id="amzTitle">Open Amazon link</h3>
+    <p>Do you want to view this in your browser, or open the Amazon app?</p>
+    <div class="amz-actions">
+      <button class="amz-primary" id="amzOpenWeb">Open in Browser</button>
+      <button class="amz-secondary" id="amzOpenApp">Open in Amazon App</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  if (!isIOS) return;
+
+  const promptEl = document.getElementById('amzPrompt');
+  const openWebBtn = document.getElementById('amzOpenWeb');
+  const openAppBtn = document.getElementById('amzOpenApp');
+
+  let pendingURL = null;
+
+  // Utility: show / hide prompt
+  function showPrompt(url) {
+    pendingURL = url;
+    promptEl.style.display = 'flex';
+  }
+  function hidePrompt() {
+    promptEl.style.display = 'none';
+  }
+  promptEl.addEventListener('click', (e) => {
+    if (e.target === promptEl) hidePrompt(); // tap outside to close
+  });
+
+  // Click handlers
+  openWebBtn.addEventListener('click', () => {
+    if (!pendingURL) return;
+    hidePrompt();
+    // Open in a popup window you already use (re-uses your HookedPopup) or fall back to a normal new tab.
+    if (typeof openCustomPopup === 'function') {
+      openCustomPopup(pendingURL);
+    } else {
+      window.open(pendingURL, '_blank', 'noopener');
+    }
+    pendingURL = null;
+  });
+
+  openAppBtn.addEventListener('click', () => {
+    if (!pendingURL) return;
+    hidePrompt();
+
+    // Build an Amazon app deep link from the web URL.
+    // Uses the documented/observed scheme host that mirrors the web path.
+    // Example result: com.amazon.mobile.shopping.web://amazon.com/...
+    const url = new URL(pendingURL);
+    const appScheme = 'com.amazon.mobile.shopping.web://' + url.host + url.pathname + url.search;
+
+    // Try to open the app; if it doesn't work (app not installed), fall back to the web after ~1s.
+    let fallback = setTimeout(() => {
+      window.location.href = pendingURL;
+    }, 1000);
+
+    // Navigating to the custom scheme must be a direct result of a user gesture.
+    window.location.href = appScheme;
+
+    // If the app actually opens, this page will be backgrounded/hidden and the timeout won't matter.
+    // If it doesn't, user stays here and the timeout takes them to the web.
+    pendingURL = null;
+  });
+
+  // Intercept Amazon links and show the choice
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href]');
+    if (!a) return;
+
+    const href = a.getAttribute('href');
+    if (!href) return;
+
+    // Domains we want to intercept
+    const isAmazon = /(^https?:\/\/)?(www\.)?(amazon\.[^/]+|amzn\.to)\//i.test(href);
+    if (!isAmazon) return;
+
+    // Respect modifiers (new tab, etc.) and explicit opt-out via data-no-intercept
+    const modified = e.button === 1 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey;
+    if (modified || a.hasAttribute('data-no-intercept')) return;
+
+    // Stop default navigation and show our prompt
+    e.preventDefault();
+    showPrompt(a.href);
+  }, { capture: true });
+})();
+</script>
 
 </body>
 </html>
