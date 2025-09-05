@@ -1,8 +1,198 @@
-<html>
-  <head>
-  
-  </head>
-  <body>
-    Working on it! More to come! :)
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Bait & Tackle Shops — Hooked on Port A</title>
+<meta content="Recommended bait and tackle shops in Port Aransas, with photos, contact info, and details for anglers." name="description"/>
+
+<link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/TTB-Favicon-192x192.png">
+
+<style>
+      .hop-btn { appearance:none; background:#1C5A98; color:#fff; border:none; border-radius:9999px; padding:10px 16px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; line-height:1; box-shadow:0 4px 0 #0e3a66, 0 8px 16px rgba(0,0,0,.15); cursor:pointer; transition: transform .06s ease, box-shadow .15s ease, filter .15s ease, background-color .15s ease; }
+      .hop-btn:hover { filter:brightness(1.05); transform: translateY(-1px); box-shadow:0 5px 0 #0e3a66, 0 12px 20px rgba(0,0,0,.18); }
+      .hop-btn:active { transform: translateY(2px); box-shadow:0 2px 0 #0e3a66, 0 6px 12px rgba(0,0,0,.18); }
+      .hop-btn--orange { background:#F77E17; box-shadow:0 4px 0 #b25610, 0 8px 16px rgba(0,0,0,.15); }
+    
+
+  :root {
+    --bg: #f8f8f8;
+    --card: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --border:#e2e8f0;
+    --shadow: 0 0 15px rgba(0,0,0,0.1);
+    --radius: 12px;
+    --primary:#0ea5e9;
+    --accent:#f97316;
+  }
+  html, body {
+    padding: 0;
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    line-height: 1.55;
+  }
+  .container {
+    max-width: 900px;   /* narrower layout */
+    margin: 60px auto;
+    padding: 30px;
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+  .header { text-align: center; margin-bottom: 20px; }
+  .logo {
+    display: block;
+    margin: 0 auto;
+    max-height: 90px;
+    width: auto;
+    max-width: min(520px, 92vw);
+    object-fit: contain;
+    padding-inline: 8px;
+  }
+  .subhead { color: var(--accent); margin-top: 12px; }
+
+  /* Table styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 14px;
+    vertical-align: top;
+    text-align: left;
+  }
+  th {
+    background: #e0f2fe;
+    color: #0c4a6e;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+  }
+  td img {
+    max-width: 200px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    display: block;
+  }
+
+  /* Notes as bullet lists */
+  .notes {
+    color: #334155;
+    font-size: 14px;
+    margin: 8px 0 0 18px; /* indent slightly */
+    padding: 0;
+  }
+  .notes li {
+    margin-bottom: 4px;
+  }
+
+  a.map-link {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  a.map-link:hover {
+    text-decoration: underline;
+  }
+  footer {
+    margin: 30px auto 10px;
+    border-top: 1px solid var(--border);
+    padding: 20px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+    max-width: 900px;
+  }
+  @media (max-width: 640px) {
+    .container { margin: 30px 16px; padding: 20px; }
+    td img { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Header -->
+  <div class="header">
+    <a href="https://HookedOnPortA.com" target="_blank"
+       onclick="window.open(this.href, '_blank'); window.close(); return false;">
+      <img class="logo"
+           src="https://github.com/jaime62/hookedonporta-site/blob/main/images/TTB-Logo.png?raw=true"
+           alt="HookedOnPortA.com">
+    </a>
+    <h2 class="subhead">Bait & Tackle Shops</h2>
+  </div>
+
+  <p>Here are some trusted local bait and tackle shops in Port Aransas. Whether you need live bait, frozen bait, fishing gear, or even rentals, these shops will help get you ready for the water.</p>
+
+  <!-- Shops Table -->
+  <table>
+    <thead>
+      <tr>
+        <th>Shop</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <img src="https://github.com/jaime62/hookedonporta-site/blob/main/images/IslandTackle_storefront.png?raw=true"
+               alt="Island Tackle storefront">
+        </td>
+        <td>
+          <strong>Island Tackle</strong><br>
+          <a class="map-link"
+             href="https://www.google.com/maps/dir/?api=1&destination=207+W+Avenue+G,+Port+Aransas,+TX+78373"
+             onclick="window.open(this.href, '_blank'); window.close(); return false;">
+             207 W Avenue G, Port Aransas, TX 78373
+          </a><br>
+          <a href="tel:+13617491744">+1-361-749-1744</a><br><br>
+          <ul class="notes">
+            <li>Owner Randall is very helpful</li>
+            <li>Fresh Frozen Bait</li>
+            <li>Great assortment of tackle, rods & reels</li>
+            <li>Fishing Equipment Rentals</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <img src="https://github.com/jaime62/hookedonporta-site/blob/main/images/PortAOutfitters_storefront.png?raw=true"
+               alt="Port A Outfitters storefront">
+        </td>
+        <td>
+          <strong>Port A Outfitters</strong><br>
+          <a class="map-link"
+             href="https://www.google.com/maps/dir/?api=1&destination=126+W+Cotter+Ave,+Port+Aransas,+TX+78373"
+             onclick="window.open(this.href, '_blank'); window.close(); return false;">
+             126 W Cotter Ave, Port Aransas, TX 78373
+          </a><br>
+          <a href="tel:+13617493474">+1-361-749-3474</a><br><br>
+          <ul class="notes">
+            <li>Great assortment of tackle, rods & reels, and apparel</li>
+            <li>Live & Fresh Frozen Bait</li>
+            <li>Helpful Outdoor Bait Stand staff</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+    <div class="full-span" style="text-align:center; margin-top:50px;">
+      <button class="hop-btn" onclick="window.close()">Close</button>
+    </div>
+  </section>
+</div>
+<footer>
+  <div>© 2025 Hooked on Port A</div>
+</footer>
+
+</body>
 </html>
