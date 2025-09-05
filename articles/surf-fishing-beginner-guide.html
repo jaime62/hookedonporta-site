@@ -142,6 +142,8 @@
     .container { margin: 30px 16px; padding: 20px; }
     .logo { max-height: 90px; transform: none; margin-bottom: 10px; }
   }
+  .grid .full-span { grid-column: 1 / -1; }
+
 </style>
 </head>
 <body>
@@ -349,7 +351,7 @@
     </article>
 
     <!-- Bottom Close button (same as Diary) -->
-    <div style="text-align:center; margin-top:50px;">
+    <div class="full-span" style="text-align:center; margin-top:50px;">
       <button class="hop-btn" onclick="window.close()">Close</button>
     </div>
   </section>
