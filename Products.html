@@ -568,6 +568,62 @@
   </script>
   <!-- ↑↑↑ End custom popup behavior ↑↑↑ -->
 
+  <!-- your existing popup / resize scripts -->
+
+  <!-- Amazon app/browser chooser helper -->
+  <script>
+  (function () {
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    function viaHelperWindow({ webUrl, appUrl = null }) {
+      const html = `...`  // (all the code from my earlier message goes here)
+    }
+
+    document.addEventListener('DOMContentLoaded', function(){
+      const openWebBtn = document.getElementById('amzOpenWeb');
+      const openAppBtn = document.getElementById('amzOpenApp');
+
+      window._getPendingUrl = () => window.pendingURL;
+
+      if (openWebBtn) {
+        openWebBtn.addEventListener('click', function(){
+          const url = window._getPendingUrl && window._getPendingUrl();
+          if (!url) return;
+          try { document.getElementById('amzPrompt').style.display = 'none'; } catch(e){}
+
+          if (isIOS) {
+            viaHelperWindow({ webUrl: url });
+          } else {
+            if (typeof openCustomPopup === 'function') openCustomPopup(url);
+            else window.open(url, '_blank', 'noopener');
+          }
+          window.pendingURL = null;
+        });
+      }
+
+      if (openAppBtn) {
+        openAppBtn.addEventListener('click', function(){
+          const urlStr = window._getPendingUrl && window._getPendingUrl();
+          if (!urlStr) return;
+          try { document.getElementById('amzPrompt').style.display = 'none'; } catch(e){}
+
+          const u = new URL(urlStr);
+          const appScheme = 'com.amazon.mobile.shopping.web://' + u.host + u.pathname + u.search;
+
+          if (isIOS) {
+            viaHelperWindow({ webUrl: urlStr, appUrl: appScheme });
+          } else {
+            window.location.href = appScheme;
+          }
+          window.pendingURL = null;
+        });
+      }
+    });
+  })();
+  </script>
+
+</body>
+</html>
 
 </body>
 </html>
