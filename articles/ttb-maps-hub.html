@@ -16,6 +16,12 @@
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/Map-Piers-Jetties.png" type="image/png">
 
   <style>
+
+      .hop-btn { appearance:none; background:#1C5A98; color:#fff; border:none; border-radius:9999px; padding:10px 16px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; line-height:1; box-shadow:0 4px 0 #0e3a66, 0 8px 16px rgba(0,0,0,.15); cursor:pointer; transition: transform .06s ease, box-shadow .15s ease, filter .15s ease, background-color .15s ease; }
+      .hop-btn:hover { filter:brightness(1.05); transform: translateY(-1px); box-shadow:0 5px 0 #0e3a66, 0 12px 20px rgba(0,0,0,.18); }
+      .hop-btn:active { transform: translateY(2px); box-shadow:0 2px 0 #0e3a66, 0 6px 12px rgba(0,0,0,.18); }
+      .hop-btn--orange { background:#F77E17; box-shadow:0 4px 0 #b25610, 0 8px 16px rgba(0,0,0,.15); }
+    
     :root{
       --bg:#f8f8f8;
       --card:#ffffff;
@@ -206,6 +212,12 @@
     </div>
   </div>
 
+    <div class="full-span" style="text-align:center; margin-top:50px;">
+      <button class="hop-btn" onclick="window.close()">Close</button>
+    </div>
+  </section>
+</div>
+  
   <!-- Footer -->
   <footer>
     <div>© 2025 Hooked on Port A • Disclosure: As an Amazon Associate, we earn from qualifying purchases.</div>
