@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
 
   <!-- Preload category emoji images -->
-<link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fishing-map.png" as="image">
-<link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fishing-knots.png" as="image">
-<link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-shore-fishing.png" as="image">
-<link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-boat-launch.png" as="image">
-<link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fish-skillet.png" as="image">
-<link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-bait-tackle.png" as="image">
-<link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fish-cleaning-station.png" as="image">
+  <link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fishing-map.png" as="image">
+  <link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fishing-knots.png" as="image">
+  <link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-shore-fishing.png" as="image">
+  <link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-boat-launch.png" as="image">
+  <link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fish-skillet.png" as="image">
+  <link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-bait-tackle.png" as="image">
+  <link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fish-cleaning-station.png" as="image">
   
   <title>Articles & Information</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +24,7 @@
     }
 
      .category {
-      background: #7CCFCF; <!-- was #92D6B5 -->
+      background: #7CCFCF; /* was #92D6B5 */
       color: #1a237e;
       padding: .5rem;
       margin-bottom: 0.5rem;
@@ -32,24 +32,27 @@
       cursor: pointer;
       font-weight: bold;
     }
+       .category:hover {
+      background-color: rgba(250, 180, 0, 0.9); 
+      color: #003c54; 
+      transform: translateY(-1px);
+    }
+    .subcategory {
+      display: none;
+      background: #DCFAF7; /* was #e6fafa */
+      padding: 0.5rem 1rem;
+      margin-bottom: 0.5rem;
+      border-left: 4px solid #3b9c9c;
+    }
 
-.subcategory {
-  display: none;
-  background: #DCFAF7; <!-- was #e6fafa */ -->
-  padding: 0.5rem 1rem;
-  margin-bottom: 0.5rem;
-  border-left: 4px solid #3b9c9c;
-}
-
-/* replace your existing .sub-subcategory rule with this (or add this AFTER it) */
-.sub-subcategory {
-  display: none;              /* collapse on load */
-  margin-left: 1rem;
-  padding: 0.25rem .25rem;
-  background: rgba(220, 250, 247, 0.80); <!-- was #DCFAF7 -->
-  border-left: 4px solid #3b9c9c;
-}
-
+    /* collapse on load */
+    .sub-subcategory {
+      display: none;
+      margin-left: 1rem;
+      padding: 0.25rem .25rem;
+      background: rgba(220, 250, 247, 0.80); /* was #DCFAF7 */
+      border-left: 4px solid #3b9c9c;
+    }
 
     .sub-subcategory h4 {
       margin: 0.5rem 0 0.25rem;
@@ -86,7 +89,8 @@
     body {
       background-color: transparent;
     }
-        .emoji {
+
+    .emoji {
       height: 36px;
       margin-right: 0.5rem;
       vertical-align: middle;
@@ -96,44 +100,47 @@
 <body>
 
   <div class="category" onclick="toggle(this)">
-        <img class="emoji" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-bait-tackle.png" alt="Bait & Tackle Shops">Bait & Tackle Shops</div>
+    <img class="emoji" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-bait-tackle.png" alt="Bait & Tackle Shops">Bait & Tackle Shops
+  </div>
   <div class="sub-subcategory">
-    <ul><li><a href='/articles/bait-and-tackle-shops.html' target='_blank'>🚧 Where to buy bait and tackle locally</a></li></ul>
-    </div>
-
- <div class="category" onclick="toggle(this)">
-       <img class="emoji" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fish-cleaning-station.png" alt="Clean Your Catch">Clean Your Catch</div>
-  <div class="sub-subcategory">
-<ul><li><a href='/articles/clean-your-catch.html' target='_blank'>🚧 Locations that have Fish Cleaning Stations</a></li></ul>
-    </div>
+    <ul><li><a href="/articles/bait-and-tackle-shops.html" target="_blank">✔ Where to buy bait and tackle locally</a></li></ul>
+  </div>
 
   <div class="category" onclick="toggle(this)">
-          <img class="emoji" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fish-skillet.png" alt="Cook Your Catch">Cook Your Catch</div>
+    <img class="emoji" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fish-cleaning-station.png" alt="Clean Your Catch">Clean Your Catch
+  </div>
   <div class="sub-subcategory">
-    <ul><li><a href='/articles/cook-your-catch.html' target='_blank'>🚧 Cook at home or have a restaurant cook and serve it up!</a></li></ul>
-   </div>
+    <ul><li><a href="/articles/clean-your-catch.html" target="_blank">✔ Locations that have Fish Cleaning Stations</a></li></ul>
+  </div>
 
   <div class="category" onclick="toggle(this)">
-          <img class="emoji" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-shore-fishing.png" alt="Shore Fishing">Shore Fishing</div>
+    <img class="emoji" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fish-skillet.png" alt="Cook Your Catch">Cook Your Catch
+  </div>
   <div class="sub-subcategory">
-    <ul><li><a href='/articles/shore-fishing.html' target='_blank'>🚧 Best places to fish from the shore!</a></li></ul>
-    <ul><li><a href='/articles/surf-fishing-beginner-guide.html' target='_blank'>✔ Surf Fishing Beginner's Quick Guide</a></li></ul>
-
-   </div>
-
-  
-  
-  <div class="category" onclick="toggle(this)">
-          <img class="emoji" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fishing-knots.png" alt="Knot Tying">Tie One On (Knot Tying)</div>
-  <div class="sub-subcategory">
-    <ul><li><a href='/articles/fishing_knots_guide.html' target='_blank'>🚧 Various Knots for certain needs!</a></li></ul>
-   </div>
+    <ul><li><a href="/articles/cook-your-catch.html" target="_blank">🚧 COMING SOON - Cook at home or have a restaurant cook and serve it up!</a></li></ul>
+  </div>
 
   <div class="category" onclick="toggle(this)">
-          <img class="emoji" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fishing-map.png" alt="Fishing Maps">Fishing Maps</div>
+    <img class="emoji" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-shore-fishing.png" alt="Shore Fishing">Shore Fishing
+  </div>
   <div class="sub-subcategory">
-    <ul><li><a href='/articles/ttb-maps-hub.html' target='_blank'>✔ Fishing Maps around Mustand Island and beyond!</a></li></ul>
-   </div>
+    <ul><li><a href="/articles/shore-fishing.html" target="_blank">🚧 COMING SOON - Best places to fish from the shore!</a></li></ul>
+    <ul><li><a href="/articles/surf-fishing-beginner-guide.html" target="_blank">✔ Surf Fishing Beginner's Quick Guide</a></li></ul>
+  </div>
+
+  <div class="category" onclick="toggle(this)">
+    <img class="emoji" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fishing-knots.png" alt="Knot Tying">Tie One On (Knot Tying)
+  </div>
+  <div class="sub-subcategory">
+    <ul><li><a href="/articles/fishing_knots_guide.html" target="_blank">✔ Various Knots for certain needs!</a></li></ul>
+  </div>
+
+  <div class="category" onclick="toggle(this)">
+    <img class="emoji" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fishing-map.png" alt="Fishing Maps">Fishing Maps
+  </div>
+  <div class="sub-subcategory">
+    <ul><li><a href="/articles/ttb-maps-hub.html" target="_blank">✔ Fishing Maps around Mustand Island and beyond!</a></li></ul>
+  </div>
 
 <script>
   let resizeTimeout;
@@ -164,45 +171,10 @@
     subtree: true
   });
 
-  // Category toggle logic with height fix
-  document.addEventListener('DOMContentLoaded', function () {
-    const categories = document.querySelectorAll('.category');
-
-    categories.forEach(category => {
-      category.addEventListener('click', () => {
-        const next = category.nextElementSibling;
-        if (!next || !next.classList.contains('sub-subcategory')) return;
-
-        const isVisible = next.style.display === 'block';
-
-        // Collapse all other subcategories
-        document.querySelectorAll('.sub-subcategory').forEach(sub => {
-          if (sub !== next) sub.style.display = 'none';
-        });
-
-        // Toggle current one
-        next.style.display = isVisible ? 'none' : 'block';
-
-        // Resize twice: once immediately, once after layout settles
-        debouncedResize(100);
-        setTimeout(sendHeightToParent, 600); // catch late style changes
-      });
-    });
-
-    // Initial resize
-    setTimeout(sendHeightToParent, 300);
-  });
+  // Initial resize after load
+  document.addEventListener('DOMContentLoaded', () => setTimeout(sendHeightToParent, 300));
 
   window.addEventListener('resize', () => debouncedResize(200));
-<!--
-function toggle(element) {
-  document.querySelectorAll(".subcategory").forEach(sub => sub.style.display = "none");
-  const subcategory = element.nextElementSibling;
-  subcategory.style.display = "block";
-} -->
-
-
-
 </script>
 
 <script>
@@ -224,7 +196,88 @@ function toggle(element) {
       if (el !== panel) el.style.display = "none";
     });
     panel.style.display = isOpen ? "none" : "block";
+
+    // notify parent about height change
+    if (typeof debouncedResize === "function") {
+      debouncedResize(100);
+      setTimeout(sendHeightToParent, 600);
+    }
   }
+</script>
+
+<!-- Shared centered popup for all article links -->
+<script>
+  (function () {
+    const POPUP_NAME = "HookedPopup";
+    const POPUP_W = 1200;
+    const POPUP_H = 700;
+
+    function centerOverOpener(w, h) {
+      const ow = window.outerWidth  || window.innerWidth  || screen.width;
+      const oh = window.outerHeight || window.innerHeight || screen.height;
+      const sx = (typeof window.screenX === "number" ? window.screenX : window.screenLeft) || 0;
+      const sy = (typeof window.screenY === "number" ? window.screenY : window.screenTop)  || 0;
+
+      let left = Math.round(sx + (ow - w) / 2);
+      let top  = Math.round(sy + (oh - h) / 2);
+
+      const availLeft = screen.availLeft ?? 0;
+      const availTop  = screen.availTop  ?? 0;
+      const availW    = screen.availWidth  ?? screen.width;
+      const availH    = screen.availHeight ?? screen.height;
+      left = Math.max(availLeft, Math.min(left, availLeft + availW - w));
+      top  = Math.max(availTop,  Math.min(top,  availTop  + availH - h));
+
+      return { left, top };
+    }
+
+    function openCustomPopup(url) {
+      const { left, top } = centerOverOpener(POPUP_W, POPUP_H);
+      window.open(
+        url,
+        POPUP_NAME, // reuse same window
+        [
+          `width=${POPUP_W}`,
+          `height=${POPUP_H}`,
+          `left=${left}`,
+          `top=${top}`,
+          "resizable=yes",
+          "scrollbars=yes",
+          "noopener=yes"
+        ].join(",")
+      );
+    }
+
+    // Intercept all normal links on this page and open in the shared popup
+    function attachPopupHandlers() {
+      document.querySelectorAll("a[href]").forEach(a => {
+        a.addEventListener("click", function (e) {
+          const href = this.getAttribute("href") || "";
+
+          // Respect user intent and special schemes
+          const isModified = e.defaultPrevented ||
+                             e.button === 1 || // middle click
+                             e.metaKey || e.ctrlKey || e.shiftKey || e.altKey;
+          const isHash   = href.startsWith("#");
+          const isJs     = href.startsWith("javascript:");
+          const isMail   = href.startsWith("mailto:");
+          const isTel    = href.startsWith("tel:");
+          const hasDownload = this.hasAttribute("download");
+          const noPopup = this.dataset.noPopup !== undefined; // opt-out
+
+          if (isModified || isHash || isJs || isMail || isTel || hasDownload || noPopup) {
+            return; // let the browser handle it normally
+          }
+
+          e.preventDefault();
+          e.stopPropagation();
+          openCustomPopup(this.href);
+        });
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", attachPopupHandlers);
+  })();
 </script>
 
 </body>
