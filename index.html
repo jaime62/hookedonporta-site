@@ -288,9 +288,21 @@
   <!-- STORE EMBED -->
   <div id="amazon-ads" style="text-align: center;">
     <div class="tab-folder">
-      <button class="active" data-src="Products.html">Shop Gear</button>
-      <button data-src="Guides.html">Local Fishing Guides</button>
-      <button data-src="/articles/">Articles & Info</button>
+      
+   <div class="tooltip-container">
+    <button class="active" data-src="Products.html" aria-describedby="tip-shop-gear">Shop Gear</button>
+    <div id="tip-shop-gear" class="custom-tooltip">Support our site by using our Amazon product links!</div>
+  </div>
+
+  <div class="tooltip-container">
+    <button data-src="Guides.html" aria-describedby="tip-guides">Local Fishing Guides</button>
+    <div id="tip-guides" class="custom-tooltip">Find trusted Port A captains</div>
+  </div>
+
+  <div class="tooltip-container">
+    <button data-src="/articles/" aria-describedby="tip-articles">Articles &amp; Info</button>
+    <div id="tip-articles" class="custom-tooltip">Tips, rigs, rules &amp; more</div>
+  </div>
 
     </div>
 <p style="margin-top:0em; margin-bottom:0em"></p>
