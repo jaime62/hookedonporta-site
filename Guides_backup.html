@@ -28,7 +28,11 @@
       cursor: pointer;
       font-weight: bold;
     }
-
+    .category:hover {
+      background-color: rgba(250, 180, 0, 0.9);
+      color: #003c54;
+      transform: translateY(-1px);
+    }
 .subcategory {
   display: none;
   background: #DCFAF7; /* was #e6fafa */
@@ -122,7 +126,9 @@ body {
     <ul><li><a href='https://walkersguideservice.com/' target='_blank'>Walker's Guide Service</a></li></ul>
   </div>
 
+<!-- ===== Collapsing + Iframe sizing script (replaces earlier two scripts) ===== -->
 <script>
+  // ===== IFRAME HEIGHT HELPERS =====
   let resizeTimeout;
   let lastSentHeight = 0;
 
@@ -133,85 +139,75 @@ body {
       lastSentHeight = currentHeight;
     }
   }
-
   function debouncedResize(delay = 150) {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(sendHeightToParent, delay);
   }
 
-  // ResizeObserver to watch layout shifts
+  // Observe layout/mutation changes and keep iframe sized
   const resizeObserver = new ResizeObserver(() => debouncedResize(100));
   resizeObserver.observe(document.body);
 
-  // MutationObserver to catch attribute changes or added/removed nodes
   const mutationObserver = new MutationObserver(() => debouncedResize(200));
-  mutationObserver.observe(document.body, {
-    attributes: true,
-    childList: true,
-    subtree: true
-  });
+  mutationObserver.observe(document.body, { attributes: true, childList: true, subtree: true });
 
-  // Category toggle logic with height fix
-  document.addEventListener('DOMContentLoaded', function () {
-    const categories = document.querySelectorAll('.category');
+  // ===== COLLAPSE / EXPAND LOGIC =====
 
-    categories.forEach(category => {
-      category.addEventListener('click', () => {
-        const next = category.nextElementSibling;
-        if (!next || !next.classList.contains('sub-subcategory')) return;
-
-        const isVisible = next.style.display === 'block';
-
-        // Collapse all other subcategories
-        document.querySelectorAll('.sub-subcategory').forEach(sub => {
-          if (sub !== next) sub.style.display = 'none';
-        });
-
-        // Toggle current one
-        next.style.display = isVisible ? 'none' : 'block';
-
-        // Resize twice: once immediately, once after layout settles
-        debouncedResize(100);
-        setTimeout(sendHeightToParent, 600); // catch late style changes
-      });
+  // Hide all panels of the given selector(s)
+  function hideAllPanels() {
+    document.querySelectorAll(".subcategory, .sub-subcategory").forEach(el => {
+      el.style.display = "none";
     });
+  }
 
-    // Initial resize
+  // Given a category element, return the list of its panels:
+  // all consecutive siblings until the next .category (or end of document)
+  function getPanelsForCategory(categoryEl) {
+    const panels = [];
+    let n = categoryEl.nextElementSibling;
+    while (n && !n.classList.contains("category")) {
+      if (n.classList.contains("subcategory") || n.classList.contains("sub-subcategory")) {
+        panels.push(n);
+      }
+      n = n.nextElementSibling;
+    }
+    return panels;
+  }
+
+  // Toggle handler used by onclick="toggle(this)"
+  function toggle(element) {
+    const panels = getPanelsForCategory(element);
+    if (panels.length === 0) return;
+
+    // Determine if the group is currently open (any panel visible)
+    const isOpen = panels.some(p => p.style.display === "block");
+
+    // Close everything else first (accordion behavior)
+    hideAllPanels();
+
+    // If it was closed, open all panels for this category
+    if (!isOpen) {
+      panels.forEach(p => p.style.display = "block");
+    }
+
+    // Nudge parent iframe
+    debouncedResize(100);
+    setTimeout(sendHeightToParent, 600);
+  }
+
+  // Ensure everything starts collapsed
+  document.addEventListener("DOMContentLoaded", () => {
+    hideAllPanels();
+    // Initial sizing
     setTimeout(sendHeightToParent, 300);
   });
 
+  // Keep sizing responsive
   window.addEventListener('resize', () => debouncedResize(200));
-
-  // function toggle(element) {
-  //   document.querySelectorAll(".subcategory").forEach(sub => sub.style.display = "none");
-  //   const subcategory = element.nextElementSibling;
-  //   subcategory.style.display = "block";
-  // }
 </script>
+<!-- ===== End collapsing script ===== -->
 
-<script>
-  // Ensure collapsed even if something else tried to open them
-  document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".sub-subcategory").forEach(el => {
-      el.style.display = "none";
-    });
-  });
-
-  // Click a category to toggle its next sub-subcategory
-  function toggle(element) {
-    const panel = element.nextElementSibling;
-    if (!panel || !panel.classList.contains('sub-subcategory')) return;
-
-    const isOpen = panel.style.display === "block";
-    // (optional) close others
-    document.querySelectorAll(".sub-subcategory").forEach(el => {
-      if (el !== panel) el.style.display = "none";
-    });
-    panel.style.display = isOpen ? "none" : "block";
-  }
-</script>
-
-<!-- ↓↓↓ Added: open all links in a single centered popup window ↓↓↓ -->
+<!-- ↓↓↓ open all links in a single centered popup window ↓↓↓ -->
 <script>
   // Opens URL in a centered, reusable popup window
   function openCustomPopup(url) {
