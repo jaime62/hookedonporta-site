@@ -27,19 +27,20 @@
 <link rel="shortcut icon" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/TTB-Favicon-192x192.png" type="image/png">
 
 <style>
-  .logo {
-    display: block;
-    margin: 0 auto;
-    transform: scale(1.4);
-    transform-origin: top center; /* expand down, not up */
-    max-height: 80px;
-    width: auto;
-  }
 
+  .logo {
+  display: block;
+  margin: 0 auto;
+  transform: scale(1.4);
+  transform-origin: top center; /* expand down, not up */
+  max-height: 80px;
+  width: auto;
+}
   /* Reset + base */
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; overflow-x: hidden; font-family: Arial, sans-serif; }
-  html, body { overscroll-behavior-y: none; background:#082a3a; } /* fallback tone */
+  body { color: #000; background: transparent; }
+  html, body { overscroll-behavior-y: none; }
 
   /* ---- Single fixed full-page background via ::before ----
      Default (mobile) image; desktop swap below */
@@ -51,13 +52,15 @@
     background-image: url("https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/HOPA-bg-sunrise-n-fish.png");
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: cover;           /* fill viewport without bands */
-    background-color: #082a3a;        /* seen during image load/failure */
+    background-size: 120% auto; /* keep your current zoom */
     pointer-events: none;
+    height: 100svh;          /* iOS friendly */
     transform: translateZ(0);
     will-change: transform;
   }
-
+  @supports not (height: 100svh) {
+    body::before { height: 100vh; }
+  }
   /* Desktop/tablet: switch to desktop background image */
   @media (min-width: 768px) {
     body::before {
@@ -149,12 +152,11 @@
     padding:.7rem 1.2rem; border-radius:8px;
     box-shadow: 0 2px 8px rgba(0,0,0,.12); transition: all .25s ease;
   }
-  .fishing-link:hover {
-    background-color: rgba(0, 200, 230, 0.95);
-    color: #003c54;
-    transform: translateY(-1px);
-  }
-
+.fishing-link:hover {
+  background-color: rgba(0, 200, 230, 0.95); /* darker aqua */
+  color: #003c54; /* deeper blue for contrast */
+  transform: translateY(-1px);
+}
   /* Store / iframe area — transparent */
   #amazon-ads { margin: 2rem auto 0; padding: 0; width: 95%; max-width: 1400px; text-align: center; border-radius: 8px; background: transparent; }
   #amazon-ads iframe {
@@ -168,7 +170,9 @@
   .tab-folder button {
     padding: 10px 20px; border: none; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; background-color: silver; color: darkblue; font-weight: bold; cursor: pointer;
   }
-  .tab-folder button:hover { background-color: #FBEE8E; }
+  .tab-folder button:hover {
+  background-color: #FBEE8E;
+}
   .tab-folder button.active { color: darkblue; background-color: gold; }
 
   .fishing-tagline { color: gold; font-size: 1.3rem; font-weight: bold; text-shadow: 1px 1px 4px #000; text-align: center; margin: .5rem; }
@@ -189,7 +193,7 @@
       font-size: 0.65rem; padding: 6px 10px; min-width: 58px; max-width: 80px;
       white-space: nowrap; text-overflow: ellipsis; overflow: hidden;
     }
-    br.mobile-break { display: inline; }
+      br.mobile-break { display: inline; } /* any non-none value works */
   }
   @media (max-width: 850px) and (orientation: landscape) {
     .nav { gap: 0.4rem; padding: 0 0.75rem; flex-wrap: nowrap; }
@@ -210,6 +214,7 @@
       <a href="https://hookedonporta.com" target="_blank" rel="noopener">
         <img class="logo" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/TTB-Logo-transparent.png" alt="HookedOnPortA.com">
       </a>
+  
     </div>
 
     <div class="nav">
@@ -253,6 +258,8 @@
   <!-- Intro -->
   <div class="intro">
     <h2>Welcome Port Aransas Saltwater Anglers!</h2>
+    <!-- <p style="color: white;">Use the menu buttons above to navigate to the various tools that we have in our "tackle box".</p>
+    <p style="color: white;"><i>(All external links on this site will open in a separate window)</i></p> -->
   </div>
 
   <!-- About collapsible -->
@@ -276,28 +283,29 @@
   <div class="report-row">
     <a href="#" class="fishing-link" onclick="openFishingReport(); return false;">Read our latest Fishing Report!</a>
   </div>
-  <p style="margin-top:3em;"></p>
+<p style="margin-top:3em;"></p>
 
   <!-- STORE EMBED -->
   <div id="amazon-ads" style="text-align: center;">
     <div class="tab-folder">
-      <div class="tooltip-container">
-        <button class="active" data-src="Products.html" aria-describedby="tip-shop-gear">Shop Gear</button>
-        <div id="tip-shop-gear" class="custom-tooltip">Support our site by using our Amazon product links!</div>
-      </div>
+      
+   <div class="tooltip-container">
+    <button class="active" data-src="Products.html" aria-describedby="tip-shop-gear">Shop Gear</button>
+    <div id="tip-shop-gear" class="custom-tooltip">Support our site by using our Amazon product links!</div>
+  </div>
 
-      <div class="tooltip-container">
-        <button data-src="Guides.html" aria-describedby="tip-guides">Local Fishing Guides</button>
-        <div id="tip-guides" class="custom-tooltip">Find trusted Port A captains</div>
-      </div>
+  <div class="tooltip-container">
+    <button data-src="Guides.html" aria-describedby="tip-guides">Local Fishing Guides</button>
+    <div id="tip-guides" class="custom-tooltip">Find trusted Port A captains</div>
+  </div>
 
-      <div class="tooltip-container">
-        <button data-src="/articles/" aria-describedby="tip-articles">Articles &amp; Info</button>
-        <div id="tip-articles" class="custom-tooltip">Tips, rigs, rules &amp; more</div>
-      </div>
+  <div class="tooltip-container">
+    <button data-src="/articles/" aria-describedby="tip-articles">Articles &amp; Info</button>
+    <div id="tip-articles" class="custom-tooltip">Tips, rigs, rules &amp; more</div>
+  </div>
+
     </div>
-
-    <p style="margin-top:0em; margin-bottom:0em"></p>
+<p style="margin-top:0em; margin-bottom:0em"></p>
 
     <iframe
       id="product-iframe"
