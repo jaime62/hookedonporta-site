@@ -196,17 +196,26 @@
 
   /* Report link styling */
   .report-row { text-align:center; margin: .65rem auto 1rem; }
-  .fishing-link{
-    text-decoration:none; color:#093D38; font-weight:bold;
-    background: rgba(0,255,255,.85);
-    padding:.7rem 1.2rem; border-radius:8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,.12); transition: all .25s ease;
-  }
-.fishing-link:hover {
-  background-color: rgba(0, 200, 230, 0.95); /* darker aqua */
-  color: #003c54; /* deeper blue for contrast */
-  transform: translateY(-1px);
+
+.fishing-link {
+  text-decoration: none;
+  color: #093D38;
+  font-weight: bold;
+  background: rgba(0,255,255,.85);
+  padding: .7rem 1.2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
+  transition: all .25s ease;
+  animation: glowPulse 2s infinite ease-in-out;
 }
+
+@keyframes glowPulse {
+  0%   { box-shadow: 0 0 8px rgba(0, 255, 255, 0.6); }
+  50%  { box-shadow: 0 0 20px rgba(0, 255, 255, 1), 0 0 40px rgba(0, 255, 255, 0.6); }
+  100% { box-shadow: 0 0 8px rgba(0, 255, 255, 0.6); }
+}
+
   /* Store / iframe area — transparent */
   #amazon-ads { margin: 2rem auto 0; padding: 0; width: 95%; max-width: 1400px; text-align: center; border-radius: 8px; background: transparent; }
   #amazon-ads iframe {
