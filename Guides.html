@@ -27,69 +27,76 @@
       border-radius: 5px;
       cursor: pointer;
       font-weight: bold;
+      transition: background-color .15s ease, transform .1s ease, color .15s ease;
     }
     .category:hover {
       background-color: rgba(250, 180, 0, 0.9);
       color: #003c54;
       transform: translateY(-1px);
     }
-.subcategory {
-  display: none;
-  background: #DCFAF7; /* was #e6fafa */
-  padding: 0.5rem 1rem;
-  margin-bottom: 0.5rem;
-  border-left: 4px solid #3b9c9c;
-}
+    /* Sticky selected state: FFB400 */
+    .category.active,
+    .category.active:hover {
+      background-color: #FFB400;
+      color: #2b2000;
+    }
 
-/* collapse on load */
-.sub-subcategory {
-  display: none;
-  margin-left: 1rem;
-  padding: 0.25rem .25rem;
-  background: rgba(220, 250, 247, 0.80); /* was #DCFAF7 */
-  border-left: 4px solid #3b9c9c;
-}
+    .subcategory {
+      display: none;
+      background: #DCFAF7; /* was #e6fafa */
+      padding: 0.5rem 1rem;
+      margin-bottom: 0.5rem;
+      border-left: 4px solid #3b9c9c;
+    }
 
-.sub-subcategory h4 {
-  margin: 0.5rem 0 0.25rem;
-  color: #006666;
-}
+    /* collapse on load */
+    .sub-subcategory {
+      display: none;
+      margin-left: 1rem;
+      padding: 0.25rem .25rem;
+      background: rgba(220, 250, 247, 0.80); /* was #DCFAF7 */
+      border-left: 4px solid #3b9c9c;
+    }
 
-.sub-subcategory ul {
-  padding-left: 1rem;
-  padding-top: .15rem;
-  list-style-type: none;
-  margin: 0;
-}
+    .sub-subcategory h4 {
+      margin: 0.5rem 0 0.25rem;
+      color: #006666;
+    }
 
-.sub-subcategory li {
-  margin: 0.25rem 0;
-}
+    .sub-subcategory ul {
+      padding-left: 1rem;
+      padding-top: .15rem;
+      list-style-type: none;
+      margin: 0;
+    }
 
-.sub-subcategory a {
-  color: #003333;
-  text-decoration: none;
-}
+    .sub-subcategory li {
+      margin: 0.25rem 0;
+    }
 
-.sub-subcategory a:hover {
-  text-decoration: underline;
-}
+    .sub-subcategory a {
+      color: #003333;
+      text-decoration: none;
+    }
 
-@media (min-width: 600px) {
-  body {
-    max-width: 600px;
-    margin: auto;
-  }
-}
+    .sub-subcategory a:hover {
+      text-decoration: underline;
+    }
 
-body {
-  background-color: transparent;
-}
-.emoji {
-  height: 36px;
-  margin-right: 0.5rem;
-  vertical-align: middle;
-}
+    @media (min-width: 600px) {
+      body {
+        max-width: 600px;
+        margin: auto;
+      }
+    }
+
+    body { background-color: transparent; }
+
+    .emoji {
+      height: 36px;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
   </style>
 </head>
 <body>
@@ -126,7 +133,7 @@ body {
     <ul><li><a href='https://walkersguideservice.com/' target='_blank'>Walker's Guide Service</a></li></ul>
   </div>
 
-<!-- ===== Collapsing + Iframe sizing script (replaces earlier two scripts) ===== -->
+<!-- ===== Collapsing + Iframe sizing script ===== -->
 <script>
   // ===== IFRAME HEIGHT HELPERS =====
   let resizeTimeout;
@@ -182,12 +189,19 @@ body {
     // Determine if the group is currently open (any panel visible)
     const isOpen = panels.some(p => p.style.display === "block");
 
-    // Close everything else first (accordion behavior)
+    // Close everything else first (accordion behavior) and clear active on other headers
     hideAllPanels();
+    document.querySelectorAll('.category').forEach(cat => {
+      if (cat !== element) cat.classList.remove('active');
+    });
 
-    // If it was closed, open all panels for this category
+    // If it was closed, open all panels for this category and mark active
     if (!isOpen) {
       panels.forEach(p => p.style.display = "block");
+      element.classList.add('active');
+    } else {
+      // Was open: collapse and clear active
+      element.classList.remove('active');
     }
 
     // Nudge parent iframe
