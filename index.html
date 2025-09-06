@@ -526,17 +526,30 @@
     }, false);
   })();
 </script>
-  <!-- Onload Tooptip script -->
+
+  <!-- Onload Tooltip script (replace your current block with this) -->
 <script>
   window.addEventListener("load", () => {
     const tooltip = document.getElementById("pageTooltip");
     const dismissBtn = document.getElementById("dismissBtn");
 
-    tooltip.classList.add("show");
+    // Ensure it's renderable before we fade in
+    tooltip.style.display = "block";
+    // Small tick so the class change triggers the transition
+    requestAnimationFrame(() => tooltip.classList.add("show"));
 
     dismissBtn.addEventListener("click", () => {
+      // Start fade-out
       tooltip.classList.remove("show");
       tooltip.classList.add("hide");
+    });
+
+    // After the opacity transition ends, remove from hit-testing
+    tooltip.addEventListener("transitionend", (e) => {
+      if (e.propertyName !== "opacity") return;
+      if (tooltip.classList.contains("hide")) {
+        tooltip.style.display = "none"; // no more ghost box
+      }
     });
   });
 </script>
