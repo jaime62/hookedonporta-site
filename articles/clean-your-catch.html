@@ -1,99 +1,166 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Coming Soon — Tech Tackle Box</title>
-<meta content="A simple coming-soon page styled to match Tech Tackle Box." name="description"/>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hooked on Port A — Clean Your Catch</title>
+  <meta name="description" content="Public fish-cleaning locations near Port Aransas & Corpus Christi with thumbnail maps and local tips.">
 
-<link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
-<link rel="preload" as="image" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/TTB-Favicon-192x192.png">
-<link rel="preload" as="image" media="(min-width:768px)" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/TTB-Favicon-192x192.png">
+  <!-- Speed/preload (kept from your template) -->
+  <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+  <link rel="dns-prefetch" href="https://raw.githubusercontent.com">
+  <link rel="preload" as="image" href="https://github.com/jaime62/hookedonporta-site/blob/main/images/Map-PortA-Boat-Ramps.png?raw=true" type="image/png">
+  <link rel="preload" as="image" href="https://github.com/jaime62/hookedonporta-site/blob/main/images/Map-Billings-Bait-Stand.png?raw=true" type="image/png">
+  <link rel="preload" as="image" href="https://github.com/jaime62/hookedonporta-site/blob/main/images/Map-Clems-Marina.png?raw=true" type="image/png">
+  <link rel="preload" as="image" href="https://github.com/jaime62/hookedonporta-site/blob/main/images/Map-Marker-37.png?raw=true" type="image/png">
 
-<style>
-  :root {
-    --bg: #f8f8f8;
-    --card: #ffffff;
-    --text: #1f2937;
-    --muted: #6b7280;
-    --border:#e2e8f0;
-    --shadow: 0 0 15px rgba(0,0,0,0.1);
-    --radius: 12px;
-    --primary:#0ea5e9;
-    --accent:#f97316;
-  }
-  html, body { margin:0; padding:0; background:var(--bg); color:var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; line-height:1.55; }
-  .container { max-width: 900px; margin: 60px auto; padding: 30px; background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); }
+  <style>
+      .hop-btn { appearance:none; background:#1C5A98; color:#fff; border:none; border-radius:9999px; padding:10px 16px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; line-height:1; box-shadow:0 4px 0 #0e3a66, 0 8px 16px rgba(0,0,0,.15); cursor:pointer; transition: transform .06s ease, box-shadow .15s ease, filter .15s ease, background-color .15s ease; }
+      .hop-btn:hover { filter:brightness(1.05); transform: translateY(-1px); box-shadow:0 5px 0 #0e3a66, 0 12px 20px rgba(0,0,0,.18); }
+      .hop-btn:active { transform: translateY(2px); box-shadow:0 2px 0 #0e3a66, 0 6px 12px rgba(0,0,0,.18); }
+      .hop-btn--orange { background:#F77E17; box-shadow:0 4px 0 #b25610, 0 8px 16px rgba(0,0,0,.15); }
+    
+    :root{
+      --bg:#f8f8f8;
+      --card:#ffffff;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --border:#e2e8f0;
+      --shadow:0 0 15px rgba(0,0,0,0.1);
+      --radius:12px;
 
-  /* Header */
-  .header { text-align:center; margin-bottom: 16px; }
-  .logo { display:block; margin:0 auto; max-height:60px; width:auto; transform: scale(1.2); }
+      --primary:#0ea5e9;
+      --accent:#f97316;
 
-  /* Buttons reused */
-  .hop-btn { appearance:none; background:#1C5A98; color:#fff; border:none; border-radius:9999px; padding:10px 16px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; line-height:1; box-shadow:0 4px 0 #0e3a66, 0 8px 16px rgba(0,0,0,.15); cursor:pointer; transition: transform .06s ease, box-shadow .15s ease, filter .15s ease, background-color .15s ease; }
-  .hop-btn:hover { filter:brightness(1.05); transform: translateY(-1px); box-shadow:0 5px 0 #0e3a66, 0 12px 20px rgba(0,0,0,.18); }
-  .hop-btn:active { transform: translateY(2px); box-shadow:0 2px 0 #0e3a66, 0 6px 12px rgba(0,0,0,.18); }
-  .hop-btn--orange { background:#F77E17; box-shadow:0 4px 0 #b25610, 0 8px 16px rgba(0,0,0,.15); }
+      --gap:18px;         
+      --map-radius:16px;  
+    }
+    html, body {
+      padding:0; margin:0; background:var(--bg); color:var(--text);
+      font-family:system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+      line-height:1.55;
+    }
+    .container{
+      max-width:850px; margin:60px auto; padding:30px; background:var(--card);
+      border-radius:var(--radius); box-shadow:var(--shadow);
+      overflow:visible;
+    }
 
-  /* Hero */
-  .hero { border:1px solid var(--border); border-radius:16px; padding:24px; background:linear-gradient(180deg,#f0f9ff,#fff); text-align:center; }
-  .eyebrow { font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.12em; }
-  .title { font-size: clamp(24px, 3.5vw, 40px); margin: 6px 0 8px; }
-  .tagline { color:#334155; max-width: 50ch; margin: 0 auto; }
+    /* Header with centered TTB logo */
+    .header{ position:relative; margin-bottom:20px; text-align:center; overflow:visible; }
+    .logo{
+      display:block;
+      margin:0 auto;
+      max-height:90px;
+      height:auto;
+      width:auto;
+      max-width:min(520px,92vw);
+      object-fit:contain;
+      padding-inline:8px;
+    }
+    .subhead{ color:#F77E17; margin-top:12px; }
 
-  /* Cute fishy loader */
-  .wave { display:inline-block; position:relative; width:120px; height:24px; margin-top:16px; overflow:hidden; border-radius:12px; background: #e0f2fe; border:1px solid var(--border); }
-  .bubble { position:absolute; bottom:4px; width:10px; height:10px; border-radius:50%; background:#bae6fd; animation: rise 2.6s infinite ease-in; }
-  .bubble:nth-child(1){ left:8px; animation-delay:0s; }
-  .bubble:nth-child(2){ left:38px; animation-delay:.5s; }
-  .bubble:nth-child(3){ left:68px; animation-delay:1s; }
-  .bubble:nth-child(4){ left:98px; animation-delay:1.5s; }
-  @keyframes rise { 0%{ transform: translateY(8px) scale(.8); opacity:.6;} 50%{ opacity:1;} 100%{ transform: translateY(-18px) scale(1); opacity:0;} }
+    /* Intro */
+    .intro{ color:#334155; margin:0 0 16px; }
 
-  .actions { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:22px; }
-  a { color: var(--primary); text-decoration: none; }
-  a:hover { text-decoration: underline; }
+    /* Card grid (no nav links) */
+    .grid{ display:flex; flex-wrap:wrap; gap:var(--gap); justify-content:center; }
+    .card{ flex:0 0 100%; }
+    @media (min-width:760px){ .card{ flex:0 0 calc((100% - var(--gap)) / 2); } }
+    @media (min-width:1080px){ .card{ flex:0 0 calc((100% - (2 * var(--gap))) / 3); } }
 
-  footer { margin: 30px auto 10px; border-top:1px solid var(--border); padding:20px; text-align:center; color:var(--muted); font-size:14px; max-width:900px; }
-  @media (max-width:640px){ .container{ margin: 30px 16px; padding: 20px; } .logo{ transform:none; max-height:90px; } }
-</style>
+    .card{
+      border:1px solid var(--border); border-radius:var(--map-radius); background:#fff;
+      box-shadow:0 0 0 rgba(0,0,0,0.02); overflow:hidden; text-decoration:none; color:inherit;
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .card:hover{ transform:translateY(-1px); box-shadow:0 8px 22px rgba(2,8,23,.10); }
+
+    figure{ margin:0; }
+    img{ width:100%; height:auto; display:block; aspect-ratio:16 / 9; object-fit:cover; }
+
+    figcaption{
+      padding:12px 14px; font-weight:500; color:#0f766e; text-align:center;
+      letter-spacing:-0.01em; border-top:1px solid var(--border); background:#fff;
+    }
+
+    .card h3{ margin:12px; font-size:20px; }
+    .desc{ margin:12px; color:#475569; }
+
+    /* Footer */
+    footer{
+      margin:30px auto 10px; border-top:1px solid var(--border);
+      padding:20px; text-align:center; color:var(--muted); font-size:14px;
+      max-width:1100px;
+    }
+
+    @media (max-width:640px){
+      .container{ margin:30px 16px; padding:20px; }
+      .logo{ max-height:90px; transform:none; margin-bottom:10px; }
+    }
+  </style>
 </head>
 <body>
-  <!-- Top Close button -->
-  <div style="text-align:center; margin-top:50px;">
-    <button class="hop-btn" onclick="window.close()">Close</button>
-  </div>
 
   <div class="container">
+    <!-- Header -->
     <div class="header">
-      <a href="https://TechTackleBox.com" target="_blank" onclick="window.open(this.href,'_blank'); window.close(); return false;">
-        <img class="logo" src="https://github.com/jaime62/hookedonporta-site/blob/main/images/TTB-Logo.png?raw=true" alt="TechTackleBox.com" />
+      <a href="https://hookedonporta.com" target="_blank"
+         onclick="window.open(this.href, '_blank'); window.close(); return false;">
+        <img class="logo"
+             src="https://github.com/jaime62/hookedonporta-site/blob/main/images/TTB-Logo-transparent.png?raw=true"
+             alt="HookedOnPortA.com">
       </a>
-      <BR>
-      <h2 style="color:#F77E17; margin-top:12px;">Clean Your Catch!</h2>
+      <h2 class="subhead">Clean Your Catch</h2>
     </div>
 
-    <section class="hero">
-      <div class="eyebrow">Tech Tackle Box</div>
-      <h1 class="title">We’re rigging this page right now 🎣</h1>
-      <p class="tagline">We know this isn’t the kind of bait you were angling for — but soon you’ll be able to <strong>catch</strong> something great here!</p>
+    <!-- Intro (kept exactly as provided) -->
+    <p class="intro">Unless your old school and just use your tailgate or are prepared enough to bring a <a href="https://amzn.to/3UZMaQh">portable fish cleaning table</a>, you might want to use one of these publicaly available facilities.</p>
 
-      <div class="wave" aria-hidden="true">
-        <span class="bubble"></span>
-        <span class="bubble"></span>
-        <span class="bubble"></span>
-        <span class="bubble"></span>
+    <!-- Cards (no navigation links) -->
+    <div class="grid">
+      <div class="card">
+        <h3>Port A Municipal Harbor</h3>
+        <p class="desc">Right across the parking lot from the boat ramp near the public restrooms, there is a fish cleaning house. Quite often there is a gentleman there that will clean your fish. He doesn’t ask for money, but everyone tips him cash, beer, or lets him keep some fish. He does a great job.</p>
+        <figure>
+          <a href="https://www.google.com/maps/place/Public+Boat+Ramp/@27.8389213,-97.0694533,258m/data=!3m1!1e3!4m10!1m2!2m1!1sPublic+Boat+Ramp!3m6!1s0x8669ad768109ed41:0xeb32ff2f4a39241a!8m2!3d27.8389213!4d-97.0682236!15sChBQdWJsaWMgQm9hdCBSYW1wWhIiEHB1YmxpYyBib2F0IHJhbXCSAQlib2F0X3JhbXCaAURDaTlEUVVsUlFVTnZaRU5vZEhsalJqbHZUMnhrY0dKRmFHMVJWRTR4VFZjMVdWTlZiR3BrVjFFellteFdVVkZyUlJBQqoBWQoIL20vMDE5amQQASoUIhBwdWJsaWMgYm9hdCByYW1wKAAyHxABIhskJqyU8gEMWQ-VWdkDqaI1NRouT5bHwJKM7MMyFBACIhBwdWJsaWMgYm9hdCByYW1w4AEA-gEECAAQFg!16s%2Fg%2F11jl35njlg?entry=ttu&g_ep=EgoyMDI1MDkwMy4wIKXMDSoASAFQAw%3D%3D"><img src="https://github.com/jaime62/hookedonporta-site/blob/main/images/Map-PortA-Boat-Ramps.png?raw=true" alt="Map: Port A Municipal Harbor" loading="lazy"></a>
+    <BR>
+        </figure>
       </div>
 
-      <div class="actions">
-        <a class="hop-btn hop-btn--orange" href="https://TechTackleBox.com" target="_blank" onclick="window.open(this.href,'_blank'); window.close(); return false;">Go to Home</a>
-        <button class="hop-btn" onclick="window.close()">Close</button>
+      <div class="card">
+        <h3>Billings Bait Stand</h3>
+        <p class="desc">Like most, they prefer that you buy something, and they do have bait and fishing supplies, so you might start and end there to use their fish cleaning tables. There is plenty of space for everyone here.</p>
+        <figure><a href="https://www.google.com/maps/place/Billings+Bait+Stand/@27.6342773,-97.2391035,2002m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8668f767e83ada4f:0xd76fdeba994992b0!8m2!3d27.6342726!4d-97.2365286!16s%2Fg%2F1tdqp290?entry=ttu&g_ep=EgoyMDI1MDkwMy4wIKXMDSoASAFQAw%3D%3D">
+          <img src="https://github.com/jaime62/hookedonporta-site/blob/main/images/Map-Billings-Bait-Stand.png?raw=true" alt="Map: Billings Bait Stand" loading="lazy"></a>
+   
+        </figure>
       </div>
-    </section>
+
+      <div class="card">
+        <h3>Clems Marina</h3>
+        <p class="desc">Clems also has a nice fishing pier (for a fee), but also have a fish cleaning station. They also sell snacks, drinks, bait and fishing supplies.</p>
+        <figure><a href="https://www.google.com/maps/place/Clem's+Marina/@27.6349176,-97.2410028,2002m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8668f767e83b3275:0x91219229d78754c0!8m2!3d27.6349129!4d-97.2384279!16s%2Fg%2F1tl4dgc8?entry=ttu&g_ep=EgoyMDI1MDkwMy4wIKXMDSoASAFQAw%3D%3D">
+          <img src="https://github.com/jaime62/hookedonporta-site/blob/main/images/Map-Clems-Marina.png?raw=true" alt="Map: Clems Marina" loading="lazy"></a>
+        </figure>
+      </div>
+
+      <div class="card">
+        <h3>Marker 37</h3>
+        <p class="desc">Has boat ramps, food nearby, snacks, drinks, some fishing merch, and bait. The fish cleaning station is on the exit of their marina on the channel side across from their fishing pier. Their fishing pier has great covered spaces you can “rent” for a fee. They also have fish cleaning service.</p>
+        <figure><a href="https://www.google.com/maps/place/Marker+37+Marina/@27.6313473,-97.2422419,1001m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8668f767e83b2de7:0x518f44f3149b1fbd!8m2!3d27.6313426!4d-97.239667!16s%2Fg%2F1tsr3m_1?entry=ttu&g_ep=EgoyMDI1MDkwMy4wIKXMDSoASAFQAw%3D%3D">
+          <img src="https://github.com/jaime62/hookedonporta-site/blob/main/images/Map-Marker-37.png?raw=true" alt="Map: Marker 37" loading="lazy"></a>        </figure><BR>
+      </div>
+    </div>
   </div>
 
+  <div class="full-span" style="text-align:center; margin-top:50px;">
+    <button class="hop-btn" onclick="window.close()">Close</button>
+  </div>
+  
+  <!-- Footer -->
   <footer>
-    <div>© 2025 Tech Tackle Box</div>
+    <div>2025 Tech Tackle Box™</div>
   </footer>
 </body>
 </html>
