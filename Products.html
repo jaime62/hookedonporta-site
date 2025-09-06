@@ -33,18 +33,23 @@
       border-radius: 5px;
       cursor: pointer;
       font-weight: bold;
+      transition: background-color .15s ease, transform .1s ease, color .15s ease;
     }
     .category:hover {
       background-color: rgba(250, 180, 0, 0.9);
       color: #003c54; 
       transform: translateY(-1px);
     }
+    /* Sticky selected state (stays orange even after hover) */
+    .category.active,
+    .category.active:hover {
+      background-color: #ff9800;
+      color: #2b2000;
+    }
 
     .subcategory {
       display: none;
-      /* background: rgba(220, 250, 247, 0.75); */
       background: rgba(220, 250, 247, 0.75);
-
       padding: 0.5rem 1rem;
       margin-bottom: 0.5rem;
       border-left: 4px solid #3b9c9c;
@@ -444,22 +449,31 @@
       characterData: true
     });
 
-    document.addEventListener('DOMContentLoaded', function () {
-      const toggles = document.querySelectorAll('.category');
-      toggles.forEach(toggle => {
-        toggle.addEventListener('click', () => {
-          const next = toggle.nextElementSibling;
-          const isVisible = next && next.style.display === 'block';
+    // Single source of truth for expand/collapse + active state
+    window.toggle = function (el) {
+      const panel = el.nextElementSibling;
+      if (!panel || !panel.classList.contains('subcategory')) return;
 
-          document.querySelectorAll('.subcategory').forEach(sub => {
-            if (sub !== next) sub.style.display = 'none';
-          });
+      const wasOpen = panel.style.display === 'block';
 
-          if (next) next.style.display = isVisible ? 'none' : 'block';
-          debouncedResize(200);
-        });
+      // Close all panels but this one; also clear active on others
+      document.querySelectorAll('.subcategory').forEach(sub => {
+        if (sub !== panel) sub.style.display = 'none';
       });
-    });
+      document.querySelectorAll('.category').forEach(cat => {
+        if (cat !== el) cat.classList.remove('active');
+      });
+
+      // Toggle this one
+      panel.style.display = wasOpen ? 'none' : 'block';
+      if (wasOpen) {
+        el.classList.remove('active');
+      } else {
+        el.classList.add('active');
+      }
+
+      debouncedResize(200);
+    };
 
     window.addEventListener('load', () => debouncedResize(300));
     window.addEventListener('resize', () => debouncedResize(200));
@@ -568,15 +582,29 @@
   </script>
   <!-- ↑↑↑ End custom popup behavior ↑↑↑ -->
 
-  <!-- your existing popup / resize scripts -->
-
   <!-- Amazon app/browser chooser helper -->
   <script>
   (function () {
     const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
     function viaHelperWindow({ webUrl, appUrl = null }) {
-      const html = `...`  // (all the code from my earlier message goes here)
+      const html = `...`;  // keep your original helper window HTML here
+      const win = window.open('', 'HookedAmazonHelper', 'width=520,height=320,resizable=yes,scrollbars=yes');
+      if (win) {
+        win.document.open();
+        win.document.write(html);
+        win.document.close();
+        if (appUrl) {
+          // Attempt deep link; fall back to web after delay
+          setTimeout(() => { win.location.href = appUrl; }, 50);
+          setTimeout(() => { win.location.href = webUrl; }, 850);
+        } else {
+          setTimeout(() => { win.location.href = webUrl; }, 100);
+        }
+      } else {
+        // Fallback: just open web URL
+        window.open(webUrl, '_blank', 'noopener');
+      }
     }
 
     document.addEventListener('DOMContentLoaded', function(){
@@ -621,9 +649,6 @@
     });
   })();
   </script>
-
-</body>
-</html>
 
 </body>
 </html>
