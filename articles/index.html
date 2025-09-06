@@ -31,12 +31,20 @@
       border-radius: 5px;
       cursor: pointer;
       font-weight: bold;
+      transition: background-color .15s ease, transform .1s ease, color .15s ease;
     }
-       .category:hover {
+    .category:hover {
       background-color: rgba(250, 180, 0, 0.9); 
       color: #003c54; 
       transform: translateY(-1px);
     }
+    /* Sticky selected state: FFB400 */
+    .category.active,
+    .category.active:hover {
+      background-color: #FFB400;
+      color: #2b2000;
+    }
+
     .subcategory {
       display: none;
       background: #DCFAF7; /* was #e6fafa */
@@ -191,11 +199,22 @@
     if (!panel || !panel.classList.contains('sub-subcategory')) return;
 
     const isOpen = panel.style.display === "block";
-    // (optional) close others
+
+    // Close other panels and clear active state on other headers
     document.querySelectorAll(".sub-subcategory").forEach(el => {
       if (el !== panel) el.style.display = "none";
     });
+    document.querySelectorAll(".category").forEach(cat => {
+      if (cat !== element) cat.classList.remove("active");
+    });
+
+    // Toggle this one and set active color accordingly
     panel.style.display = isOpen ? "none" : "block";
+    if (isOpen) {
+      element.classList.remove("active");
+    } else {
+      element.classList.add("active"); // stays #FFB400
+    }
 
     // notify parent about height change
     if (typeof debouncedResize === "function") {
