@@ -3,30 +3,30 @@
 <head>
   <meta charset="UTF-8">
 
-<!-- Preload category emoji images -->
-<link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-swimsuit.png" as="image">
-<link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-anchor-rope.png" as="image">
-<link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-stacked-books.png" as="image">
-<link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fish-finder.png" as="image">
-<link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-plier-gaff.png" as="image">
-<link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fishing-kayak.png" as="image">
-<link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-rod-reel.png" as="image">
-<link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-tackle-box.png" as="image">
-<link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-lure.png" as="image">
+  <!-- Preload category emoji images -->
+  <link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-swimsuit.png" as="image">
+  <link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-anchor-rope.png" as="image">
+  <link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-stacked-books.png" as="image">
+  <link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fish-finder.png" as="image">
+  <link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-plier-gaff.png" as="image">
+  <link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fishing-kayak.png" as="image">
+  <link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-rod-reel.png" as="image">
+  <link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-tackle-box.png" as="image">
+  <link rel="preload" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-lure.png" as="image">
   
   <title>Fishing Gear by Category</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: transparent <!-- was #f0f8ff; -->
+      background: transparent; /* was #f0f8ff; */
       margin: 0;
       padding: 1rem;
       background-color: transparent;
     }
 
     .category {
-      background: #7CCFCF; <!-- was #92D6B5 -->
+      background: #7CCFCF; /* was #92D6B5 */
       color: #1a237e;
       padding: .5rem;
       margin-bottom: 0.5rem;
@@ -35,14 +35,16 @@
       font-weight: bold;
     }
     .category:hover {
-  background-color: rgba(0, 200, 230, 0.95);
-  color: #003c54;
-  transform: translateY(-1px);
-}
+      background-color: rgba(250, 180, 0, 0.9);
+      color: #003c54; 
+      transform: translateY(-1px);
+    }
 
     .subcategory {
       display: none;
+      /* background: rgba(220, 250, 247, 0.75); */
       background: rgba(220, 250, 247, 0.75);
+
       padding: 0.5rem 1rem;
       margin-bottom: 0.5rem;
       border-left: 4px solid #3b9c9c;
@@ -51,8 +53,7 @@
     .sub-subcategory {
       margin-left: 0rem;
       padding: 0.25rem 0;
-      background: none; <!-- rgba(220, 250, 247, 0.75); -->
-
+      background: none; /* rgba(220, 250, 247, 0.75); */
     }
 
     .sub-subcategory h4 {
@@ -102,8 +103,8 @@
     <img class="emoji" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-swimsuit.png" alt="Apparel & Protection">
     Apparel & Protection
   </div>
-    <div class="subcategory">
-      <div class="sub-subcategory">
+  <div class="subcategory">
+    <div class="sub-subcategory">
       <h4>Fishing Shirts</h4>
       <ul>
         <li><a href="https://amzn.to/45itkbA" target="_blank" rel="sponsored nofollow">Columbia Terminal Tackle Shirt</a></li>
@@ -133,13 +134,14 @@
         <li><a href="https://amzn.to/4mpT7pe" target="_blank" rel="sponsored nofollow">Frogg Toggs Amphib Waders</a></li>
       </ul>
     </div>
-      <div class="sub-subcategory">
+    <div class="sub-subcategory">
       <h4>Wading Boots</h4>
       <ul>
         <li><a href="https://amzn.to/40OevMC" target="_blank" rel="sponsored nofollow">Unisex Wading Boots</a></li>
       </ul>
     </div>
   </div>
+
   <!-- Boating Accessories -->
   <div class="category" onclick="toggle(this)">
     <img class="emoji" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-anchor-rope.png" alt="Boating Accessories">
@@ -169,7 +171,7 @@
     </div>
   </div>
 
-    <!-- Books & Maps -->
+  <!-- Books & Maps -->
   <div class="category" onclick="toggle(this)">
     <img class="emoji" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-stacked-books.png" alt="Books & Maps">
     Books & Maps
@@ -189,7 +191,6 @@
     </div>
   </div>
 
-  
   <!-- Electronics -->
   <div class="category" onclick="toggle(this)">
     <img class="emoji" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fish-finder.png" alt="Electronics">
@@ -223,7 +224,7 @@
     <img class="emoji" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-plier-gaff.png" alt="Fishing Accessories">
     Fishing Accessories
   </div>
-    <div class="subcategory">
+  <div class="subcategory">
     <div class="sub-subcategory">
       <h4>Bait Containters</h4>
       <ul>
@@ -245,7 +246,7 @@
         <li><a href="https://amzn.to/41CDgf0" target="_blank" rel="sponsored nofollow">Boating Safety & First Aid Kits</a></li>
       </ul>
     </div>
-       <div class="sub-subcategory">
+    <div class="sub-subcategory">
       <h4>Fish Cleaning</h4>
       <ul>
         <li><a href="https://amzn.to/45vKJhd" target="_blank" rel="sponsored nofollow">Cutting Boards</a></li>
@@ -274,14 +275,14 @@
         <li><a href="https://amzn.to/41xgsgJ" target="_blank" rel="sponsored nofollow">Traps</a></li>
       </ul>
     </div>
-    </div>
+  </div>
   
   <!-- Fishing Kayaks -->
   <div class="category" onclick="toggle(this)">
     <img class="emoji" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/emoji-fishing-kayak.png" alt="Fishing Kayaks">
     Fishing Kayaks
   </div>
-    <div class="subcategory">
+  <div class="subcategory">
     <div class="sub-subcategory">
       <h4>Accessories</h4>
       <ul>
@@ -293,7 +294,6 @@
         <li><a href="https://amzn.to/4lHdL3j" target="_blank" rel="sponsored nofollow">Paddle Accessories</a></li>
       </ul> 
     </div>
-      
     <div class="sub-subcategory">
       <h4>Kayaks</h4>
       <ul>
@@ -301,14 +301,13 @@
         <li><a href="https://amzn.to/4mqNWps" target="_blank" rel="sponsored nofollow">Kayaks</a></li>
       </ul>
     </div>
-      
     <div class="sub-subcategory">
       <h4>Transport</h4>
       <ul>
         <li><a href="https://amzn.to/3HFP09Z" target="_blank" rel="sponsored nofollow">Transport</a></li>
       </ul>
     </div>
-    </div>
+  </div>
 
   <!-- Rods & Reels -->
   <div class="category" onclick="toggle(this)">
@@ -325,7 +324,7 @@
         <li><a href="https://amzn.to/3UTlQqL" target="_blank" rel="sponsored nofollow">Spinning Reels</a></li>
       </ul>
     </div>
-        <div class="sub-subcategory">
+    <div class="sub-subcategory">
       <h4>Fishing Rods</h4>
       <ul>
         <li><a href="https://amzn.to/45cVENR" target="_blank" rel="sponsored nofollow">Casting Rods</a></li>
@@ -334,8 +333,7 @@
         <li><a href="https://amzn.to/45fFd3m" target="_blank" rel="sponsored nofollow">Spinning Rods</a></li>
       </ul>
     </div>
-    
-      <div class="sub-subcategory">
+    <div class="sub-subcategory">
       <h4>Rod & Reel Combos</h4>
       <ul>
         <li><a href="https://amzn.to/4ftdlfy" target="_blank" rel="sponsored nofollow">Baitcast Combos</a></li>
@@ -358,7 +356,7 @@
         <li><a href="https://amzn.to/45MsnK8" target="_blank" rel="sponsored nofollow">Tackle Bags</a></li>
         <li><a href="https://amzn.to/4mBUb9D" target="_blank" rel="sponsored nofollow">Tackle Boxes</a></li>
         <li><a href="https://amzn.to/411J4hZ" target="_blank" rel="sponsored nofollow">Utility Boxes</a></li>
-  </ul>
+      </ul>
     </div>
   </div>
 
@@ -377,9 +375,9 @@
     <div class="sub-subcategory">
       <h4>Leaders & Wire</h4>
       <ul>
-        <li><a href="https://amzn.to/4ohJ47u" target="_blank" rel="sponsored nofollow">Reaction Tackle Leaders & Wire</a></li>      </ul>
+        <li><a href="https://amzn.to/4ohJ47u" target="_blank" rel="sponsored nofollow">Reaction Tackle Leaders & Wire</a></li>
+      </ul>
     </div>
-
     <div class="sub-subcategory">
       <h4>Line</h4>
       <ul>
@@ -387,7 +385,7 @@
         <li><a href="https://amzn.to/4mmAwub" target="_blank" rel="sponsored nofollow">Fluorocarbon</a></li>
         <li><a href="https://amzn.to/4m2yNuu" target="_blank" rel="sponsored nofollow">Fly Line</a></li>
         <li><a href="https://amzn.to/40K1nZ2" target="_blank" rel="sponsored nofollow">Monofilament</a></li>
-        </ul>
+      </ul>
     </div>
     <div class="sub-subcategory">
       <h4>Lures</h4>
@@ -407,111 +405,225 @@
     <div class="sub-subcategory">
       <h4>Swivels</h4>
       <ul>
-        <li><a href="https://amzn.to/4fkn9IT" target="_blank" rel="sponsored nofollow">Stainless Swivels</a></li>      </ul>
+        <li><a href="https://amzn.to/4fkn9IT" target="_blank" rel="sponsored nofollow">Stainless Swivels</a></li>
+      </ul>
     </div>
     <div class="sub-subcategory">
       <h4>Weights</h4>
       <ul>
-        <li><a href="https://amzn.to/45wOLHb" target="_blank" rel="sponsored nofollow">Saltwater Fishing Weights</a></li>      </ul>
+        <li><a href="https://amzn.to/45wOLHb" target="_blank" rel="sponsored nofollow">Saltwater Fishing Weights</a></li>
+      </ul>
     </div>
   </div>
 
-<script>
-  let resizeTimeout;
-  let lastSentHeight = 0;
+  <script>
+    let resizeTimeout;
+    let lastSentHeight = 0;
 
-  function sendHeightToParent() {
-    const currentHeight = document.documentElement.scrollHeight;
-    if (currentHeight !== lastSentHeight) {
-      window.parent.postMessage({ type: 'resize-iframe', height: currentHeight }, '*');
-      lastSentHeight = currentHeight;
+    function sendHeightToParent() {
+      const currentHeight = document.documentElement.scrollHeight;
+      if (currentHeight !== lastSentHeight) {
+        window.parent.postMessage({ type: 'resize-iframe', height: currentHeight }, '*');
+        lastSentHeight = currentHeight;
+      }
     }
-  }
 
-  function debouncedResize(delay = 150) {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(sendHeightToParent, delay);
-  }
+    function debouncedResize(delay = 150) {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(sendHeightToParent, delay);
+    }
 
-  const resizeObserver = new ResizeObserver(() => debouncedResize(150));
-  resizeObserver.observe(document.body);
+    const resizeObserver = new ResizeObserver(() => debouncedResize(150));
+    resizeObserver.observe(document.body);
 
-  const mutationObserver = new MutationObserver(() => debouncedResize(200));
-  mutationObserver.observe(document.body, {
-    childList: true,
-    subtree: true,
-    attributes: true,
-    characterData: true
-  });
+    const mutationObserver = new MutationObserver(() => debouncedResize(200));
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      characterData: true
+    });
 
-  document.addEventListener('DOMContentLoaded', function () {
-    const toggles = document.querySelectorAll('.category');
-    toggles.forEach(toggle => {
-      toggle.addEventListener('click', () => {
-        const next = toggle.nextElementSibling;
-        const isVisible = next.style.display === 'block';
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggles = document.querySelectorAll('.category');
+      toggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+          const next = toggle.nextElementSibling;
+          const isVisible = next && next.style.display === 'block';
 
-        document.querySelectorAll('.subcategory').forEach(sub => {
-          if (sub !== next) sub.style.display = 'none';
+          document.querySelectorAll('.subcategory').forEach(sub => {
+            if (sub !== next) sub.style.display = 'none';
+          });
+
+          if (next) next.style.display = isVisible ? 'none' : 'block';
+          debouncedResize(200);
         });
-
-        next.style.display = isVisible ? 'none' : 'block';
-        debouncedResize(200);
       });
     });
-  });
 
-  window.addEventListener('load', () => debouncedResize(300));
-  window.addEventListener('resize', () => debouncedResize(200));
-</script>
-<script>
-(function () {
-  const THRESH = 8;  // only send if change >= 8px
-  let last = 0;
-  let tId = null;
+    window.addEventListener('load', () => debouncedResize(300));
+    window.addEventListener('resize', () => debouncedResize(200));
+  </script>
 
-  function send(h) {
-    const next = Math.max(0, Math.round(h));
-    if (Math.abs(next - last) < THRESH) return;
-    last = next;
-    window.parent.postMessage({ type: 'resize-iframe', height: next }, '*');
-  }
+  <script>
+    (function () {
+      const THRESH = 8;  // only send if change >= 8px
+      let last = 0;
+      let tId = null;
 
-  function measure() {
-    // Use the tallest of body/html to avoid oscillations
-    const h = Math.max(
-      document.documentElement.scrollHeight,
-      document.body.scrollHeight,
-      document.documentElement.offsetHeight,
-      document.body.offsetHeight
-    );
-    send(h);
-  }
+      function send(h) {
+        const next = Math.max(0, Math.round(h));
+        if (Math.abs(next - last) < THRESH) return;
+        last = next;
+        window.parent.postMessage({ type: 'resize-iframe', height: next }, '*');
+      }
 
-  function schedule(ms = 120) {
-    clearTimeout(tId);
-    tId = setTimeout(measure, ms);
-  }
+      function measure() {
+        // Use the tallest of body/html to avoid oscillations
+        const h = Math.max(
+          document.documentElement.scrollHeight,
+          document.body.scrollHeight,
+          document.documentElement.offsetHeight,
+          document.body.offsetHeight
+        );
+        send(h);
+      }
 
-  // Initial + after load
-  window.addEventListener('load', () => {
-    measure();
-    // re-check after images/fonts settle
-    setTimeout(measure, 250);
-    setTimeout(measure, 600);
-  });
+      function schedule(ms = 120) {
+        clearTimeout(tId);
+        tId = setTimeout(measure, ms);
+      }
 
-  // Watch layout changes
-  new ResizeObserver(() => schedule(120)).observe(document.documentElement);
-  new MutationObserver(() => schedule(150)).observe(document.documentElement, {
-    childList: true, subtree: true, attributes: true, characterData: true
-  });
+      // Initial + after load
+      window.addEventListener('load', () => {
+        measure();
+        // re-check after images/fonts settle
+        setTimeout(measure, 250);
+        setTimeout(measure, 600);
+      });
 
-  // Orientation / viewport changes
-  window.addEventListener('orientationchange', () => schedule(250));
-  window.addEventListener('resize', () => schedule(150));
-})();
-</script>
+      // Watch layout changes
+      new ResizeObserver(() => schedule(120)).observe(document.documentElement);
+      new MutationObserver(() => schedule(150)).observe(document.documentElement, {
+        childList: true, subtree: true, attributes: true, characterData: true
+      });
+
+      // Orientation / viewport changes
+      window.addEventListener('orientationchange', () => schedule(250));
+      window.addEventListener('resize', () => schedule(150));
+    })();
+  </script>
+
+  <!-- ↓↓↓ Custom popup behavior (centered, reusable window) ↓↓↓ -->
+  <script>
+    // Opens URL in a centered, reusable popup window
+    function openCustomPopup(url) {
+      const popupWidth = 900;
+      const popupHeight = 700;
+
+      const openerWidth = window.innerWidth;
+      const openerHeight = window.innerHeight;
+      const openerLeft = window.screenX || window.screenLeft || 0;
+      const openerTop  = window.screenY || window.screenTop  || 0;
+
+      const left = Math.max(0, openerLeft + (openerWidth  - popupWidth)  / 2);
+      const top  = Math.max(0, openerTop  + (openerHeight - popupHeight) / 2);
+
+      // Reuse the same window name so subsequent clicks replace contents
+      window.open(
+        url,
+        "HookedPopup",
+        `width=${popupWidth},height=${popupHeight},left=${left},top=${top},resizable=yes,scrollbars=yes,noopener=yes`
+      );
+    }
+
+    // Apply popup behavior to (almost) all links on the page
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("a[href]").forEach(link => {
+        link.addEventListener("click", function (e) {
+          const href = this.getAttribute("href") || "";
+
+          // Let these behave normally:
+          const isHash = href.startsWith("#");
+          const isJs = href.startsWith("javascript:");
+          const isMail = href.startsWith("mailto:");
+          const isTel = href.startsWith("tel:");
+          const hasDownload = this.hasAttribute("download");
+          const noPopup = this.dataset.noPopup !== undefined; // opt-out via data-no-popup
+
+          // Respect user intent: new-tab/middle click or modifier keys
+          const isModified = e.defaultPrevented ||
+                             e.button === 1 || // middle click
+                             e.metaKey || e.ctrlKey || e.shiftKey || e.altKey;
+
+          if (isHash || isJs || isMail || isTel || hasDownload || noPopup || isModified) {
+            return; // allow default behavior
+          }
+
+          e.preventDefault();
+          openCustomPopup(this.href);
+        });
+      });
+    });
+  </script>
+  <!-- ↑↑↑ End custom popup behavior ↑↑↑ -->
+
+  <!-- your existing popup / resize scripts -->
+
+  <!-- Amazon app/browser chooser helper -->
+  <script>
+  (function () {
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    function viaHelperWindow({ webUrl, appUrl = null }) {
+      const html = `...`  // (all the code from my earlier message goes here)
+    }
+
+    document.addEventListener('DOMContentLoaded', function(){
+      const openWebBtn = document.getElementById('amzOpenWeb');
+      const openAppBtn = document.getElementById('amzOpenApp');
+
+      window._getPendingUrl = () => window.pendingURL;
+
+      if (openWebBtn) {
+        openWebBtn.addEventListener('click', function(){
+          const url = window._getPendingUrl && window._getPendingUrl();
+          if (!url) return;
+          try { document.getElementById('amzPrompt').style.display = 'none'; } catch(e){}
+
+          if (isIOS) {
+            viaHelperWindow({ webUrl: url });
+          } else {
+            if (typeof openCustomPopup === 'function') openCustomPopup(url);
+            else window.open(url, '_blank', 'noopener');
+          }
+          window.pendingURL = null;
+        });
+      }
+
+      if (openAppBtn) {
+        openAppBtn.addEventListener('click', function(){
+          const urlStr = window._getPendingUrl && window._getPendingUrl();
+          if (!urlStr) return;
+          try { document.getElementById('amzPrompt').style.display = 'none'; } catch(e){}
+
+          const u = new URL(urlStr);
+          const appScheme = 'com.amazon.mobile.shopping.web://' + u.host + u.pathname + u.search;
+
+          if (isIOS) {
+            viaHelperWindow({ webUrl: urlStr, appUrl: appScheme });
+          } else {
+            window.location.href = appScheme;
+          }
+          window.pendingURL = null;
+        });
+      }
+    });
+  })();
+  </script>
+
+</body>
+</html>
 
 </body>
 </html>
