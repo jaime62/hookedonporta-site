@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/TTB-Favicon-192x192.png">
+<link rel="preload" as="image" media="(min-width:768px)" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/TTB-Favicon-192x192.png">
+
+  <title>Port Aransas Surf Forecast</title>
+  <style>
+    :root {
+      --bg: #f8f8f8;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --shadow: 0 0 15px rgba(0,0,0,0.1);
+      --radius: 12px;
+    }
+    html, body {
+      padding: 0;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      line-height: 1.55;
+    }
+    .container {
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 30px;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .header {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .logo { margin: 0 auto; display: block; transform: scale(1.4); max-height: 60px; width: auto; }
+    .report-img { display: block; margin: 0 auto; max-height: 80px; width: auto; }
+    img { max-width: 100%; height: auto; }
+    em { color: var(--muted); }
+    hr { border: none; border-top: 1px solid #e5e7eb; margin: 24px 0; }
+    h2, h3 { line-height: 1.25; margin-top: 1.2em; }
+    ul { padding-left: 1.2em; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; text-align: left; }
+    @media (max-width: 640px) {
+      .container { margin: 30px 16px; padding: 20px; }
+      .logo { max-height: 90px; position: static; display: block; margin-bottom: 10px; }
+      .report-img { max-height: 64px; }
+      .header { text-align: center; }
+    }
+
+  .hop-btn {
+    appearance: none;
+    background: #1C5A98;
+    color: #fff;
+    border: none;
+    border-radius: 9999px;
+    padding: 8px 12px;
+    font-weight: 700;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    line-height: 1;
+    box-shadow: 0 4px 0 #0e3a66, 0 8px 16px rgba(0,0,0,.15);
+    cursor: pointer;
+    transition: transform .06s ease, box-shadow .15s ease, filter .15s ease, background-color .15s ease;
+  }
+  .hop-btn:hover { filter: brightness(1.05); transform: translateY(-1px); box-shadow: 0 5px 0 #0e3a66, 0 12px 20px rgba(0,0,0,.18); }
+  .hop-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 #0e3a66, 0 6px 12px rgba(0,0,0,.18); }
+  .hop-btn--orange { background: #F77E17; box-shadow: 0 4px 0 #b25610, 0 8px 16px rgba(0,0,0,.15); }
+  .hop-btn--orange:hover { filter: brightness(1.05); box-shadow: 0 5px 0 #b25610, 0 12px 20px rgba(0,0,0,.18); }
+  .hop-btn--orange:active { transform: translateY(2px); box-shadow: 0 2px 0 #b25610, 0 6px 12px rgba(0,0,0,.18); }
+  .hop-link-btn { display: inline-block; text-decoration: none; }
+
+  /* Surf Forecast widget helpers */
+  .widget-centered { display: flex; justify-content: center; }
+  .wf-width-cont { max-width: 760px; }
+  </style>
+
+  <!-- Surf-Forecast widget CSS (as requested) -->
+  <link href="//www.surf-forecast.com/stylesheets/widget.css" media="screen" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="header">
+      <a href="https://HookedOnPortA.com" target="_blank" onclick="window.open(this.href, '_blank'); window.close(); return false;">
+        <img class="logo" src="https://github.com/jaime62/hookedonporta-site/blob/main/images/TTB-Logo.png?raw=true" alt="HookedOnPortA.com" />
+      </a>
+      <br><h2><p align="center"><font color="#F77E17"> Surf Forecast</font></p></h2>
+    </div>
+<br>
+    <p><b><h2 style="color:#F77E17;">Port Aransas Surf Outlook</h2></b>
+    Below is an embedded 7‑day surf widget for Port Aransas. Click through for detailed swell, wind, and tide information.</p>
+    <hr />
+
+    <!-- Embedded Surf-Forecast widget (as provided) -->
+    <div class="wf-width-cont surf-fc-widget widget-centered">
+      <div class="widget-container">
+        <div class="external-cont">
+          <iframe class="surf-fc-i" allowtransparency="true" src="//www.surf-forecast.com/breaks/Port-Aransas/forecasts/widget/a" scrolling="no" frameborder="0" marginwidth="0" marginheight="0">
+          </iframe>
+          <div class="footer">
+            <a class="logo" href="//www.surf-forecast.com/"><img src="//www.surf-forecast.com/images/widget.png" width="1" height="1" /></a>
+            <div class="about" id="cmt">
+              View detailed surf forecast for <a href="//www.surf-forecast.com/breaks/Port-Aransas">Port Aransas</a>.
+              Visit <a href="//www.surf-forecast.com/breaks/Port-Aransas">surf-forecast.com</a> for more details, long range forecasts, surf reports, swell and weather maps.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:50px;">
+      <button class="hop-btn" onclick="window.close()">Close</button>
+    </div>
+
+  </div>
+</body>
+</html>
