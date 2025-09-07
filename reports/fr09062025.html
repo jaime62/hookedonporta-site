@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded", function () {
   continueBtn.addEventListener("click", () => {
     modal.style.display = "none";
     if (targetUrl) {
-      window.open(targetUrl, "_blank"); // open in new tab
+      window.open(targetUrl, "_self"); // open in new tab
       targetUrl = "";
     }
   });
