@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Live Webcams - Port Aransas</title>
+<style>
+  :root { --maxw: 1080px; --h: 800px; }
+  body { font-family: system-ui, Arial, sans-serif; margin: 20px; background: #f5f5f5; color:#222; }
+  h1 { text-align:center; margin-bottom: 16px; }
+  .top { display:flex; gap:12px; justify-content:center; align-items:center; flex-wrap:wrap; }
+  select { padding:10px; font-size:16px; }
+  #camContainer { width:100%; max-width: var(--maxw); margin: 16px auto; background:#000; position:relative; border-radius: 10px; overflow: hidden; }
+  #frameWrap { width:100%; height: var(--h); position:relative; }
+  #frameWrap iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+  #fallback { display:none; position:absolute; inset:auto 0 0 0; background: rgba(0,0,0,0.7); color:#fff; padding:10px; text-align:center; }
+  .btn { display:inline-block; padding:8px 12px; margin-left:8px; border-radius:8px; text-decoration:none; background:#fff; color:#111; }
+  .note { text-align:center; font-size:14px; color:#555; margin-top:8px; }
+  .card { display:flex; align-items:center; justify-content:center; height:100%; color:#fff; gap:10px; flex-direction:column; padding:20px; text-align:center; }
+</style>
+</head>
+<body>
+  <h1>🌴 Live Webcams — Port Aransas 🌊</h1>
+
+  <div class="top">
+    <label for="camSelector">Choose a camera:</label>
+    <select id="camSelector">
+      <!-- Alphabetical by label (keep "The Dunes..." under T as requested) -->
+      <option value="princess">Aransas Princess</option>
+      <option value="deepsea">Deep Sea Headquarters</option>
+      <option value="dolphineast">Dolphin Docks East</option>
+      <option value="dolphinwest">Dolphin Docks West</option>
+      <option value="gulfshores">Gulf Shores Condominiums</option>
+      <option value="gulfwaters">Gulf Waters Beach Front RV Resort</option>
+      <option value="shipchannel">Port Aransas Ship Channel</option>
+      <option value="sandcastle">Sandcastle Condominiums</option>
+      <option value="sandollar">Sandollar Sity</option>
+      <option value="sandpiper">Sandpiper Condominiums</option>
+      <option value="seagull">Sea Gull Condominiums</option>
+      <option value="dunes">The Dunes Condominiums</option>
+    </select>
+  </div>
+
+  <div id="camContainer">
+    <div id="frameWrap"></div>
+    <div id="fallback">
+      Seeing an “Oops…” message or a blank box?
+      <a id="openDirect" class="btn" target="_blank" rel="noopener">Open Stream</a>
+    </div>
+  </div>
+
+  <div class="note">If a feed won’t embed (site restrictions), use “Open Stream”.</div>
+
+<script>
+  // mode: "inline" (embed iframe) or "external" (show card + button only)
+  const cams = {
+    princess: {
+      mode: "external",
+      link: "https://portal.hdontap.com/s/embed?stream=aransas_princess-ptz-CUST&ratio=16:9&fluid=true",
+      height: 480
+    },
+    deepsea: {
+      mode: "inline",
+      html: `<iframe src="https://g1.ipcamlive.com/player/player.php?alias=portafishrack&autoplay=1&mute=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`,
+      link: "https://g1.ipcamlive.com/player/player.php?alias=portafishrack&autoplay=1&mute=1",
+      height: 600
+    },
+    dolphineast: {
+      mode: "inline",
+      html: `<iframe src="//g1.ipcamlive.com/player/player.php?alias=dolphindockeast&disablefullscreen=1&disablevideofit=1" allowfullscreen></iframe>`,
+      link: "https://g1.ipcamlive.com/player/player.php?alias=dolphindockeast&disablefullscreen=1&disablevideofit=1",
+      height: 600
+    },
+    dolphinwest: {
+      mode: "inline",
+      html: `<iframe src="//g1.ipcamlive.com/player/player.php?alias=dolphindockwest&disablefullscreen=1&disablevideofit=1" allowfullscreen></iframe>`,
+      link: "https://g1.ipcamlive.com/player/player.php?alias=dolphindockwest&disablefullscreen=1&disablevideofit=1",
+      height: 600
+    },
+    gulfshores: {
+      mode: "external",
+      link: "https://portal.hdontap.com/s/embed?stream=gulf-shores_beach-cam-CUST&ratio=16:9&fluid=true",
+      height: 480
+    },
+    gulfwaters: {
+      mode: "inline",
+      html: `<iframe src="https://www.youtube.com/embed/Ue6-LTCBCDY" title="Gulf Waters Boardwalk" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`,
+      link: "https://www.youtube.com/watch?v=Ue6-LTCBCDY",
+      height: 810
+    },
+    shipchannel: {
+      mode: "inline",
+      html: `<iframe src="//g1.ipcamlive.com/player/player.php?alias=farley&autoplay=1&token=P%2BwJgROdAuOQV%2FfLPHC1SOsSOzdBVG4FPa%2BtKLySJtk%3D" allowfullscreen></iframe>`,
+      link: "https://g1.ipcamlive.com/player/player.php?alias=farley&autoplay=1&token=P%2BwJgROdAuOQV%2FfLPHC1SOsSOzdBVG4FPa%2BtKLySJtk%3D",
+      height: 600
+    },
+    sandcastle: {
+      mode: "external",
+      link: "https://hdontap.com/stream/896845/sandcastle-condos-port-aransas-live-beach-cam/",
+      height: 480
+    },
+    sandollar: {
+      mode: "external",
+      link: "https://www.ipcamlive.com/sanddollar",
+      height: 400
+    },
+    sandpiper: {
+      mode: "external",
+      link: "https://portal.hdontap.com/s/embed?stream=sandpiper_beach-cam-CUST&ratio=16:9&fluid=true",
+      height: 480
+    },
+    seagull: {
+      mode: "external",
+      link: "https://hdontap.com/stream/814199/port-aransas-texas-seagull-condos-live-beach-surf-cam/",
+      height: 480
+    },
+    dunes: {
+      mode: "inline",
+      html: `<iframe src="https://player.vimeo.com/video/931221293?h=a81922def4" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`,
+      link: "https://player.vimeo.com/video/931221293?h=a81922def4",
+      height: 800
+    }
+  };
+
+  const sel = document.getElementById('camSelector');
+  const frameWrap = document.getElementById('frameWrap');
+  const fallback = document.getElementById('fallback');
+  const openDirect = document.getElementById('openDirect');
+
+  function renderExternal(link, height) {
+    frameWrap.style.height = (height || 480) + 'px';
+    frameWrap.innerHTML = `
+      <div class="card">
+        <div>Embedding is disabled by the host.</div>
+        <a class="btn" href="${link}" target="_blank" rel="noopener">Open Stream</a>
+      </div>
+    `;
+    openDirect.href = link || '#';
+    // No extra fallback bar for external mode
+    fallback.style.display = 'none';
+  }
+
+  function renderInline(html, link, height) {
+    frameWrap.style.height = (height || 800) + 'px';
+    frameWrap.innerHTML = html;
+    openDirect.href = link || '#';
+    // Show fallback button shortly after load in case of embed restrictions
+    fallback.style.display = 'none';
+    setTimeout(() => { fallback.style.display = 'block'; }, 1500);
+  }
+
+  function loadCam(key) {
+    const cam = cams[key];
+    if (!cam) return;
+    if (cam.mode === "external") {
+      renderExternal(cam.link, cam.height);
+    } else {
+      renderInline(cam.html, cam.link, cam.height);
+    }
+  }
+
+  // Default: Deep Sea Headquarters on page load
+  sel.value = 'deepsea';
+  loadCam(sel.value);
+
+  sel.addEventListener('change', e => loadCam(e.target.value));
+</script>
+</body>
+</html>
