@@ -107,8 +107,10 @@
             <option value="dolphineast">Dolphin Docks East</option>
             <option value="dolphinwest">Dolphin Docks West</option>
             <option value="gulfwaters">Gulf Waters Beach Front RV Resort</option>
-            <option value="utmsieast">UTMSI Pier — Harbor (East)</option>
+            <option value="rockport">Rockport Beach</option>
+            <option value="shipchannel">Port Aransas Ship Channel</option>
             <option value="utmsiwest">UTMSI Pier — Harbor (West)</option>
+            <option value="utmsieast">UTMSI Pier — Harbor (East)</option>
           </select>
         </div>
       </div>
@@ -130,7 +132,7 @@
   <!-- hls.js for live streams -->
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
-  <!-- YouTube API (only needed for Aransas Pass) -->
+  <!-- YouTube API (only needed for some cams) -->
   <script>
     let ytApiReadyPromise;
     function ensureYTAPI(){
@@ -163,15 +165,20 @@
         html: `<iframe src="https://www.youtube.com/embed/Ue6-LTCBCDY?autoplay=1&mute=1&playsinline=1&rel=0"
                      allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`
       },
+      shipchannel: {
+        html: `<iframe src="https://g1.ipcamlive.com/player/player.php?alias=farley&autoplay=1"
+                     allowfullscreen></iframe>`
+      },
       aransaspass: { ytId: "Mn3vY8bordE" },
-
-      /* UTMSI cameras (HLS streams) */
       utmsiwest: {
         hls: "https://stage-ams-nfs.srv.axds.co/stream/adaptive/gcoos/utmsi_west/hls.m3u8"
       },
       utmsieast: {
-        /* If their slug differs, adjust just the path segment below. */
         hls: "https://stage-ams-nfs.srv.axds.co/stream/adaptive/gcoos/utmsi_east/hls.m3u8"
+      },
+      rockport: {
+        html: `<iframe src="https://www.youtube.com/embed/live_stream?channel=UCoB7yD8Z3N8Hv4YXlacAhMA&autoplay=1&mute=1&playsinline=1&rel=0"
+                     allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`
       }
     };
 
@@ -218,28 +225,12 @@
         video.src = hlsUrl;
         video.play().catch(()=>{});
       } else if (window.Hls && window.Hls.isSupported()){
-        hlsInstance = new Hls({
-          capLevelToPlayerSize: true,
-          maxLoadingDelay: 2,
-          liveBackBufferLength: 18
-        });
+        hlsInstance = new Hls();
         hlsInstance.loadSource(hlsUrl);
         hlsInstance.attachMedia(video);
         hlsInstance.on(Hls.Events.MEDIA_ATTACHED, () => { video.play().catch(()=>{}); });
-        hlsInstance.on(Hls.Events.ERROR, (_, data) => {
-          if (data.fatal) {
-            switch (data.type) {
-              case Hls.ErrorTypes.NETWORK_ERROR: hlsInstance.startLoad(); break;
-              case Hls.ErrorTypes.MEDIA_ERROR:   hlsInstance.recoverMediaError(); break;
-              default:                           hlsInstance.destroy(); break;
-            }
-          }
-        });
       } else {
-        playerWrap.innerHTML = `<div style="display:grid;place-items:center;height:100%;color:#fff;text-align:center;padding:12px">
-          <p>Live stream requires an updated browser.<br>
-          <a href="${hlsUrl}" target="_blank" rel="noopener" style="color:#0ea5e9">Open stream</a></p>
-        </div>`;
+        playerWrap.innerHTML = `<p style="color:#fff; text-align:center; padding:20px;">Your browser does not support live streaming.<br><a href="${hlsUrl}" target="_blank" style="color:#0ea5e9">Open stream</a></p>`;
       }
     }
 
