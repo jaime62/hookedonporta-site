@@ -362,6 +362,14 @@
 .nav a * {
   text-decoration: none;
 }
+/* Force LIVE Webcams button to center on its own row */
+@media (max-width: 600px) {
+  .nav a[href*="webcams.html"] {
+    flex: 0 0 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+}
 
 </style>
 </head>
