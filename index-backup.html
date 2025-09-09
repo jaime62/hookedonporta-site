@@ -182,6 +182,9 @@
     text-align: center; margin: 0.5rem auto; display: inline-flex; align-items: center;
     gap: 0.4rem; padding: 0.3rem 0.6rem; border-radius: 8px; cursor: pointer;
   }
+  .about-container .about-tagline {
+  font-size: 1rem;  /* smaller caption */
+}
   .tagline:hover { background-color: #FBEE8E; border-radius: 8px; }
   .about-tagline span { margin-left: 8px; font-size: 1.4rem; vertical-align: middle; }
 
@@ -263,6 +266,49 @@
     }
     br.mobile-break { display: none; }
   }
+
+  @media (max-width: 600px) {
+  .btn-wide {
+    max-width: none;         /* let it grow */
+    min-width: 220px;        /* or use width: 100% for a full-width pill */
+    white-space: normal;     /* allow wrapping if needed */
+    overflow: visible;
+    text-overflow: clip;
+    font-size: 0.95rem;
+    padding: 10px 16px;
+  }
+}
+/* Portrait phones */
+@media (max-width: 600px) {
+  .nav { flex-wrap: wrap; } /* let buttons move to a new line */
+
+  /* Target the webcams button specifically (no HTML changes) */
+  .nav a[href*="webcams.html"] button {
+    max-width: none !important;
+    white-space: normal !important;   /* allow wrapping */
+    overflow: visible !important;
+    text-overflow: clip !important;
+    font-size: 0.95rem;
+    padding: 10px 16px;
+  }
+
+  /* Put the webcams button on its own centered line (optional but helpful) */
+  .nav a[href*="webcams.html"] {
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* Small landscape devices (you also cap width here in your CSS) */
+@media (max-width: 850px) and (orientation: landscape) {
+  .nav { flex-wrap: wrap; }
+  .nav a[href*="webcams.html"] button {
+    max-width: none !important;
+    white-space: normal !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -327,7 +373,7 @@
    <div class="nav">
       <div class="tooltip-container">
         <a href="https://hookedonporta.com/widgets/webcams.html" target="_blank" rel="noopener">
-          <button>LIVE Local Webcams</button>
+          <button class="btn-wide">LIVE Local Webcams</button>
         </a>
         <div class="custom-tooltip">Check conditions and status of various locations around Port A!</div>
       </div>
