@@ -247,9 +247,44 @@
   @media (min-width: 768px) {
     .title-row h1 { font-size: 3vw; }
   }
-  @media (max-width: 600px) {
-    .nav { gap: 0.3rem; padding: 0 0.5rem; flex-wrap: nowrap; }
-    .tooltip-container { flex: 1 1 auto; display: flex; justify-content: center; }
+/* Phones: compact, single-row, horizontally scrollable nav */
+@media (max-width: 600px) {
+  .header { padding-top: 1.4rem; }            /* a touch less height */
+  .nav {
+    flex-wrap: nowrap;                         /* keep on one row */
+    overflow-x: auto;                          /* allow sideways scroll */
+    -webkit-overflow-scrolling: touch;
+    gap: 0.4rem;                               /* tighter spacing */
+    padding: 0 0.5rem;
+    scroll-snap-type: x mandatory;             /* nice snap feel */
+  }
+  .nav::-webkit-scrollbar { display: none; }   /* hide scrollbar on iOS/Chrome */
+
+  .tooltip-container { flex: 0 0 auto; }       /* don't stretch items */
+
+  .nav button {
+    font-size: clamp(0.78rem, 3.2vw, 0.9rem);  /* smaller but readable */
+    padding: 8px 12px;
+    min-height: 40px;                          /* tap target */
+    white-space: nowrap;                       /* no wrapping in a pill */
+    overflow: visible;                         /* no clipping */
+    text-overflow: clip;
+  }
+
+  /* Keep the wide “LIVE Local Webcams” button behavior below the header */
+  .btn-wide {
+    white-space: normal;
+    font-size: 0.9rem;
+    padding: 10px 16px;
+  }
+  .nav a[href*="webcams.html"] {
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+  .tooltip-container { flex: 1 1 auto; display: flex; justify-content: center; }
     .footer-text {max-width: 200px; text-align: center; }
     .nav button {
       font-size: 0.65rem; padding: 6px 10px; min-width: 58px; max-width: 80px;
@@ -334,7 +369,7 @@
    <div class="nav">
       <div class="tooltip-container">
         <a href="https://g1.ipcamlive.com/player/player.php?alias=portafishrack&#038;autoplay=1&#038;mute=1" target="_blank" rel="noopener">
-          <button>Bait</button>
+          <button>Bait<BR>Cam</button>
         </a>
         <div class="custom-tooltip">Check which bait flags are flying at Deep Sea Headquarters, LIVE!</div>
       </div>
@@ -342,14 +377,14 @@
     
       <div class="tooltip-container">
         <a href="https://tpwd.texas.gov/gis/ris/artificialreefs/" target="_blank" rel="noopener">
-          <button>Reefs</button>
+          <button>Gulf<BR>Reefs</button>
         </a>
         <div class="custom-tooltip">Locate and fish artificial reef structures!</div>
       </div>
     
       <div class="tooltip-container">
         <a href="https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits" target="_blank" rel="noopener">
-          <button>Regs</button>
+          <button>TX<BR>Regs</button>
         </a>
         <div class="custom-tooltip">Check TPWD for saltwater fishing regulations</div>
       </div>
@@ -357,14 +392,14 @@
 
       <div class="tooltip-container">
         <a href="https://sfs.saltstrong.com/?lat=27.73447113880205&lng=-97.16033439480708&zoom=10" target="_blank" rel="noopener">
-          <button>Spots</button>
+          <button>Smart<BR>Spots</button>
         </a>
         <div class="custom-tooltip">Use Salt Strong's fishing forecast & planning tool!</div>
       </div>
 
       <div class="tooltip-container">
         <a href="https://hookedonporta.com/widgets/surf-conditions.html" target="_blank" rel="noopener">
-          <button>Surf</button>
+          <button>Surf<BR>Stats</button>
         </a>
         <div class="custom-tooltip">Check wind, wave & tide conditions around Port A!</div>
       </div>
