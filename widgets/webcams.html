@@ -64,6 +64,23 @@
       :root{ --player-h: 520px; }
     }
   </style>
+
+<style>
+  /* Add these at the end of your existing <style> */
+  .card-header { 
+    justify-content: center;           /* center the whole row */
+    gap: 10px;                          /* keep a small space between label & select */
+  }
+  .card-header .controls { 
+    margin-left: 0;                     /* stop pushing to the right */
+    display: inline-flex;               /* shrink-wrap around the select */
+  }
+  .card-header label { 
+    margin-right: 4px;                  /* optional: tighten spacing */
+  }
+</style>
+
+  
 </head>
 <body>
 
