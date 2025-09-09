@@ -147,6 +147,17 @@
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 2px 6px rgba(0,0,0,0.3);
   }
+  /* Make the LIVE Webcams button orange (all sizes) */
+.nav a[href*="webcams.html"] button {
+  background-color: #F67917;  /* Port A orange */
+  color: #fff;
+}
+
+.nav a[href*="webcams.html"] button:hover {
+  background-color: #d56410;  /* a bit darker on hover */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
   .nav button:hover { background-color: #1976d2; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
 
   .tooltip-container { position: relative; display: inline-block; }
@@ -270,11 +281,11 @@
   @media (max-width: 600px) {
   .btn-wide {
     max-width: none;         /* let it grow */
-    min-width: 220px;        /* or use width: 100% for a full-width pill */
+    min-width: 240px;        /* or use width: 100% for a full-width pill */
     white-space: normal;     /* allow wrapping if needed */
     overflow: visible;
     text-overflow: clip;
-    font-size: 0.95rem;
+    font-size: 1.2rem;
     padding: 10px 16px;
   }
 }
@@ -334,7 +345,7 @@
    <div class="nav">
       <div class="tooltip-container">
         <a href="https://g1.ipcamlive.com/player/player.php?alias=portafishrack&#038;autoplay=1&#038;mute=1" target="_blank" rel="noopener">
-          <button>Bait</button>
+          <button>Bait<BR>Cam</button>
         </a>
         <div class="custom-tooltip">Check which bait flags are flying at Deep Sea Headquarters, LIVE!</div>
       </div>
@@ -342,14 +353,14 @@
     
       <div class="tooltip-container">
         <a href="https://tpwd.texas.gov/gis/ris/artificialreefs/" target="_blank" rel="noopener">
-          <button>Reefs</button>
+          <button>Gulf<BR>Reefs</button>
         </a>
         <div class="custom-tooltip">Locate and fish artificial reef structures!</div>
       </div>
     
       <div class="tooltip-container">
         <a href="https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits" target="_blank" rel="noopener">
-          <button>Regs</button>
+          <button>TX<BR>Regs</button>
         </a>
         <div class="custom-tooltip">Check TPWD for saltwater fishing regulations</div>
       </div>
@@ -357,14 +368,14 @@
 
       <div class="tooltip-container">
         <a href="https://sfs.saltstrong.com/?lat=27.73447113880205&lng=-97.16033439480708&zoom=10" target="_blank" rel="noopener">
-          <button>Spots</button>
+          <button>Smart<BR>Spots</button>
         </a>
         <div class="custom-tooltip">Use Salt Strong's fishing forecast & planning tool!</div>
       </div>
 
       <div class="tooltip-container">
         <a href="https://hookedonporta.com/widgets/surf-conditions.html" target="_blank" rel="noopener">
-          <button>Surf</button>
+          <button>Surf<BR>Status</button>
         </a>
         <div class="custom-tooltip">Check wind, wave & tide conditions around Port A!</div>
       </div>
@@ -373,7 +384,7 @@
    <div class="nav">
       <div class="tooltip-container">
         <a href="https://hookedonporta.com/widgets/webcams.html" target="_blank" rel="noopener">
-          <button class="btn-wide">LIVE Local Webcams</button>
+          <button class="btn-wide">LIVE<BR>Webcams</button>
         </a>
         <div class="custom-tooltip">Check conditions and status of various locations around Port A!</div>
       </div>
