@@ -23,7 +23,6 @@
     :root{
       --bg:#f8f8f8; --card:#ffffff; --text:#1f2937; --muted:#6b7280; --border:#e2e8f0; --shadow:0 0 15px rgba(0,0,0,0.1); --radius:12px;
       --primary:#0ea5e9; --accent:#f97316; --gap:18px; --map-radius:16px;
-      --player-h: 800px; /* default player height */
     }
     html, body { padding:0; margin:0; background:var(--bg); color:var(--text); font-family:system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"; line-height:1.55; }
     .container{ max-width:850px; margin:60px auto; padding:30px; background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); overflow:visible; }
@@ -41,8 +40,21 @@
     .card-header label{ font-weight:600; margin-right:4px; }
     .card-header .controls{ margin-left:0; display:inline-flex; }
     .card-body{ position:relative; background:#000; }
-    .player-wrap{ position:relative; width:100%; height:var(--player-h); }
-    .player-wrap iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+
+    /* ✅ 16:9 responsive player area (prevents letterboxing) */
+    .player-wrap{
+      position: relative;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+    }
+    .player-wrap iframe{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
 
     select{ padding:10px; font-size:16px; border-radius:10px; border:1px solid var(--border); background:#fff; }
 
@@ -51,7 +63,6 @@
     @media (max-width:640px){
       .container{ margin:30px 16px; padding:20px; }
       .logo{ max-height:90px; margin-bottom:10px; }
-      :root{ --player-h: 520px; }
     }
 
     /* Blue pill dropdown */
@@ -120,42 +131,36 @@
   </footer>
 
   <script>
-    // All cams embed inline now (no fallback/external mode)
+    // All cams embed inline (autoplay + muted where needed)
     const cams = {
       deepsea: {
         html: `<iframe src="https://g1.ipcamlive.com/player/player.php?alias=portafishrack&autoplay=1&mute=1"
-                     allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`,
-        height: 600
+                     allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`
       },
-dolphineast: {
-  html: `<iframe
-           src="https://g1.ipcamlive.com/player/player.php?alias=dolphindockeast&autoplay=1&mute=1&disablefullscreen=1&disablevideofit=1"
-           allow="autoplay; fullscreen; picture-in-picture"
-           allowfullscreen
-         ></iframe>`,
-  height: 600
-},
-dolphinwest: {
-  html: `<iframe
-           src="https://g1.ipcamlive.com/player/player.php?alias=dolphindockwest&autoplay=1&mute=1&disablefullscreen=1&disablevideofit=1"
-           allow="autoplay; fullscreen; picture-in-picture"
-           allowfullscreen
-         ></iframe>`,
-  height: 600
-},
-
+      dolphineast: {
+        html: `<iframe
+                 src="https://g1.ipcamlive.com/player/player.php?alias=dolphindockeast&autoplay=1&mute=1&disablefullscreen=1&disablevideofit=1"
+                 allow="autoplay; fullscreen; picture-in-picture"
+                 allowfullscreen
+               ></iframe>`
+      },
+      dolphinwest: {
+        html: `<iframe
+                 src="https://g1.ipcamlive.com/player/player.php?alias=dolphindockwest&autoplay=1&mute=1&disablefullscreen=1&disablevideofit=1"
+                 allow="autoplay; fullscreen; picture-in-picture"
+                 allowfullscreen
+               ></iframe>`
+      },
       gulfwaters: {
         html: `<iframe src="https://www.youtube.com/embed/Ue6-LTCBCDY?autoplay=1&mute=1&playsinline=1&rel=0"
                      title="Gulf Waters Boardwalk"
                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                      referrerpolicy="strict-origin-when-cross-origin"
-                     allowfullscreen></iframe>`,
-        height: 810
+                     allowfullscreen></iframe>`
       },
       shipchannel: {
         html: `<iframe src="https://g1.ipcamlive.com/player/player.php?alias=farley&autoplay=1&token=P%2BwJgROdAuOQV%2FfLPHC1SOsSOzdBVG4FPa%2BtKLySJtk%3D"
-                     allowfullscreen></iframe>`,
-        height: 600
+                     allowfullscreen></iframe>`
       }
     };
 
@@ -165,8 +170,7 @@ dolphinwest: {
     function loadCam(key){
       const cam = cams[key];
       if(!cam) return;
-      document.documentElement.style.setProperty('--player-h', (cam.height || 800) + 'px');
-      playerWrap.innerHTML = cam.html;
+      playerWrap.innerHTML = cam.html;   // aspect-ratio CSS handles sizing
     }
 
     // Default selection: Deep Sea Headquarters
