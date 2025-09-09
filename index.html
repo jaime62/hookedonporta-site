@@ -275,6 +275,36 @@
     padding: 10px 16px;
   }
 }
+/* Portrait phones */
+@media (max-width: 600px) {
+  .nav { flex-wrap: wrap; } /* let buttons move to a new line */
+
+  /* Target the webcams button specifically (no HTML changes) */
+  .nav a[href*="webcams.html"] button {
+    max-width: none !important;
+    white-space: normal !important;   /* allow wrapping */
+    overflow: visible !important;
+    text-overflow: clip !important;
+    font-size: 0.95rem;
+    padding: 10px 16px;
+  }
+
+  /* Put the webcams button on its own centered line (optional but helpful) */
+  .nav a[href*="webcams.html"] {
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* Small landscape devices (you also cap width here in your CSS) */
+@media (max-width: 850px) and (orientation: landscape) {
+  .nav { flex-wrap: wrap; }
+  .nav a[href*="webcams.html"] button {
+    max-width: none !important;
+    white-space: normal !important;
+  }
+}
 
 </style>
 </head>
