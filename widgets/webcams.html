@@ -108,7 +108,6 @@
             <option value="dolphinwest">Dolphin Docks West</option>
             <option value="gulfwaters">Gulf Waters Beach Front RV Resort</option>
             <option value="rockport">Rockport Beach</option>
-            <option value="shipchannel">Port Aransas Ship Channel</option>
             <option value="utmsiwest">UTMSI Pier — Harbor (West)</option>
             <option value="utmsieast">UTMSI Pier — Harbor (East)</option>
           </select>
@@ -164,10 +163,6 @@
       gulfwaters: {
         html: `<iframe src="https://www.youtube.com/embed/Ue6-LTCBCDY?autoplay=1&mute=1&playsinline=1&rel=0"
                      allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`
-      },
-      shipchannel: {
-        html: `<iframe src="https://g1.ipcamlive.com/player/player.php?alias=farley&autoplay=1"
-                     allowfullscreen></iframe>`
       },
       aransaspass: { ytId: "Mn3vY8bordE" },
       utmsiwest: {
@@ -243,7 +238,7 @@
       else if (cam.hls){ mountHLS(cam.hls); }
     }
 
-    sel.value = 'deepsea';
+    sel.value = 'dolphineast';
     loadCam(sel.value);
     sel.addEventListener('change', e => loadCam(e.target.value));
   </script>
