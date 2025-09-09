@@ -35,30 +35,41 @@
     .intro{ color:#334155; margin:0 0 16px; text-align:center; }
 
     /* Webcam card */
-    .card{ border:1px solid var(--border); border-radius:var(--map-radius); background:#fff; box-shadow:0 0 0 rgba(0,0,0,0.02); overflow:hidden; color:inherit; }
+    .card{
+      border:1px solid var(--border);
+      border-radius:var(--map-radius);
+      background:#fff;
+      box-shadow:0 0 0 rgba(0,0,0,0.02);
+      overflow:visible; /* keep card fully rounded; let player be square */
+      color:inherit;
+    }
     .card-header{ display:flex; align-items:center; gap:10px; padding:12px 14px; border-bottom:1px solid var(--border); background:#fff; justify-content:center; }
     .card-header label{ font-weight:600; margin-right:4px; }
     .card-header .controls{ margin-left:0; display:inline-flex; }
     .card-body{ position:relative; background:#000; }
 
-    /* ✅ 16:9 responsive player area (prevents letterboxing) */
+    /* ✅ 16:9 responsive player area (kept square) */
     .player-wrap{
       position: relative;
       width: 100%;
       height: auto;
       aspect-ratio: 16 / 9;
+      border-radius: 0; /* square video area */
     }
-    .player-wrap iframe{
+    .player-wrap iframe,
+    .player-wrap > div{           /* YT API inserts an <iframe> inside this div */
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       border: 0;
+      display:block;
+      background:#000;
     }
 
     select{ padding:10px; font-size:16px; border-radius:10px; border:1px solid var(--border); background:#fff; }
 
-    footer{ margin:30px auto 10px; border-top:1px solid var(--border); padding:20px; text-align:center; color:var(--muted); font-size:14px; max-width:1100px; }
+    footer{ margin:30px auto 10px; border-top:1px solid var(--border); padding:20px; text-align:center; color:#6b7280; font-size:14px; max-width:1100px; }
 
     @media (max-width:640px){
       .container{ margin:30px 16px; padding:20px; }
@@ -111,6 +122,8 @@
             <option value="dolphinwest">Dolphin Docks West</option>
             <option value="gulfwaters">Gulf Waters Beach Front RV Resort</option>
             <option value="shipchannel">Port Aransas Ship Channel</option>
+            <!-- New -->
+            <option value="aransaspass">Aransas Pass Harbor Park</option>
           </select>
         </div>
       </div>
@@ -129,6 +142,21 @@
   <footer>
     <div>2025 Tech Tackle Box™</div>
   </footer>
+
+  <!-- YouTube Iframe API (for reliable autoplay on Harbor Park) -->
+  <script>
+    let ytApiReadyPromise;
+    function ensureYTAPI(){
+      if (ytApiReadyPromise) return ytApiReadyPromise;
+      ytApiReadyPromise = new Promise((resolve) => {
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        window.onYouTubeIframeAPIReady = () => resolve();
+        document.head.appendChild(tag);
+      });
+      return ytApiReadyPromise;
+    }
+  </script>
 
   <script>
     // All cams embed inline (autoplay + muted where needed)
@@ -154,23 +182,60 @@
       gulfwaters: {
         html: `<iframe src="https://www.youtube.com/embed/Ue6-LTCBCDY?autoplay=1&mute=1&playsinline=1&rel=0"
                      title="Gulf Waters Boardwalk"
-                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                     allow="autoplay; encrypted-media; picture-in-picture; fullscreen; web-share"
                      referrerpolicy="strict-origin-when-cross-origin"
                      allowfullscreen></iframe>`
       },
       shipchannel: {
         html: `<iframe src="https://g1.ipcamlive.com/player/player.php?alias=farley&autoplay=1&token=P%2BwJgROdAuOQV%2FfLPHC1SOsSOzdBVG4FPa%2BtKLySJtk%3D"
                      allowfullscreen></iframe>`
+      },
+
+      /* New: Aransas Pass Harbor Park (force mute + autoplay via YT API) */
+      aransaspass: {
+        ytId: "Mn3vY8bordE"
       }
     };
 
     const sel = document.getElementById('camSelector');
     const playerWrap = document.getElementById('playerWrap');
+    let ytPlayer = null;
+
+    function mountYouTube(videoId){
+      playerWrap.innerHTML = `<div id="ytPlayer"></div>`;
+      ensureYTAPI().then(() => {
+        if (ytPlayer && ytPlayer.destroy) { try { ytPlayer.destroy(); } catch(e){} }
+        ytPlayer = new YT.Player('ytPlayer', {
+          videoId,
+          playerVars: {
+            autoplay: 1,
+            mute: 1,          // required for autoplay on most browsers
+            playsinline: 1,
+            rel: 0,
+            modestbranding: 1,
+            controls: 1
+          },
+          events: {
+            onReady: (e) => {
+              try { e.target.mute(); } catch(e){}
+              try { e.target.playVideo(); } catch(e){}
+            }
+          }
+        });
+      });
+    }
 
     function loadCam(key){
       const cam = cams[key];
       if(!cam) return;
-      playerWrap.innerHTML = cam.html;   // aspect-ratio CSS handles sizing
+      // tear down YT player if switching away
+      if (ytPlayer && (!cam.ytId)) { try { ytPlayer.destroy(); } catch(e){} ytPlayer = null; }
+
+      if (cam.html){
+        playerWrap.innerHTML = cam.html;   // iframe players
+      } else if (cam.ytId){
+        mountYouTube(cam.ytId);            // YT API player (autoplay muted)
+      }
     }
 
     // Default selection: Deep Sea Headquarters
