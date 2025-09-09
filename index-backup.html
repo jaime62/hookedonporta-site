@@ -196,17 +196,26 @@
 
   /* Report link styling */
   .report-row { text-align:center; margin: .65rem auto 1rem; }
-  .fishing-link{
-    text-decoration:none; color:#093D38; font-weight:bold;
-    background: rgba(0,255,255,.85);
-    padding:.7rem 1.2rem; border-radius:8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,.12); transition: all .25s ease;
-  }
-.fishing-link:hover {
-  background-color: rgba(0, 200, 230, 0.95); /* darker aqua */
-  color: #003c54; /* deeper blue for contrast */
-  transform: translateY(-1px);
+
+.fishing-link {
+  text-decoration: none;
+  color: #093D38;
+  font-weight: bold;
+  background: rgba(0,255,255,.85);
+  padding: .7rem 1.2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
+  transition: all .25s ease;
+  animation: glowPulse 2s infinite ease-in-out;
 }
+
+@keyframes glowPulse {
+  0%   { box-shadow: 0 0 8px rgba(255, 255, 0, 0.6); }
+  50%  { box-shadow: 0 0 20px rgba(255, 255, 0, 1), 0 0 40px rgba(255, 255, 0, 0.6); }
+  100% { box-shadow: 0 0 8px rgba(255, 255, 0, 0.6); }
+}
+
   /* Store / iframe area — transparent */
   #amazon-ads { margin: 2rem auto 0; padding: 0; width: 95%; max-width: 1400px; text-align: center; border-radius: 8px; background: transparent; }
   #amazon-ads iframe {
@@ -221,7 +230,7 @@
     padding: 10px 20px; border: none; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; background-color: silver; color: darkblue; font-weight: bold; cursor: pointer;
   }
   .tab-folder button:hover {
-  background-color: #FBEE8E;
+      background-color: rgba(250, 215, 0, 0.9);
 }
   .tab-folder button.active { color: darkblue; background-color: gold; }
 
@@ -262,8 +271,9 @@
   <p><i>Our latest site updates include...</i></p>
   <ul>
     &nbsp;<li>New products added</li>
-    <li>More guides fishing guides listed</li>
+    <li>More local fishing guides listed</li>
     <li>New articles and helpful local information</li>
+    <li>And of course, the latest Fishing Report!</li>
   </ul>
   <button id="dismissBtn">Got it!</button>
 </div>
@@ -275,45 +285,53 @@
       </a>
   
     </div>
-
-    <div class="nav">
-      <div class="tooltip-container">
-        <a href="https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits" target="_blank" rel="noopener">
-          <button>TX Regs</button>
-        </a>
-        <div class="custom-tooltip">Check TPWD for saltwater regulations</div>
-      </div>
-
+   <div class="nav">
       <div class="tooltip-container">
         <a href="https://g1.ipcamlive.com/player/player.php?alias=portafishrack&#038;autoplay=1&#038;mute=1" target="_blank" rel="noopener">
-          <button>Bait Cam</button>
+          <button>Bait</button>
         </a>
-        <div class="custom-tooltip">Check what Deep Sea HQ bait flags are flying, LIVE!</div>
+        <div class="custom-tooltip">Check which bait flags are flying at Deep Sea Headquarters, LIVE!</div>
       </div>
 
+    
       <div class="tooltip-container">
         <a href="https://tpwd.texas.gov/gis/ris/artificialreefs/" target="_blank" rel="noopener">
-          <button>TX Reefs</button>
+          <button>Reefs</button>
         </a>
         <div class="custom-tooltip">Locate and fish artificial reef structures!</div>
       </div>
+    
+      <div class="tooltip-container">
+        <a href="https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits" target="_blank" rel="noopener">
+          <button>Regs</button>
+        </a>
+        <div class="custom-tooltip">Check TPWD for saltwater fishing regulations</div>
+      </div>
+
 
       <div class="tooltip-container">
         <a href="https://sfs.saltstrong.com/?lat=27.73447113880205&lng=-97.16033439480708&zoom=10" target="_blank" rel="noopener">
-          <button>SmartSpots</button>
+          <button>Spots</button>
         </a>
-        <div class="custom-tooltip">Use Salt Strong's forecast & planning tool!</div>
+        <div class="custom-tooltip">Use Salt Strong's fishing forecast & planning tool!</div>
       </div>
 
       <div class="tooltip-container">
-        <a href="https://www.windfinder.com/forecast/mustang_island_port_aransas" target="_blank" rel="noopener">
-          <button>Seas</button>
+        <a href="https://hookedonporta.com/widgets/surf-conditions.html" target="_blank" rel="noopener">
+          <button>Surf</button>
         </a>
         <div class="custom-tooltip">Check wind, wave & tide conditions around Port A!</div>
       </div>
     </div>
   </div>
-
+   <div class="nav">
+      <div class="tooltip-container">
+        <a href="https://hookedonporta.com/widgets/webcams.html" target="_blank" rel="noopener">
+          <button>LIVE Local Webcams</button>
+        </a>
+        <div class="custom-tooltip">Check conditions and status of various locations around Port A!</div>
+      </div>
+      </div>
 <!-- Intro -->
 <div class="intro">
   <div style="text-align: center;">
@@ -333,17 +351,21 @@
     </div>
   </div>
 
+
+
   <div id="tackleBoxInfo">
-    <p><strong>Tech Tackle Box</strong> is a mobile-friendly hub of fishing tools and resources for the Port Aransas area. Whether you're fishing the bay or offshore, it puts helpful info right at your fingertips.</p>
+    <p><strong><font color=#F67917>Tech</font><font color=#21609E> Tackle Box</font></strong>™ is a mobile-friendly hub of fishing tools and resources for the Port Aransas area. Whether you're fishing the bay or offshore, it puts helpful info right at your fingertips.</p>
     <p>Quickly access bait cams, reef maps, interactive fishing-related maps, weather, tide, and regulation links — all without clutter.</p>
     <p>Built for locals and visitors alike, this site will keep growing with new tools, more gear picks, and time-saving features.</p>
+    <p>While we urge you to shop local while in the Port Aransas area, if you are an online shopper, using the links in our <b>Shop Gear</b> section helps pay for this site and related costs. </p> <b><font color=#21609E> THANK YOU!</font></b> <font style="font-size: 200%;">🎣
+</font>
   </div>
 
   <!-- Fishing Report link ABOVE store -->
   <p style="margin-top:3em;"></p>
 
   <div class="report-row">
-    <a href="#" class="fishing-link" onclick="openFishingReport(); return false;">Read our latest Fishing Report!</a>
+    <a href="#" class="fishing-link" onclick="openFishingReport(); return false;">Read the latest Fishing Report!</a>
   </div>
 <p style="margin-top:3em;"></p>
 
@@ -423,7 +445,7 @@
   // --- Shared centered popup for NAV + Fishing Report ---
   (function () {
     const POPUP_NAME = "HookedPopup";
-    const POPUP_W = 900;
+    const POPUP_W = 1000;
     const POPUP_H = 700;
 
     function centerOverOpener(w, h) {
@@ -493,7 +515,7 @@
 
     // Fishing Report now reuses the same popup
     window.openFishingReport = function () {
-      openCustomPopup('https://hookedonporta.com/reports/fr09042025.html');
+      openCustomPopup('https://hookedonporta.com/reports/fr09062025.html');
     };
   })();
 
@@ -526,19 +548,35 @@
     }, false);
   })();
 </script>
-  <!-- Onload Tooptip script -->
+
+  <!-- Onload Tooltip script (replace your current block with this) -->
 <script>
   window.addEventListener("load", () => {
     const tooltip = document.getElementById("pageTooltip");
     const dismissBtn = document.getElementById("dismissBtn");
 
-    tooltip.classList.add("show");
+    // Ensure it's renderable before we fade in
+    tooltip.style.display = "block";
+    // Small tick so the class change triggers the transition
+    requestAnimationFrame(() => tooltip.classList.add("show"));
 
     dismissBtn.addEventListener("click", () => {
+      // Start fade-out
       tooltip.classList.remove("show");
       tooltip.classList.add("hide");
     });
+
+    // After the opacity transition ends, remove from hit-testing
+    tooltip.addEventListener("transitionend", (e) => {
+      if (e.propertyName !== "opacity") return;
+      if (tooltip.classList.contains("hide")) {
+        tooltip.style.display = "none"; // no more ghost box
+      }
+    });
   });
 </script>
+
+
+  
 </body>
 </html>
