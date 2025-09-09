@@ -3,136 +3,65 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hooked on Port A — Maps Hub</title>
-  <meta name="description" content="Thumbnails linking to Hooked on Port A Google My Maps: Bait & Tackle, Boat & Kayak Launches, BYOF Restaurants, Piers & Jetties, and On-Shore Fishing.">
+  <title>Hooked on Port A — Live Webcams</title>
+  <meta name="description" content="Live webcams around Port Aransas with one-click viewing.">
 
-  <!-- Speed/preload -->
-  <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
-  <link rel="dns-prefetch" href="https://raw.githubusercontent.com">
-  <link rel="preload" as="image" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/Map-Bait-Tackle.png" type="image/png">
-  <link rel="preload" as="image" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/Map-Boat-Kayak-Launches.png" type="image/png">
-  <link rel="preload" as="image" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/Map-BYOF-Restaurants.png" type="image/png">
-  <link rel="preload" as="image" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/Map-On-Shore-Fishing.png" type="image/png">
-  <link rel="preload" as="image" href="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/Map-Piers-Jetties.png" type="image/png">
+  <!-- Speed/preload (optional hints for common hosts) -->
+  <link rel="preconnect" href="https://g1.ipcamlive.com" crossorigin>
+  <link rel="dns-prefetch" href="https://g1.ipcamlive.com">
+  <link rel="preconnect" href="https://portal.hdontap.com" crossorigin>
+  <link rel="dns-prefetch" href="https://portal.hdontap.com">
+  <link rel="preconnect" href="https://www.youtube.com" crossorigin>
+  <link rel="dns-prefetch" href="https://www.youtube.com">
+  <link rel="preconnect" href="https://player.vimeo.com" crossorigin>
+  <link rel="dns-prefetch" href="https://player.vimeo.com">
 
   <style>
+    /* --- HookedOnPortA theme tokens (copied from Maps Hub) --- */
+    .hop-btn { appearance:none; background:#1C5A98; color:#fff; border:none; border-radius:9999px; padding:10px 16px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; line-height:1; box-shadow:0 4px 0 #0e3a66, 0 8px 16px rgba(0,0,0,.15); cursor:pointer; transition: transform .06s ease, box-shadow .15s ease, filter .15s ease, background-color .15s ease; }
+    .hop-btn:hover { filter:brightness(1.05); transform: translateY(-1px); box-shadow:0 5px 0 #0e3a66, 0 12px 20px rgba(0,0,0,.18); }
+    .hop-btn:active { transform: translateY(2px); box-shadow:0 2px 0 #0e3a66, 0 6px 12px rgba(0,0,0,.18); }
+    .hop-btn--orange { background:#F77E17; box-shadow:0 4px 0 #b25610, 0 8px 16px rgba(0,0,0,.15); }
 
-      .hop-btn { appearance:none; background:#1C5A98; color:#fff; border:none; border-radius:9999px; padding:10px 16px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; line-height:1; box-shadow:0 4px 0 #0e3a66, 0 8px 16px rgba(0,0,0,.15); cursor:pointer; transition: transform .06s ease, box-shadow .15s ease, filter .15s ease, background-color .15s ease; }
-      .hop-btn:hover { filter:brightness(1.05); transform: translateY(-1px); box-shadow:0 5px 0 #0e3a66, 0 12px 20px rgba(0,0,0,.18); }
-      .hop-btn:active { transform: translateY(2px); box-shadow:0 2px 0 #0e3a66, 0 6px 12px rgba(0,0,0,.18); }
-      .hop-btn--orange { background:#F77E17; box-shadow:0 4px 0 #b25610, 0 8px 16px rgba(0,0,0,.15); }
-    
     :root{
-      --bg:#f8f8f8;
-      --card:#ffffff;
-      --text:#1f2937;
-      --muted:#6b7280;
-      --border:#e2e8f0;
-      --shadow:0 0 15px rgba(0,0,0,0.1);
-      --radius:12px;
-
-      --primary:#0ea5e9;
-      --accent:#f97316;
-
-      --gap:18px;         
-      --map-radius:16px;  
+      --bg:#f8f8f8; --card:#ffffff; --text:#1f2937; --muted:#6b7280; --border:#e2e8f0; --shadow:0 0 15px rgba(0,0,0,0.1); --radius:12px;
+      --primary:#0ea5e9; --accent:#f97316; --gap:18px; --map-radius:16px;
+      --player-h: 800px; /* default player height */
     }
-    html, body {
-      padding:0; margin:0; background:var(--bg); color:var(--text);
-      font-family:system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-      line-height:1.55;
-    }
-    .container{
-      max-width:850px; margin:60px auto; padding:30px; background:var(--card);
-      border-radius:var(--radius); box-shadow:var(--shadow);
-      overflow:visible;
-    }
+    html, body { padding:0; margin:0; background:var(--bg); color:var(--text); font-family:system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"; line-height:1.55; }
+    .container{ max-width:850px; margin:60px auto; padding:30px; background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); overflow:visible; }
 
-    /* Header with centered TTB logo */
+    /* Header with centered logo (same style as provided) */
     .header{ position:relative; margin-bottom:20px; text-align:center; overflow:visible; }
-    .logo{
-      display:block;
-      margin:0 auto;
-      max-height:90px;
-      height:auto;
-      width:auto;
-      max-width:min(520px,92vw);
-      object-fit:contain;
-      padding-inline:8px;
-    }
+    .logo{ display:block; margin:0 auto; max-height:90px; height:auto; width:auto; max-width:min(520px,92vw); object-fit:contain; padding-inline:8px; }
     .subhead{ color:#F77E17; margin-top:12px; }
 
-    /* Intro */
-    .intro{ color:#334155; margin:0 0 16px; }
+    .intro{ color:#334155; margin:0 0 16px; text-align:center; }
 
-    /* Card grid */
-    .grid{ display:flex; flex-wrap:wrap; gap:var(--gap); justify-content:center; }
-    .card{ flex:0 0 100%; }
-    @media (min-width:760px){ .card{ flex:0 0 calc((100% - var(--gap)) / 2); } }
-    @media (min-width:1080px){ .card{ flex:0 0 calc((100% - (2 * var(--gap))) / 3); } }
+    /* Webcam card */
+    .card{ border:1px solid var(--border); border-radius:var(--map-radius); background:#fff; box-shadow:0 0 0 rgba(0,0,0,0.02); overflow:hidden; color:inherit; }
+    .card-header{ display:flex; align-items:center; gap:10px; padding:12px 14px; border-bottom:1px solid var(--border); background:#fff; }
+    .card-header label{ font-weight:600; }
+    .card-body{ position:relative; background:#000; }
+    .player-wrap{ position:relative; width:100%; height:var(--player-h); }
+    .player-wrap iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
 
-    .card{
-      border:1px solid var(--border); border-radius:var(--map-radius); background:#fff;
-      box-shadow:0 0 0 rgba(0,0,0,0.02); overflow:hidden; text-decoration:none; color:inherit;
-      transition: transform .12s ease, box-shadow .12s ease;
-    }
-    .card:hover{ transform:translateY(-1px); box-shadow:0 8px 22px rgba(2,8,23,.10); }
+    .controls{ margin-left:auto; }
+    select{ padding:10px; font-size:16px; border-radius:10px; border:1px solid var(--border); background:#fff; }
 
-    figure{ margin:0; }
-    img{ width:100%; height:auto; display:block; aspect-ratio:16 / 9; object-fit:cover; }
+    /* Inline fallback ribbon */
+    .fallback{ display:none; position:absolute; left:0; right:0; bottom:0; background: rgba(0,0,0,0.7); color:#fff; padding:10px; text-align:center; }
+    .btn{ display:inline-block; padding:8px 12px; margin-left:8px; border-radius:8px; text-decoration:none; background:#fff; color:#111; }
 
-    figcaption{
-      padding:12px 14px; font-weight:500; color:#0f766e; text-align:center;
-      letter-spacing:-0.01em; border-top:1px solid var(--border); background:#fff;
-    }
-    .card:link, .card:visited{ text-decoration:none; }
-    .card:hover figcaption, .card:focus-visible figcaption{
-      text-decoration:underline; text-underline-offset:3px;
-    }
+    /* External-mode card body */
+    .ext-card{ display:flex; align-items:center; justify-content:center; gap:10px; color:#fff; text-align:center; padding:28px; min-height:280px; }
 
-    /* Footer */
-    footer{
-      margin:30px auto 10px; border-top:1px solid var(--border);
-      padding:20px; text-align:center; color:var(--muted); font-size:14px;
-      max-width:1100px;
-    }
-
-    /* Modal for mobile embed */
-    .modal {
-      position: fixed; inset: 0; background: rgba(15,23,42,.65);
-      display: none; align-items: center; justify-content: center; z-index: 1000;
-      backdrop-filter: blur(2px);
-    }
-    .modal.open { display: flex; }
-    .modal-inner {
-      background: #fff; width: 100%; height: 100%;
-      max-width: 100vw; max-height: 100vh; border-radius: 0;
-      display: flex; flex-direction: column; overflow: hidden;
-    }
-    .modal-header {
-      display:flex; align-items:center; justify-content:space-between;
-      padding:10px 12px; border-bottom:1px solid var(--border);
-      background:#fff;
-    }
-    .modal-title { font-size:16px; margin:0; }
-    .modal-actions a, .modal-actions button {
-      font: inherit; border:1px solid var(--border); background:#fff; padding:6px 10px;
-      border-radius:10px; cursor:pointer; text-decoration:none; color:var(--text);
-    }
-    .modal-actions button { border-color:#cbd5e1; }
-    .modal-iframe { border:0; width:100%; height:100%; }
-    .iframe-wrap { position: relative; width: 100%; height: 100%; flex: 1; }
-
-    /* Guard overlay */
-    .fs-guard {
-      position: absolute; top: 0; right: 0; width: 88px; height: 88px;
-      background: transparent; border: 0; padding: 0; cursor: default; pointer-events: auto;
-    }
-    .fs-guard:focus { outline: none; }
+    footer{ margin:30px auto 10px; border-top:1px solid var(--border); padding:20px; text-align:center; color:var(--muted); font-size:14px; max-width:1100px; }
 
     @media (max-width:640px){
       .container{ margin:30px 16px; padding:20px; }
-      .logo{ max-height:90px; transform:none; margin-bottom:10px; }
+      .logo{ max-height:90px; margin-bottom:10px; }
+      :root{ --player-h: 520px; }
     }
   </style>
 </head>
@@ -147,140 +76,156 @@
              src="https://github.com/jaime62/hookedonporta-site/blob/main/images/TTB-Logo.png?raw=true"
              alt="HookedOnPortA.com">
       </a>
-      <h2 class="subhead">Maps Hub</h2>
+      <h2 class="subhead">Live Webcams</h2>
     </div>
 
-    <!-- Intro -->
-    <p class="intro">Tap a card to open the corresponding Google My Map. On phones, the map opens right here so it stays in your browser (not the Maps app).</p>
+    <p class="intro">Choose a camera below. Some providers block embedding.<BR>If that happens, use the button to open the stream in a new tab.</p>
 
-    <!-- Cards -->
-    <div class="grid">
-      <a class="card mymaps"
-         href="https://www.google.com/maps/d/u/0/viewer?mid=1I4QjlGG_yINeKpvlZAwnCLuP_kO2mac&ll=27.889699245704772%2C-97.11535681218402&z=10"
-         data-mapid="1I4QjlGG_yINeKpvlZAwnCLuP_kO2mac"
-         target="_self" rel="noopener"
-         title="Open map: Bait & Tackle">
-        <figure>
-          <img src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/Map-Bait-Tackle.png" alt="Bait & Tackle thumbnail" loading="lazy">
-          <figcaption>Find live or frozen bait in the Port Aransas area.</figcaption>
-        </figure>
-      </a>
+    <!-- Webcam panel -->
+    <section class="card" aria-label="Live webcam player">
+      <div class="card-header">
+        <label for="camSelector">Camera:</label>
+        <div class="controls">
+          <select id="camSelector" aria-label="Choose a webcam">
+            <!-- Alphabetical by label; keep "The Dunes..." under T -->
+            <option value="princess">Aransas Princess</option>
+            <option value="deepsea">Deep Sea Headquarters</option>
+            <option value="dolphineast">Dolphin Docks East</option>
+            <option value="dolphinwest">Dolphin Docks West</option>
+            <option value="gulfshores">Gulf Shores Condominiums</option>
+            <option value="gulfwaters">Gulf Waters Beach Front RV Resort</option>
+            <option value="shipchannel">Port Aransas Ship Channel</option>
+            <option value="sandcastle">Sandcastle Condominiums</option>
+            <option value="sandollar">Sandollar Sity</option>
+            <option value="sandpiper">Sandpiper Condominiums</option>
+            <option value="seagull">Sea Gull Condominiums</option>
+            <option value="dunes">The Dunes Condominiums</option>
+          </select>
+        </div>
+      </div>
 
-      <a class="card mymaps"
-         href="https://www.google.com/maps/d/viewer?mid=1urXs9I2PUQzl4RjXnc39fkeFr4P2a7M&usp=sharing"
-         data-mapid="1urXs9I2PUQzl4RjXnc39fkeFr4P2a7M"
-         target="_self" rel="noopener"
-         title="Open map: Boat & Kayak Launches">
-        <figure>
-          <img src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/Map-Boat-Kayak-Launches.png" alt="Boat & Kayak Launches thumbnail" loading="lazy">
-          <figcaption>Map of public boat and kayak launch locations in the area.</figcaption>
-        </figure>
-      </a>
-
-      <a class="card mymaps"
-         href="https://www.google.com/maps/d/viewer?mid=14Luav3YbX4d6CQfrYZYmk2UB02wHQws&usp=sharing"
-         data-mapid="14Luav3YbX4d6CQfrYZYmk2UB02wHQws"
-         target="_self" rel="noopener"
-         title="Open map: BYOF Restaurants">
-        <figure>
-          <img src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/Map-BYOF-Restaurants.png" alt="BYOF Restaurants thumbnail" loading="lazy">
-          <figcaption>Find Port A restaurants that will cook and serve your catch!</figcaption>
-        </figure>
-      </a>
-
-      <a class="card mymaps"
-         href="https://www.google.com/maps/d/viewer?mid=1J013ecUUx-w31mhr99sVzmkhvApQzR4&usp=sharing"
-         data-mapid="1J013ecUUx-w31mhr99sVzmkhvApQzR4"
-         target="_self" rel="noopener"
-         title="Open map: On-Shore Fishing">
-        <figure>
-          <img src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/Map-On-Shore-Fishing.png" alt="On-Shore Fishing thumbnail" loading="lazy">
-          <figcaption>Don't have a boat? No problem! There are lots of areas to fish from. Also see the Piers & Jetties map if you want to get out further!</figcaption>
-        </figure>
-      </a>
-
-      <a class="card mymaps"
-         href="https://www.google.com/maps/d/viewer?mid=1mLZVzRpe11MDjWg74JIoFs_6JwpCFGA&usp=sharing"
-         data-mapid="1mLZVzRpe11MDjWg74JIoFs_6JwpCFGA"
-         target="_self" rel="noopener"
-         title="Open map: Piers & Jetties">
-        <figure>
-          <img src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/Map-Piers-Jetties.png" alt="Piers & Jetties thumbnail" loading="lazy">
-          <figcaption>A map with local fishing pier and jetty locations in the Mustang Island area.</figcaption>
-        </figure>
-      </a>
-    </div>
+      <div class="card-body">
+        <div id="playerWrap" class="player-wrap"></div>
+        <div id="fallback" class="fallback">
+          Seeing an “Oops…” message or a blank box?
+          <a id="openDirect" class="btn" target="_blank" rel="noopener">Open Stream</a>
+        </div>
+      </div>
+    </section>
   </div>
 
-    <div class="full-span" style="text-align:center; margin-top:50px;">
-      <button class="hop-btn" onclick="window.close()">Close</button>
-    </div>
-  </section>
-</div>
-  
+  <div class="full-span" style="text-align:center; margin-top:50px;">
+    <button class="hop-btn" onclick="window.close()">Close</button>
+  </div>
+
   <!-- Footer -->
   <footer>
     <div>2025 Tech Tackle Box™</div>
   </footer>
 
-  <!-- Modal -->
-  <div class="modal" id="mapModal" aria-hidden="true">
-    <div class="modal-inner" role="dialog" aria-modal="true" aria-labelledby="mapTitle">
-      <div class="modal-header">
-        <h2 class="modal-title" id="mapTitle">Map</h2>
-        <div class="modal-actions">
-          <button type="button" id="closeModal" aria-label="Close">Close</button>
-        </div>
-      </div>
-      <div class="iframe-wrap">
-        <iframe id="mapFrame" class="modal-iframe" src=""
-                referrerpolicy="no-referrer"
-                title="Embedded map"></iframe>
-        <button class="fs-guard" aria-hidden="true" tabindex="-1"></button>
-      </div>
-    </div>
-  </div>
-
   <script>
-    (function () {
-      var ua = navigator.userAgent || "";
-      var isMobile = /Mobi|Android|iP(hone|od|ad)/i.test(ua) ||
-                     (navigator.userAgentData && navigator.userAgentData.mobile);
-
-      var modal = document.getElementById('mapModal');
-      var frame = document.getElementById('mapFrame');
-      var titleEl = document.getElementById('mapTitle');
-      var closeBtn = document.getElementById('closeModal');
-
-      function embedUrl(mapId){ return "https://www.google.com/maps/d/embed?mid=" + encodeURIComponent(mapId); }
-      function viewerUrl(mapId){ return "https://www.google.com/maps/d/viewer?mid=" + encodeURIComponent(mapId) + "&usp=sharing"; }
-
-      document.querySelectorAll('a.mymaps[data-mapid]').forEach(function(a){
-        var id = a.getAttribute('data-mapid');
-        var title = a.getAttribute('title') || 'Map';
-
-        if (isMobile) {
-          a.addEventListener('click', function(e){
-            e.preventDefault();
-            titleEl.textContent = title.replace(/^Open map:\s*/i, '');
-            frame.src = embedUrl(id);
-            modal.classList.add('open');
-            modal.setAttribute('aria-hidden','false');
-          }, { passive:false });
-        } else {
-          a.href = viewerUrl(id);
-        }
-      });
-
-      function closeModal(){
-        modal.classList.remove('open');
-        modal.setAttribute('aria-hidden','true');
-        frame.src = "";
+    // mode: "inline" (embed iframe) or "external" (show card + button only)
+    const cams = {
+      princess: {
+        mode: "external",
+        link: "https://portal.hdontap.com/s/embed?stream=aransas_princess-ptz-CUST&ratio=16:9&fluid=true",
+        height: 480
+      },
+      deepsea: {
+        mode: "inline",
+        html: `<iframe src="https://g1.ipcamlive.com/player/player.php?alias=portafishrack&autoplay=1&mute=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`,
+        link: "https://g1.ipcamlive.com/player/player.php?alias=portafishrack&autoplay=1&mute=1",
+        height: 600
+      },
+      dolphineast: {
+        mode: "inline",
+        html: `<iframe src="//g1.ipcamlive.com/player/player.php?alias=dolphindockeast&disablefullscreen=1&disablevideofit=1" allowfullscreen></iframe>`,
+        link: "https://g1.ipcamlive.com/player/player.php?alias=dolphindockeast&disablefullscreen=1&disablevideofit=1",
+        height: 600
+      },
+      dolphinwest: {
+        mode: "inline",
+        html: `<iframe src="//g1.ipcamlive.com/player/player.php?alias=dolphindockwest&disablefullscreen=1&disablevideofit=1" allowfullscreen></iframe>`,
+        link: "https://g1.ipcamlive.com/player/player.php?alias=dolphindockwest&disablefullscreen=1&disablevideofit=1",
+        height: 600
+      },
+      gulfshores: {
+        mode: "external",
+        link: "https://portal.hdontap.com/s/embed?stream=gulf-shores_beach-cam-CUST&ratio=16:9&fluid=true",
+        height: 480
+      },
+      gulfwaters: {
+        mode: "inline",
+        html: `<iframe src="https://www.youtube.com/embed/Ue6-LTCBCDY" title="Gulf Waters Boardwalk" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`,
+        link: "https://www.youtube.com/watch?v=Ue6-LTCBCDY",
+        height: 810
+      },
+      shipchannel: {
+        mode: "inline",
+        html: `<iframe src="//g1.ipcamlive.com/player/player.php?alias=farley&autoplay=1&token=P%2BwJgROdAuOQV%2FfLPHC1SOsSOzdBVG4FPa%2BtKLySJtk%3D" allowfullscreen></iframe>`,
+        link: "https://g1.ipcamlive.com/player/player.php?alias=farley&autoplay=1&token=P%2BwJgROdAuOQV%2FfLPHC1SOsSOzdBVG4FPa%2BtKLySJtk%3D",
+        height: 600
+      },
+      sandcastle: {
+        mode: "external",
+        link: "https://portal.hdontap.com/s/embed?stream=sandcastle_beach-cam-CUST",
+        height: 480
+      },
+      sandollar: {
+        mode: "external",
+        link: "https://www.ipcamlive.com/sanddollar",
+        height: 400
+      },
+      sandpiper: {
+        mode: "external",
+        link: "https://portal.hdontap.com/s/embed?stream=sandpiper_beach-cam-CUST&ratio=16:9&fluid=true",
+        height: 480
+      },
+      seagull: {
+        mode: "external",
+        link: "https://portal.hdontap.com/s/embed?stream=sgc_surfcam-CUST&ratio=16:9&fluid=true",
+        height: 480
+      },
+      dunes: {
+        mode: "inline",
+        html: `<iframe src="https://player.vimeo.com/video/931221293?h=a81922def4" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`,
+        link: "https://player.vimeo.com/video/931221293?h=a81922def4",
+        height: 800
       }
-      closeBtn.addEventListener('click', closeModal);
-      modal.addEventListener('click', function(e){ if (e.target === modal) closeModal(); });
-      document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
-    })();
+    };
+
+    const sel = document.getElementById('camSelector');
+    const playerWrap = document.getElementById('playerWrap');
+    const fallback = document.getElementById('fallback');
+    const openDirect = document.getElementById('openDirect');
+
+    function renderExternal(link, height){
+      document.documentElement.style.setProperty('--player-h', (height || 480) + 'px');
+      playerWrap.innerHTML = `<div class=\"ext-card\">Embedding is disabled by the host.<br><a class=\"btn\" href=\"${link}\" target=\"_blank\" rel=\"noopener\">Open Stream</a></div>`;
+      openDirect.href = link || '#';
+      fallback.style.display = 'none';
+    }
+
+    function renderInline(html, link, height){
+      document.documentElement.style.setProperty('--player-h', (height || 800) + 'px');
+      playerWrap.innerHTML = html;
+      openDirect.href = link || '#';
+      fallback.style.display = 'none';
+      // Show fallback if the embed is blocked by provider
+      setTimeout(() => { fallback.style.display = 'block'; }, 1500);
+    }
+
+    function loadCam(key){
+      const cam = cams[key];
+      if(!cam) return;
+      if(cam.mode === 'external') renderExternal(cam.link, cam.height);
+      else renderInline(cam.html, cam.link, cam.height);
+    }
+
+    // Default selection: Deep Sea Headquarters
+    sel.value = 'deepsea';
+    loadCam(sel.value);
+    sel.addEventListener('change', e => loadCam(e.target.value));
   </script>
 </body>
 </html>
