@@ -148,15 +148,14 @@
     box-shadow: 0 2px 6px rgba(0,0,0,0.3);
   }
   /* Make the LIVE Webcams button orange (all sizes) */
-.nav a[href*="webcams.html"] button {
-  background-color: #F67917;  /* Port A orange */
-  color: #fff;
-}
-
-.nav a[href*="webcams.html"] button:hover {
-  background-color: #d56410;  /* a bit darker on hover */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-}
+  .nav a[href*="webcams.html"] button {
+    background-color: #F67917;  /* Port A orange */
+    color: #fff;
+  }
+  .nav a[href*="webcams.html"] button:hover {
+    background-color: #d56410;  /* a bit darker on hover */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  }
 
   .nav button:hover { background-color: #1976d2; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
 
@@ -258,66 +257,110 @@
   @media (min-width: 768px) {
     .title-row h1 { font-size: 3vw; }
   }
+
+  /* ===== PHONES: bigger labels, single-row horizontal scroll ===== */
   @media (max-width: 600px) {
-    .nav { gap: 0.3rem; padding: 0 0.5rem; flex-wrap: nowrap; }
-    .tooltip-container { flex: 1 1 auto; display: flex; justify-content: center; }
-    .footer-text {max-width: 200px; text-align: center; }
-    .nav button {
-      font-size: 0.65rem; padding: 6px 10px; min-width: 58px; max-width: 80px;
-      white-space: nowrap; text-overflow: ellipsis; overflow: hidden;
+    .nav {
+      flex-wrap: nowrap;               /* stay on one row */
+      overflow-x: auto;                /* sideways scroll if needed */
+      -webkit-overflow-scrolling: touch;
+      gap: 0.4rem;
+      padding: 0 0.5rem;
+      scroll-snap-type: x mandatory;
     }
-      br.mobile-break { display: inline; } /* any non-none value works */
-  }
-  @media (max-width: 850px) and (orientation: landscape) {
-    .nav { gap: 0.4rem; padding: 0 0.75rem; flex-wrap: nowrap; }
-    .tooltip-container { flex: 1 1 auto; display: flex; justify-content: center; }
+    .nav::-webkit-scrollbar { display: none; }
+
+    .tooltip-container {
+      flex: 0 0 auto;                  /* don't stretch items */
+      scroll-snap-align: start;
+    }
+
+    .footer-text {max-width: 200px; text-align: center; }
+    br.mobile-break { display: inline; }
+
     .nav button {
-      font-size: 0.85rem; padding: 8px 16px; min-width: 90px; max-width: 130px;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      font-size: clamp(0.95rem, 3.7vw, 1.15rem); /* bigger text */
+      line-height: 1.15;                          /* compact 2-line pills */
+      padding: 8px 12px;                          /* comfy tap target */
+      min-height: 40px;
+      white-space: normal;                        /* allow your <BR> */
+      overflow: visible;
+      text-overflow: clip;
+      min-width: unset; max-width: none;          /* remove old caps */
+    }
+  }
+
+  /* ===== SMALL LANDSCAPE PHONES: slightly tighter but readable ===== */
+  @media (max-width: 850px) and (orientation: landscape) {
+    .nav {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      gap: 0.4rem;
+      padding: 0 0.75rem;
+      scroll-snap-type: x mandatory;
+    }
+    .nav::-webkit-scrollbar { display: none; }
+    .tooltip-container { flex: 0 0 auto; scroll-snap-align: start; }
+
+    .nav button {
+      font-size: clamp(0.9rem, 2.4vw, 1.05rem);
+      line-height: 1.15;
+      padding: 8px 12px;
+      min-height: 38px;
+      white-space: normal;  /* keep your two-line labels */
+      overflow: visible;
+      text-overflow: clip;
+      min-width: unset; max-width: none;
     }
     br.mobile-break { display: none; }
   }
 
+  /* Keep the special wide webcams button on phones */
   @media (max-width: 600px) {
-  .btn-wide {
-    max-width: none;         /* let it grow */
-    min-width: 240px;        /* or use width: 100% for a full-width pill */
-    white-space: normal;     /* allow wrapping if needed */
-    overflow: visible;
-    text-overflow: clip;
-    font-size: 1.2rem;
-    padding: 10px 16px;
+    .btn-wide {
+      max-width: none;         /* let it grow */
+      min-width: 240px;        /* nice big target */
+      white-space: normal;     /* allow wrapping if needed */
+      overflow: visible;
+      text-overflow: clip;
+      font-size: 1.2rem;
+      padding: 10px 16px;
+      text-align: center;
+    }
+
+    /* Put the webcams button on its own centered line (still fine even with horizontal scroll) */
+    .nav a[href*="webcams.html"] {
+      flex: 0 0 100%;
+      display: flex;
+      justify-content: center;
+    }
   }
+
+  /* Small landscape devices: keep webcams rule friendly */
+  @media (max-width: 850px) and (orientation: landscape) {
+    .nav a[href*="webcams.html"] button {
+      max-width: none !important;
+      white-space: normal !important;
+    }
+  }
+/* Remove link underlines inside the nav (and the webcams row) */
+.nav a,
+.nav a:visited,
+.nav a:hover,
+.nav a:focus,
+.nav a:active {
+  text-decoration: none;
 }
-/* Portrait phones */
-@media (max-width: 600px) {
-  .nav { flex-wrap: wrap; } /* let buttons move to a new line */
 
-  /* Target the webcams button specifically (no HTML changes) */
-  .nav a[href*="webcams.html"] button {
-    max-width: none !important;
-    white-space: normal !important;   /* allow wrapping */
-    overflow: visible !important;
-    text-overflow: clip !important;
-    font-size: 0.95rem;
-    padding: 10px 16px;
-  }
-
-  /* Put the webcams button on its own centered line (optional but helpful) */
-  .nav a[href*="webcams.html"] {
-    flex: 0 0 100%;
-    display: flex;
-    justify-content: center;
-  }
+/* Optional: also remove the mobile tap highlight line/glow */
+.nav a {
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Small landscape devices (you also cap width here in your CSS) */
-@media (max-width: 850px) and (orientation: landscape) {
-  .nav { flex-wrap: wrap; }
-  .nav a[href*="webcams.html"] button {
-    max-width: none !important;
-    white-space: normal !important;
-  }
+/* If you want to be extra sure the underline never propagates to children: */
+.nav a * {
+  text-decoration: none;
 }
 
 </style>
@@ -327,7 +370,7 @@
   <h3>Welcome!</h3>
   <p><i>Our latest site updates include...</i></p>
   <ul>
-    &nbsp;<li>New products added</li>
+     <li>New products added</li>
     <li>More local fishing guides listed</li>
     <li>New articles and helpful local information</li>
     <li>And of course, the latest Fishing Report!</li>
@@ -344,7 +387,7 @@
     </div>
    <div class="nav">
       <div class="tooltip-container">
-        <a href="https://g1.ipcamlive.com/player/player.php?alias=portafishrack&#038;autoplay=1&#038;mute=1" target="_blank" rel="noopener">
+        <a href="https://g1.ipcamlive.com/player/player.php?alias=portafishrack&autoplay=1&mute=1" target="_blank" rel="noopener">
           <button>Bait<BR>Cam</button>
         </a>
         <div class="custom-tooltip">Check which bait flags are flying at Deep Sea Headquarters, LIVE!</div>
@@ -384,7 +427,7 @@
    <div class="nav">
       <div class="tooltip-container">
         <a href="https://hookedonporta.com/widgets/webcams.html" target="_blank" rel="noopener">
-          <button class="btn-wide">LIVE<BR>Webcams</button>
+          <button class="btn-wide">LIVE Webcams</button>
         </a>
         <div class="custom-tooltip">Check conditions and status of various locations around Port A!</div>
       </div>
@@ -432,7 +475,7 @@
       
    <div class="tooltip-container">
     <button class="active" data-src="Products.html" aria-describedby="tip-shop-gear">Shop Gear</button>
-    <div id="tip-shop-gear" class="custom-tooltip">Buy local, but f you buy online, please support our site by using our Amazon product links!</div>
+    <div id="tip-shop-gear" class="custom-tooltip">Buy local, but if you buy online, please support our site by using our Amazon product links!</div>
   </div>
 
   <div class="tooltip-container">
@@ -441,8 +484,8 @@
   </div>
 
   <div class="tooltip-container">
-    <button data-src="/articles/" aria-describedby="tip-articles">Articles &amp; Info</button>
-    <div id="tip-articles" class="custom-tooltip">Tips, rigs, rules &amp; more</div>
+    <button data-src="/articles/" aria-describedby="tip-articles">Articles & Info</button>
+    <div id="tip-articles" class="custom-tooltip">Tips, rigs, rules & more</div>
   </div>
 
     </div>
@@ -474,7 +517,7 @@
     <p style="text-align: center; font-size: 0.95rem; color: rgba(150, 255, 255, 1); margin-top: 2rem;">
       <i>Tech Tackle Box™ is a proud part of<br class="mobile-break">
         <a href="https://wheatonsworld.com" target="_blank" style="color: gold; text-decoration: none;"><b>Wheaton’s World™</b></a>
-        &nbsp;&nbsp;-&nbsp;&nbsp;<span style="color: rgba(150, 255, 255, 1);">All rights reserved.</span></i>
+          -  <span style="color: rgba(150, 255, 255, 1);">All rights reserved.</span></i>
     </p>
   </footer>
 
