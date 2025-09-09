@@ -121,7 +121,6 @@
         <label for="camSelector">Camera:</label>
         <div class="controls">
           <select id="camSelector" aria-label="Choose a webcam">
-            <!-- Alphabetical by label; keep "The Dunes..." under T -->
             <option value="princess">Aransas Princess</option>
             <option value="deepsea">Deep Sea Headquarters</option>
             <option value="dolphineast">Dolphin Docks East</option>
@@ -133,7 +132,6 @@
             <option value="sandollar">Sandollar Sity</option>
             <option value="sandpiper">Sandpiper Condominiums</option>
             <option value="seagull">Sea Gull Condominiums</option>
-            <option value="dunes">The Dunes Condominiums</option>
           </select>
         </div>
       </div>
@@ -220,12 +218,7 @@
         link: "https://portal.hdontap.com/s/embed?stream=sgc_surfcam-CUST&ratio=16:9&fluid=true",
         height: 480
       },
-      dunes: {
-        mode: "inline",
-        html: `<iframe src="https://player.vimeo.com/video/931221293?h=a81922def4" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`,
-        link: "https://player.vimeo.com/video/931221293?h=a81922def4",
-        height: 800
-      }
+ 
     };
 
     const sel = document.getElementById('camSelector');
