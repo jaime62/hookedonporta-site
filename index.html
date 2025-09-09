@@ -46,72 +46,37 @@
     max-width: 90%;
     text-align: center;
   }
-  .tooltip.show {
-    opacity: 1;
-  }
-  .tooltip.hide {
-    opacity: 0;
-  }
-  .tooltip h3 {
-    margin: 0 0 8px 0;
-    font-size: 18px;
-    color: #ffd700;
-  }
-  .tooltip ul {
-    margin: 0 0 12px 0;
-    padding-left: 20px;
-    text-align: left;
-  }
+  .tooltip.show { opacity: 1; }
+  .tooltip.hide { opacity: 0; }
+  .tooltip h3 { margin: 0 0 8px 0; font-size: 18px; color: #ffd700; }
+  .tooltip ul { margin: 0 0 12px 0; padding-left: 20px; text-align: left; }
   .tooltip button {
-    background: #ffd700;
-    color: #333;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s ease;
+    background: #ffd700; color: #333; border: none; padding: 6px 12px; border-radius: 6px;
+    cursor: pointer; font-weight: bold; transition: background 0.3s ease;
   }
-  .tooltip button:hover {
-    background: #e6c200;
-  }
+  .tooltip button:hover { background: #e6c200; }
 </style>
-<style>
 
+<style>
   .logo {
-  display: block;
-  margin: 0 auto;
-  transform: scale(1.4);
-  transform-origin: top center; /* expand down, not up */
-  max-height: 80px;
-  width: auto;
-}
+    display: block; margin: 0 auto; transform: scale(1.4); transform-origin: top center;
+    max-height: 80px; width: auto;
+  }
+
   /* Reset + base */
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; overflow-x: hidden; font-family: Arial, sans-serif; }
   body { color: #000; background: transparent; }
   html, body { overscroll-behavior-y: none; }
 
-  /* ---- Single fixed full-page background via ::before ----
-     Default (mobile) image; desktop swap below */
+  /* ---- Single fixed full-page background via ::before ---- */
   body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
+    content: ""; position: fixed; inset: 0; z-index: -1;
     background-image: url("https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/HOPA-bg-sunrise-n-fish.png");
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: 120% auto; /* keep your current zoom */
-    pointer-events: none;
-    height: 100svh;          /* iOS friendly */
-    transform: translateZ(0);
-    will-change: transform;
+    background-position: center center; background-repeat: no-repeat; background-size: 120% auto;
+    pointer-events: none; height: 100svh; transform: translateZ(0); will-change: transform;
   }
-  @supports not (height: 100svh) {
-    body::before { height: 100vh; }
-  }
-  /* Desktop/tablet: switch to desktop background image */
+  @supports not (height: 100svh) { body::before { height: 100vh; } }
   @media (min-width: 768px) {
     body::before {
       background-image: url("https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/sunrise-over-ocean-floor-fish2.png");
@@ -120,24 +85,14 @@
 
   /* Header (scrolls with page) */
   .header {
-    width: 100%;
-    background: rgba(250,223,175,.65);
-    backdrop-filter: saturate(120%) blur(1px);
-    -webkit-backdrop-filter: saturate(120%) blur(1px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    width: 100%; background: rgba(250,223,175,.65);
+    backdrop-filter: saturate(120%) blur(1px); -webkit-backdrop-filter: saturate(120%) blur(1px);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
     padding: 2rem 1rem 0.9rem;
   }
-  .title-row {
-    display: flex; align-items: center; justify-content: center;
-    gap: 1rem; flex-wrap: wrap; text-align: center;
-  }
+  .title-row { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; text-align: center; }
   .title-row img { max-height: 80px; width: auto; }
-  .title-row h1 {
-    font-size: 6vw; font-weight: bold; color: aqua; text-shadow: 0px 4px 4px #000;
-  }
+  .title-row h1 { font-size: 6vw; font-weight: bold; color: aqua; text-shadow: 0px 4px 4px #000; }
 
   /* Nav buttons + tooltips */
   .nav { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 1.8rem; }
@@ -148,15 +103,10 @@
     box-shadow: 0 2px 6px rgba(0,0,0,0.3);
   }
   /* Make the LIVE Webcams button orange (all sizes) */
-  .nav a[href*="webcams.html"] button {
-    background-color: #F67917;  /* Port A orange */
-    color: #fff;
-  }
+  .nav a[href*="webcams.html"] button { background-color: #F67917; color: #fff; }
   .nav a[href*="webcams.html"] button:hover {
-    background-color: #d56410;  /* a bit darker on hover */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    background-color: #d56410; box-shadow: 0 4px 12px rgba(0,0,0,0.4);
   }
-
   .nav button:hover { background-color: #1976d2; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
 
   .tooltip-container { position: relative; display: inline-block; }
@@ -170,9 +120,7 @@
     content: ""; position: absolute; top: 100%; left: 50%; margin-left: -6px;
     border-width: 6px; border-style: solid; border-color: #BBFAE5 transparent transparent transparent;
   }
-  .tooltip-container:hover .custom-tooltip {
-    visibility: visible; opacity: 1; animation: fadeBounce 0.6s ease forwards;
-  }
+  .tooltip-container:hover .custom-tooltip { visibility: visible; opacity: 1; animation: fadeBounce 0.6s ease forwards; }
   @keyframes fadeBounce {
     0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
     60% { opacity: 1; transform: translateX(-50%) translateY(-5px); }
@@ -192,9 +140,7 @@
     text-align: center; margin: 0.5rem auto; display: inline-flex; align-items: center;
     gap: 0.4rem; padding: 0.3rem 0.6rem; border-radius: 8px; cursor: pointer;
   }
-  .about-container .about-tagline {
-  font-size: 1rem;  /* smaller caption */
-}
+  .about-container .about-tagline { font-size: 1rem; }
   .tagline:hover { background-color: #FBEE8E; border-radius: 8px; }
   .about-tagline span { margin-left: 8px; font-size: 1.4rem; vertical-align: middle; }
 
@@ -210,108 +156,71 @@
   /* Report link styling */
   .report-row { text-align:center; margin: .65rem auto 1rem; }
 
-.fishing-link {
-  text-decoration: none;
-  color: #093D38;
-  font-weight: bold;
-  background: rgba(0,255,255,.85);
-  padding: .7rem 1.2rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  box-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
-  transition: all .25s ease;
-  animation: glowPulse 2s infinite ease-in-out;
-}
-
-@keyframes glowPulse {
-  0%   { box-shadow: 0 0 8px rgba(255, 255, 0, 0.6); }
-  50%  { box-shadow: 0 0 20px rgba(255, 255, 0, 1), 0 0 40px rgba(255, 255, 0, 0.6); }
-  100% { box-shadow: 0 0 8px rgba(255, 255, 0, 0.6); }
-}
+  .fishing-link {
+    text-decoration: none; color: #093D38; font-weight: bold; background: rgba(0,255,255,.85);
+    padding: .7rem 1.2rem; border-radius: 8px; font-size: 1rem;
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
+    transition: all .25s ease; animation: glowPulse 2s infinite ease-in-out;
+  }
+  @keyframes glowPulse {
+    0% { box-shadow: 0 0 8px rgba(255, 255, 0, 0.6); }
+    50% { box-shadow: 0 0 20px rgba(255, 255, 0, 1), 0 0 40px rgba(255, 255, 0, 0.6); }
+    100% { box-shadow: 0 0 8px rgba(255, 255, 0, 0.6); }
+  }
 
   /* Store / iframe area — transparent */
   #amazon-ads { margin: 2rem auto 0; padding: 0; width: 95%; max-width: 1400px; text-align: center; border-radius: 8px; background: transparent; }
   #amazon-ads iframe {
-    width: 100%;
-    display: block;
-    border: none;
-    background: transparent;
-    height: auto; /* sized by postMessage */
+    width: 100%; display: block; border: none; background: transparent; height: auto; /* sized by postMessage */
   }
   .tab-folder { display: flex; justify-content: center; margin: 1.5rem 0 -0.5rem; gap: 1rem; }
   .tab-folder button {
-    padding: 10px 20px; border: none; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; background-color: silver; color: darkblue; font-weight: bold; cursor: pointer;
+    padding: 10px 20px; border: none; border-radius: 10px; background-color: silver; color: darkblue;
+    font-weight: bold; cursor: pointer;
   }
-  .tab-folder button:hover {
-      background-color: rgba(250, 215, 0, 0.9);
-}
+  .tab-folder button:hover { background-color: rgba(250, 215, 0, 0.9); }
   .tab-folder button.active { color: darkblue; background-color: gold; }
 
   .fishing-tagline { color: gold; font-size: 1.3rem; font-weight: bold; text-shadow: 1px 1px 4px #000; text-align: center; margin: .5rem; }
   .site-footer { text-align: center; font-size: 1rem; color: #666; padding: 1rem; margin-top: 1rem; border-top: 0; }
 
+  /* ===== BOTTOM SHORTCUT ROW (spacing + color) ===== */
+  .shortcut-row { margin-bottom: 2rem; } /* space after the button row */
+  .nav button.shortcut-btn { background-color: #F67917; color: #fff; }
+  .nav button.shortcut-btn:hover { background-color: #d56410; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+
   /* Responsive tweaks */
-  @media (orientation: landscape) and (max-width: 1024px) {
-    .title-row h1 { font-size: 4vw; }
-  }
-  @media (min-width: 768px) {
-    .title-row h1 { font-size: 3vw; }
-  }
+  @media (orientation: landscape) and (max-width: 1024px) { .title-row h1 { font-size: 4vw; } }
+  @media (min-width: 768px) { .title-row h1 { font-size: 3vw; } }
 
   /* ===== PHONES: bigger labels, single-row horizontal scroll ===== */
   @media (max-width: 600px) {
     .nav {
-      flex-wrap: nowrap;               /* stay on one row */
-      overflow-x: auto;                /* sideways scroll if needed */
-      -webkit-overflow-scrolling: touch;
-      gap: 0.4rem;
-      padding: 0 0.5rem;
-      scroll-snap-type: x mandatory;
-    }
-    .nav::-webkit-scrollbar { display: none; }
-
-    .tooltip-container {
-      flex: 0 0 auto;                  /* don't stretch items */
-      scroll-snap-align: start;
-    }
-
-    .footer-text {max-width: 200px; text-align: center; }
-    br.mobile-break { display: inline; }
-
-    .nav button {
-      font-size: clamp(0.95rem, 3.7vw, 1.15rem); /* bigger text */
-      line-height: 1.15;                          /* compact 2-line pills */
-      padding: 8px 12px;                          /* comfy tap target */
-      min-height: 40px;
-      white-space: normal;                        /* allow your <BR> */
-      overflow: visible;
-      text-overflow: clip;
-      min-width: unset; max-width: none;          /* remove old caps */
-    }
-  }
-
-  /* ===== SMALL LANDSCAPE PHONES: slightly tighter but readable ===== */
-  @media (max-width: 850px) and (orientation: landscape) {
-    .nav {
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      gap: 0.4rem;
-      padding: 0 0.75rem;
-      scroll-snap-type: x mandatory;
+      flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch;
+      gap: 0.4rem; padding: 0 0.5rem; scroll-snap-type: x mandatory;
     }
     .nav::-webkit-scrollbar { display: none; }
     .tooltip-container { flex: 0 0 auto; scroll-snap-align: start; }
-
+    .footer-text { max-width: 200px; text-align: center; }
+    br.mobile-break { display: inline; }
     .nav button {
-      font-size: clamp(0.9rem, 2.4vw, 1.05rem);
-      line-height: 1.15;
-      padding: 8px 12px;
-      min-height: 38px;
-      white-space: normal;  /* keep your two-line labels */
-      overflow: visible;
-      text-overflow: clip;
+      font-size: clamp(0.95rem, 3.7vw, 1.15rem); line-height: 1.15; padding: 8px 12px;
+      min-height: 40px; white-space: normal; overflow: visible; text-overflow: clip;
       min-width: unset; max-width: none;
+    }
+  }
+
+  /* ===== SMALL LANDSCAPE PHONES ===== */
+  @media (max-width: 850px) and (orientation: landscape) {
+    .nav {
+      flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch;
+      gap: 0.4rem; padding: 0 0.75rem; scroll-snap-type: x mandatory;
+    }
+    .nav::-webkit-scrollbar { display: none; }
+    .tooltip-container { flex: 0 0 auto; scroll-snap-align: start; }
+    .nav button {
+      font-size: clamp(0.9rem, 2.4vw, 1.05rem); line-height: 1.15; padding: 8px 12px; min-height: 38px;
+      white-space: normal; overflow: visible; text-overflow: clip; min-width: unset; max-width: none;
     }
     br.mobile-break { display: none; }
   }
@@ -319,76 +228,35 @@
   /* Keep the special wide webcams button on phones */
   @media (max-width: 600px) {
     .btn-wide {
-      max-width: none;         /* let it grow */
-      min-width: 240px;        /* nice big target */
-      white-space: normal;     /* allow wrapping if needed */
-      overflow: visible;
-      text-overflow: clip;
-      font-size: 1.2rem;
-      padding: 10px 16px;
-      text-align: center;
+      max-width: none; min-width: 240px; white-space: normal; overflow: visible; text-overflow: clip;
+      font-size: 1.2rem; padding: 10px 16px; text-align: center;
     }
-
-    /* Put the webcams button on its own centered line (still fine even with horizontal scroll) */
-    .nav a[href*="webcams.html"] {
-      flex: 0 0 100%;
-      display: flex;
-      justify-content: center;
-    }
+    .nav a[href*="webcams.html"] { flex: 0 0 100%; display: flex; justify-content: center; }
   }
 
   /* Small landscape devices: keep webcams rule friendly */
   @media (max-width: 850px) and (orientation: landscape) {
-    .nav a[href*="webcams.html"] button {
-      max-width: none !important;
-      white-space: normal !important;
+    .nav a[href*="webcams.html"] button { max-width: none !important; white-space: normal !important; }
+  }
+
+  /* Remove link underlines inside the nav */
+  .nav a, .nav a:visited, .nav a:hover, .nav a:focus, .nav a:active { text-decoration: none; }
+  .nav a { -webkit-tap-highlight-color: transparent; }
+  .nav a * { text-decoration: none; }
+
+  /* Center the single "LIVE Webcams" row on phones */
+  @media (max-width: 600px) {
+    .nav a[href*="webcams.html"] {
+      flex: 0 0 100% !important; display: flex !important; justify-content: center !important;
+    }
+    .header + .nav {
+      flex-wrap: wrap !important; overflow-x: visible !important; scroll-snap-type: none !important;
+      justify-content: center !important; padding-left: 0; padding-right: 0;
+    }
+    .header + .nav .tooltip-container {
+      flex: 0 0 100% !important; display: flex !important; justify-content: center !important;
     }
   }
-/* Remove link underlines inside the nav (and the webcams row) */
-.nav a,
-.nav a:visited,
-.nav a:hover,
-.nav a:focus,
-.nav a:active {
-  text-decoration: none;
-}
-
-/* Optional: also remove the mobile tap highlight line/glow */
-.nav a {
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* If you want to be extra sure the underline never propagates to children: */
-.nav a * {
-  text-decoration: none;
-}
-/* Force LIVE Webcams button to center on its own row */
-@media (max-width: 600px) {
-  .nav a[href*="webcams.html"] {
-    flex: 0 0 100% !important;
-    display: flex !important;
-    justify-content: center !important;
-  }
-}
-/* Center the single "LIVE Webcams" row on phones */
-@media (max-width: 600px) {
-  /* this selects the nav immediately AFTER .header (your webcams row) */
-  .header + .nav {
-    flex-wrap: wrap !important;         /* allow a full-width row */
-    overflow-x: visible !important;     /* no horizontal scroll here */
-    scroll-snap-type: none !important;
-    justify-content: center !important; /* center within the row */
-    padding-left: 0; padding-right: 0;  /* remove scroller padding bias */
-  }
-
-  /* the real flex item is the tooltip-container, not the <a> */
-  .header + .nav .tooltip-container {
-    flex: 0 0 100% !important;          /* take the full row width */
-    display: flex !important;
-    justify-content: center !important; /* center the button */
-  }
-}
-
 </style>
 </head>
 <body>
@@ -396,156 +264,149 @@
   <h3>Welcome!</h3>
   <p><i>Our latest site updates include...</i></p>
   <ul>
-     <li>New products added</li>
+     <li>New products added</li>
     <li>More local fishing guides listed</li>
     <li>New articles and helpful local information</li>
     <li>And of course, the latest Fishing Report!</li>
   </ul>
   <button id="dismissBtn">Got it!</button>
 </div>
-  <!-- Header (scrolls with page) -->
-  <div class="header">
-    <div class="logo">
-      <a href="https://hookedonporta.com" target="_blank" rel="noopener">
-        <img class="logo" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/TTB-Logo-transparent.png" alt="HookedOnPortA.com">
-      </a>
-  
-    </div>
-   <div class="nav">
-      <div class="tooltip-container">
-        <a href="https://g1.ipcamlive.com/player/player.php?alias=portafishrack&autoplay=1&mute=1" target="_blank" rel="noopener">
-          <button>Bait<BR>Cam</button>
-        </a>
-        <div class="custom-tooltip">Check which bait flags are flying at Deep Sea Headquarters, LIVE!</div>
-      </div>
 
-    
-      <div class="tooltip-container">
-        <a href="https://tpwd.texas.gov/gis/ris/artificialreefs/" target="_blank" rel="noopener">
-          <button>Gulf<BR>Reefs</button>
-        </a>
-        <div class="custom-tooltip">Locate and fish artificial reef structures!</div>
-      </div>
-    
-      <div class="tooltip-container">
-        <a href="https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits" target="_blank" rel="noopener">
-          <button>TX<BR>Regs</button>
-        </a>
-        <div class="custom-tooltip">Check TPWD for saltwater fishing regulations</div>
-      </div>
-
-
-      <div class="tooltip-container">
-        <a href="https://sfs.saltstrong.com/?lat=27.73447113880205&lng=-97.16033439480708&zoom=10" target="_blank" rel="noopener">
-          <button>Smart<BR>Spots</button>
-        </a>
-        <div class="custom-tooltip">Use Salt Strong's fishing forecast & planning tool!</div>
-      </div>
-
-      <div class="tooltip-container">
-        <a href="https://hookedonporta.com/widgets/surf-conditions.html" target="_blank" rel="noopener">
-          <button>Surf<BR>Status</button>
-        </a>
-        <div class="custom-tooltip">Check wind, wave & tide conditions around Port A!</div>
-      </div>
-    </div>
+<!-- Header (scrolls with page) -->
+<div class="header">
+  <div class="logo">
+    <a href="https://hookedonporta.com" target="_blank" rel="noopener">
+      <img class="logo" src="https://raw.githubusercontent.com/jaime62/hookedonporta-site/main/images/TTB-Logo-transparent.png" alt="HookedOnPortA.com">
+    </a>
   </div>
-   <div class="nav">
-      <div class="tooltip-container">
-        <a href="https://hookedonporta.com/widgets/webcams.html" target="_blank" rel="noopener">
-          <button class="btn-wide">LIVE Webcams</button>
-        </a>
-        <div class="custom-tooltip">Check conditions and status of various locations around Port A!</div>
-      </div>
-      </div>
-<!-- Intro -->
-<div class="intro">
-  <div style="text-align: center;">
-    <div class="about-tagline" style="cursor: default;">
-      Welcome Port Aransas Saltwater Anglers!
+
+  <div class="nav">
+    <div class="tooltip-container">
+      <a href="https://g1.ipcamlive.com/player/player.php?alias=portafishrack&autoplay=1&mute=1" target="_blank" rel="noopener">
+        <button>Bait<BR>Cam</button>
+      </a>
+      <div class="custom-tooltip">Check which bait flags are flying at Deep Sea Headquarters, LIVE!</div>
+    </div>
+
+    <div class="tooltip-container">
+      <a href="https://tpwd.texas.gov/gis/ris/artificialreefs/" target="_blank" rel="noopener">
+        <button>Gulf<BR>Reefs</button>
+      </a>
+      <div class="custom-tooltip">Locate and fish artificial reef structures!</div>
+    </div>
+
+    <div class="tooltip-container">
+      <a href="https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits" target="_blank" rel="noopener">
+        <button>TX<BR>Regs</button>
+      </a>
+      <div class="custom-tooltip">Check TPWD for saltwater fishing regulations</div>
+    </div>
+
+    <div class="tooltip-container">
+      <a href="https://sfs.saltstrong.com/?lat=27.73447113880205&lng=-97.16033439480708&zoom=10" target="_blank" rel="noopener">
+        <button>Smart<BR>Spots</button>
+      </a>
+      <div class="custom-tooltip">Use Salt Strong's fishing forecast & planning tool!</div>
+    </div>
+
+    <div class="tooltip-container">
+      <a href="https://hookedonporta.com/widgets/surf-conditions.html" target="_blank" rel="noopener">
+        <button>Surf<BR>Status</button>
+      </a>
+      <div class="custom-tooltip">Check wind, wave & tide conditions around Port A!</div>
     </div>
   </div>
 </div>
 
-
-  <!-- About collapsible -->
-  <div class="about-container">
-    <div style="text-align: center;">
-      <div class="about-tagline" onclick="toggleTackleBox()">
-        About Tech Tackle Box<span id="arrow-icon">▶</span>
-      </div>
-    </div>
+<div class="nav">
+  <div class="tooltip-container">
+    <a href="https://hookedonporta.com/widgets/webcams.html" target="_blank" rel="noopener">
+      <button class="btn-wide">LIVE Webcams</button>
+    </a>
+    <div class="custom-tooltip">Check conditions and status of various locations around Port A!</div>
   </div>
+</div>
 
-
-
-  <div id="tackleBoxInfo">
-    <p><strong><font color=#F67917>Tech</font><font color=#21609E> Tackle Box</font></strong>™ is a mobile-friendly hub of fishing tools and resources for the Port Aransas area. Whether you're fishing the bay or offshore, it puts helpful info right at your fingertips.</p>
-    <p>Quickly access bait cams, reef maps, interactive fishing-related maps, weather, tide, and regulation links — all without clutter.</p>
-    <p>Built for locals and visitors alike, this site will keep growing with new tools, more gear picks, and time-saving features.</p>
-    <p>While we urge you to shop local while in the Port Aransas area, if you are an online shopper, using the links in our <b>Shop Gear</b> section helps pay for this site and related costs. </p> <b><font color=#21609E> THANK YOU!</font></b> <font style="font-size: 200%;">🎣
-</font>
+<!-- Intro -->
+<div class="intro">
+  <div style="text-align: center;">
+    <div class="about-tagline" style="cursor: default;">Welcome Port Aransas Saltwater Anglers!</div>
   </div>
+</div>
 
-  <!-- Fishing Report link ABOVE store -->
-  <p style="margin-top:3em;"></p>
-
-  <div class="report-row">
-    <a href="#" class="fishing-link" onclick="openFishingReport(); return false;">Read the latest Fishing Report!</a>
+<!-- About collapsible -->
+<div class="about-container">
+  <div style="text-align: center;">
+    <div class="about-tagline" onclick="toggleTackleBox()">About Tech Tackle Box<span id="arrow-icon">▶</span></div>
   </div>
+</div>
+
+<div id="tackleBoxInfo">
+  <p><strong><font color=#F67917>Tech</font><font color=#21609E> Tackle Box</font></strong>™ is a mobile-friendly hub of fishing tools and resources for the Port Aransas area. Whether you're fishing the bay or offshore, it puts helpful info right at your fingertips.</p>
+  <p>Quickly access bait cams, reef maps, interactive fishing-related maps, weather, tide, and regulation links — all without clutter.</p>
+  <p>Built for locals and visitors alike, this site will keep growing with new tools, more gear picks, and time-saving features.</p>
+  <p>While we urge you to shop local while in the Port Aransas area, if you are an online shopper, using the links in our <b>Shop Gear</b> section helps pay for this site and related costs. </p> <b><font color=#21609E> THANK YOU!</font></b> <font style="font-size: 200%;">🎣</font>
+</div>
+
+<!-- Fishing Report link ABOVE store -->
+<p style="margin-top:3em;"></p>
+<div class="report-row">
+  <a href="#" class="fishing-link" onclick="openFishingReport(); return false;">Read the latest Fishing Report!</a>
+</div>
 <p style="margin-top:3em;"></p>
 
-  <!-- STORE EMBED -->
-  <div id="amazon-ads" style="text-align: center;">
-    <div class="tab-folder">
-      
-   <div class="tooltip-container">
-    <button class="active" data-src="Products.html" aria-describedby="tip-shop-gear">Shop Gear</button>
-    <div id="tip-shop-gear" class="custom-tooltip">Buy local, but if you buy online, please support our site by using our Amazon product links!</div>
-  </div>
-
-  <div class="tooltip-container">
-    <button data-src="Guides.html" aria-describedby="tip-guides">Local Fishing Guides</button>
-    <div id="tip-guides" class="custom-tooltip">Find trusted Port A captains</div>
-  </div>
-
-  <div class="tooltip-container">
-    <button data-src="/articles/" aria-describedby="tip-articles">Articles & Info</button>
-    <div id="tip-articles" class="custom-tooltip">Tips, rigs, rules & more</div>
-  </div>
-
+<!-- STORE EMBED -->
+<div id="amazon-ads" style="text-align: center;">
+  <div class="tab-folder">
+    <div class="tooltip-container">
+      <button class="active" data-src="Products.html" aria-describedby="tip-shop-gear">Shop Gear</button>
+      <div id="tip-shop-gear" class="custom-tooltip">Buy local, but if you buy online, please support our site by using our Amazon product links!</div>
     </div>
-<p style="margin-top:0em; margin-bottom:0em"></p>
 
-    <iframe
-      id="product-iframe"
-      src="Products.html"
-      title="Fishing Products"
-      loading="lazy"
-      allowtransparency="true"
-    ></iframe>
+    <div class="tooltip-container">
+      <button data-src="Guides.html" aria-describedby="tip-guides">Local Fishing Guides</button>
+      <div id="tip-guides" class="custom-tooltip">Find trusted Port A captains</div>
+    </div>
+
+    <div class="tooltip-container">
+      <button data-src="/articles/" aria-describedby="tip-articles">Articles & Info</button>
+      <div id="tip-articles" class="custom-tooltip">Tips, rigs, rules & more</div>
+    </div>
   </div>
 
-  <div style="text-align: center; padding: 0 0 0.2rem;">
-    <p style="font-size: .95rem; color: white;">
-      <i>As an Amazon Associate, I earn from qualifying purchases.</i>
-    </p>
-  </div>
-  <!-- STORE END -->
+  <p style="margin-top:0em; margin-bottom:0em"></p>
 
-  <div class="fishing-tagline">
-    <p style="text-align: center; margin-top: 2rem;">
-      <i>Tight lines out there, friends — stay sharp, trust your instincts, and go get 'em!</i>
-    </p>
-  </div>
+  <iframe id="product-iframe" src="Products.html" title="Fishing Products" loading="lazy" allowtransparency="true"></iframe>
+</div>
 
-  <footer class="site-footer">
-    <p style="text-align: center; font-size: 0.95rem; color: rgba(150, 255, 255, 1); margin-top: 2rem;">
-      <i>Tech Tackle Box™ is a proud part of<br class="mobile-break">
-        <a href="https://wheatonsworld.com" target="_blank" style="color: gold; text-decoration: none;"><b>Wheaton’s World™</b></a>
-          -  <span style="color: rgba(150, 255, 255, 1);">All rights reserved.</span></i>
-    </p>
-  </footer>
+<!-- SHORTCUT ROW (orange button + bottom spacing) -->
+<div class="nav shortcut-row">
+  <div class="tooltip-container">
+    <a href="https://hookedonporta.com/articles/TTB-mobile-shortcut-howto.html" target="_blank" rel="noopener">
+      <button class="btn-wide shortcut-btn">Add a TTB shortcut to your mobile device!</button>
+    </a>
+    <div class="custom-tooltip">Get instructions to add TTB to your home screen for 1-tap access.</div>
+  </div>
+</div>
+
+<div style="text-align: center; padding: 0 0 0.2rem;">
+  <p style="font-size: .95rem; color: white;"><i>As an Amazon Associate, I earn from qualifying purchases.</i></p>
+</div>
+<!-- STORE END -->
+
+<div class="fishing-tagline">
+  <p style="text-align: center; margin-top: 2rem;">
+    <i>Tight lines out there, friends — stay sharp, trust your instincts, and go get 'em!</i>
+  </p>
+</div>
+
+<footer class="site-footer">
+  <p style="text-align: center; font-size: 0.95rem; color: rgba(150, 255, 255, 1); margin-top: 2rem;">
+    <i>Tech Tackle Box™ is a proud part of<br class="mobile-break">
+      <a href="https://wheatonsworld.com" target="_blank" style="color: gold; text-decoration: none;"><b>Wheaton’s World™</b></a>
+        -  <span style="color: rgba(150, 255, 255, 1);">All rights reserved.</span></i>
+  </p>
+</footer>
 
 <script>
   // Tabs -> swap iframe src
@@ -675,34 +536,27 @@
   })();
 </script>
 
-  <!-- Onload Tooltip script (replace your current block with this) -->
+<!-- Onload Tooltip script -->
 <script>
   window.addEventListener("load", () => {
     const tooltip = document.getElementById("pageTooltip");
     const dismissBtn = document.getElementById("dismissBtn");
 
-    // Ensure it's renderable before we fade in
     tooltip.style.display = "block";
-    // Small tick so the class change triggers the transition
     requestAnimationFrame(() => tooltip.classList.add("show"));
 
     dismissBtn.addEventListener("click", () => {
-      // Start fade-out
       tooltip.classList.remove("show");
       tooltip.classList.add("hide");
     });
 
-    // After the opacity transition ends, remove from hit-testing
     tooltip.addEventListener("transitionend", (e) => {
       if (e.propertyName !== "opacity") return;
       if (tooltip.classList.contains("hide")) {
-        tooltip.style.display = "none"; // no more ghost box
+        tooltip.style.display = "none";
       }
     });
   });
 </script>
-
-
-  
 </body>
 </html>
