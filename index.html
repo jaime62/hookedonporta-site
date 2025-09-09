@@ -370,6 +370,24 @@
     justify-content: center !important;
   }
 }
+/* Center the single "LIVE Webcams" row on phones */
+@media (max-width: 600px) {
+  /* this selects the nav immediately AFTER .header (your webcams row) */
+  .header + .nav {
+    flex-wrap: wrap !important;         /* allow a full-width row */
+    overflow-x: visible !important;     /* no horizontal scroll here */
+    scroll-snap-type: none !important;
+    justify-content: center !important; /* center within the row */
+    padding-left: 0; padding-right: 0;  /* remove scroller padding bias */
+  }
+
+  /* the real flex item is the tooltip-container, not the <a> */
+  .header + .nav .tooltip-container {
+    flex: 0 0 100% !important;          /* take the full row width */
+    display: flex !important;
+    justify-content: center !important; /* center the button */
+  }
+}
 
 </style>
 </head>
