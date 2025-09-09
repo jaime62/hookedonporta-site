@@ -27,37 +27,30 @@
     html, body { padding:0; margin:0; background:var(--bg); color:var(--text); font-family:system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"; line-height:1.55; }
     .container{ max-width:850px; margin:60px auto; padding:30px; background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); overflow:visible; }
 
-    /* Header */
     .header{ position:relative; margin-bottom:20px; text-align:center; overflow:visible; }
     .logo{ display:block; margin:0 auto; max-height:90px; height:auto; width:auto; max-width:min(520px,92vw); object-fit:contain; padding-inline:8px; }
     .subhead{ color:#F77E17; margin-top:12px; }
 
-    .intro{ color:#334155; margin:0 0 16px; text-align:center; }
-
-    /* Webcam card */
     .card{
       border:1px solid var(--border);
       border-radius:var(--map-radius);
       background:#fff;
-      box-shadow:0 0 0 rgba(0,0,0,0.02);
-      overflow:visible; /* keep card fully rounded; let player be square */
+      overflow:visible;
       color:inherit;
     }
     .card-header{ display:flex; align-items:center; gap:10px; padding:12px 14px; border-bottom:1px solid var(--border); background:#fff; justify-content:center; }
     .card-header label{ font-weight:600; margin-right:4px; }
-    .card-header .controls{ margin-left:0; display:inline-flex; }
     .card-body{ position:relative; background:#000; }
 
-    /* ✅ 16:9 responsive player area (kept square) */
     .player-wrap{
       position: relative;
       width: 100%;
-      height: auto;
       aspect-ratio: 16 / 9;
-      border-radius: 0; /* square video area */
+      border-radius: 0;
     }
     .player-wrap iframe,
-    .player-wrap > div{           /* YT API inserts an <iframe> inside this div */
+    .player-wrap > div,
+    .player-wrap video{
       position: absolute;
       inset: 0;
       width: 100%;
@@ -76,31 +69,24 @@
       .logo{ max-height:90px; margin-bottom:10px; }
     }
 
-    /* Blue pill dropdown */
     #camSelector{
       appearance: none;
-      -webkit-appearance: none;
       background-color: #1C5A98;
       color: #fff;
       border: 1px solid #0e3a66;
       border-radius: 10px;
-      padding: 10px 36px 10px 12px; /* extra right for arrow */
+      padding: 10px 36px 10px 12px;
       background-image:
         url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='10' viewBox='0 0 20 14' fill='none'><path d='M2 2l8 8 8-8' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>");
       background-repeat: no-repeat;
       background-position: right 10px center;
       background-size: 14px;
     }
-    .card-header select:focus-visible{
-      outline: 2px solid #0ea5e9;
-      outline-offset: 2px;
-    }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <!-- Header -->
     <div class="header">
       <a href="https://HookedOnPortA.com" target="_parent"
          onclick="window.open(this.href, '_parent'); window.close(); return false;">
@@ -111,7 +97,6 @@
       <h2 class="subhead">Live Webcams</h2>
     </div>
 
-    <!-- Webcam panel -->
     <section class="card" aria-label="Live webcam player">
       <div class="card-header">
         <label for="camSelector">Camera:</label>
@@ -122,8 +107,10 @@
             <option value="dolphinwest">Dolphin Docks West</option>
             <option value="gulfwaters">Gulf Waters Beach Front RV Resort</option>
             <option value="shipchannel">Port Aransas Ship Channel</option>
-            <!-- New -->
             <option value="aransaspass">Aransas Pass Harbor Park</option>
+            <option value="utmsiwest">UTMSI Pier — Harbor (West)</option>
+            <!-- New -->
+            <option value="utmsieast">UTMSI Pier — Harbor (East)</option>
           </select>
         </div>
       </div>
@@ -134,16 +121,18 @@
     </section>
   </div>
 
-  <div class="full-span" style="text-align:center; margin-top:50px;">
+  <div style="text-align:center; margin-top:50px;">
     <button class="hop-btn" onclick="window.close()">Close</button>
   </div>
 
-  <!-- Footer -->
   <footer>
     <div>2025 Tech Tackle Box™</div>
   </footer>
 
-  <!-- YouTube Iframe API (for reliable autoplay on Harbor Park) -->
+  <!-- hls.js for live streams -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+  <!-- YouTube API (only needed for Aransas Pass) -->
   <script>
     let ytApiReadyPromise;
     function ensureYTAPI(){
@@ -159,47 +148,54 @@
   </script>
 
   <script>
-    // All cams embed inline (autoplay + muted where needed)
     const cams = {
       deepsea: {
         html: `<iframe src="https://g1.ipcamlive.com/player/player.php?alias=portafishrack&autoplay=1&mute=1"
                      allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`
       },
       dolphineast: {
-        html: `<iframe
-                 src="https://g1.ipcamlive.com/player/player.php?alias=dolphindockeast&autoplay=1&mute=1&disablefullscreen=1&disablevideofit=1"
-                 allow="autoplay; fullscreen; picture-in-picture"
-                 allowfullscreen
-               ></iframe>`
+        html: `<iframe src="https://g1.ipcamlive.com/player/player.php?alias=dolphindockeast&autoplay=1&mute=1"
+                     allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`
       },
       dolphinwest: {
-        html: `<iframe
-                 src="https://g1.ipcamlive.com/player/player.php?alias=dolphindockwest&autoplay=1&mute=1&disablefullscreen=1&disablevideofit=1"
-                 allow="autoplay; fullscreen; picture-in-picture"
-                 allowfullscreen
-               ></iframe>`
+        html: `<iframe src="https://g1.ipcamlive.com/player/player.php?alias=dolphindockwest&autoplay=1&mute=1"
+                     allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`
       },
       gulfwaters: {
         html: `<iframe src="https://www.youtube.com/embed/Ue6-LTCBCDY?autoplay=1&mute=1&playsinline=1&rel=0"
-                     title="Gulf Waters Boardwalk"
-                     allow="autoplay; encrypted-media; picture-in-picture; fullscreen; web-share"
-                     referrerpolicy="strict-origin-when-cross-origin"
-                     allowfullscreen></iframe>`
+                     allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`
       },
       shipchannel: {
-        html: `<iframe src="https://g1.ipcamlive.com/player/player.php?alias=farley&autoplay=1&token=P%2BwJgROdAuOQV%2FfLPHC1SOsSOzdBVG4FPa%2BtKLySJtk%3D"
+        html: `<iframe src="https://g1.ipcamlive.com/player/player.php?alias=farley&autoplay=1"
                      allowfullscreen></iframe>`
       },
+      aransaspass: { ytId: "Mn3vY8bordE" },
 
-      /* New: Aransas Pass Harbor Park (force mute + autoplay via YT API) */
-      aransaspass: {
-        ytId: "Mn3vY8bordE"
+      /* UTMSI cameras (HLS streams) */
+      utmsiwest: {
+        hls: "https://stage-ams-nfs.srv.axds.co/stream/adaptive/gcoos/utmsi_west/hls.m3u8"
+      },
+      utmsieast: {
+        /* If their slug differs, adjust just the path segment below. */
+        hls: "https://stage-ams-nfs.srv.axds.co/stream/adaptive/gcoos/utmsi_east/hls.m3u8"
       }
     };
 
     const sel = document.getElementById('camSelector');
     const playerWrap = document.getElementById('playerWrap');
     let ytPlayer = null;
+    let hlsInstance = null;
+    let currentVideoEl = null;
+
+    function teardownPlayers(){
+      if (ytPlayer && ytPlayer.destroy) { try { ytPlayer.destroy(); } catch(e){} ytPlayer = null; }
+      if (hlsInstance) { try { hlsInstance.destroy(); } catch(e){} hlsInstance = null; }
+      if (currentVideoEl && currentVideoEl.parentNode){
+        try { currentVideoEl.pause(); } catch(e){}
+        currentVideoEl.parentNode.removeChild(currentVideoEl);
+        currentVideoEl = null;
+      }
+    }
 
     function mountYouTube(videoId){
       playerWrap.innerHTML = `<div id="ytPlayer"></div>`;
@@ -207,38 +203,61 @@
         if (ytPlayer && ytPlayer.destroy) { try { ytPlayer.destroy(); } catch(e){} }
         ytPlayer = new YT.Player('ytPlayer', {
           videoId,
-          playerVars: {
-            autoplay: 1,
-            mute: 1,          // required for autoplay on most browsers
-            playsinline: 1,
-            rel: 0,
-            modestbranding: 1,
-            controls: 1
-          },
-          events: {
-            onReady: (e) => {
-              try { e.target.mute(); } catch(e){}
-              try { e.target.playVideo(); } catch(e){}
+          playerVars: { autoplay:1, mute:1, playsinline:1, rel:0, modestbranding:1, controls:1 },
+          events: { onReady: e => { try{e.target.mute(); e.target.playVideo();}catch(e){} } }
+        });
+      });
+    }
+
+    function mountHLS(hlsUrl){
+      playerWrap.innerHTML = "";
+      const video = document.createElement('video');
+      video.setAttribute('playsinline','');
+      video.setAttribute('muted','');
+      video.muted = true;
+      video.autoplay = true;
+      video.controls = true;
+      playerWrap.appendChild(video);
+      currentVideoEl = video;
+
+      if (video.canPlayType('application/vnd.apple.mpegURL')) {
+        video.src = hlsUrl;
+        video.play().catch(()=>{});
+      } else if (window.Hls && window.Hls.isSupported()){
+        hlsInstance = new Hls({
+          capLevelToPlayerSize: true,
+          maxLoadingDelay: 2,
+          liveBackBufferLength: 18
+        });
+        hlsInstance.loadSource(hlsUrl);
+        hlsInstance.attachMedia(video);
+        hlsInstance.on(Hls.Events.MEDIA_ATTACHED, () => { video.play().catch(()=>{}); });
+        hlsInstance.on(Hls.Events.ERROR, (_, data) => {
+          if (data.fatal) {
+            switch (data.type) {
+              case Hls.ErrorTypes.NETWORK_ERROR: hlsInstance.startLoad(); break;
+              case Hls.ErrorTypes.MEDIA_ERROR:   hlsInstance.recoverMediaError(); break;
+              default:                           hlsInstance.destroy(); break;
             }
           }
         });
-      });
+      } else {
+        playerWrap.innerHTML = `<div style="display:grid;place-items:center;height:100%;color:#fff;text-align:center;padding:12px">
+          <p>Live stream requires an updated browser.<br>
+          <a href="${hlsUrl}" target="_blank" rel="noopener" style="color:#0ea5e9">Open stream</a></p>
+        </div>`;
+      }
     }
 
     function loadCam(key){
       const cam = cams[key];
       if(!cam) return;
-      // tear down YT player if switching away
-      if (ytPlayer && (!cam.ytId)) { try { ytPlayer.destroy(); } catch(e){} ytPlayer = null; }
-
-      if (cam.html){
-        playerWrap.innerHTML = cam.html;   // iframe players
-      } else if (cam.ytId){
-        mountYouTube(cam.ytId);            // YT API player (autoplay muted)
-      }
+      teardownPlayers();
+      if (cam.html){ playerWrap.innerHTML = cam.html; }
+      else if (cam.ytId){ mountYouTube(cam.ytId); }
+      else if (cam.hls){ mountHLS(cam.hls); }
     }
 
-    // Default selection: Deep Sea Headquarters
     sel.value = 'deepsea';
     loadCam(sel.value);
     sel.addEventListener('change', e => loadCam(e.target.value));
