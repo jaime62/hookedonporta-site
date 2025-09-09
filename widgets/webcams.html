@@ -9,19 +9,16 @@
   <!-- Speed/preload (optional hints for common hosts) -->
   <link rel="preconnect" href="https://g1.ipcamlive.com" crossorigin>
   <link rel="dns-prefetch" href="https://g1.ipcamlive.com">
-  <link rel="preconnect" href="https://portal.hdontap.com" crossorigin>
-  <link rel="dns-prefetch" href="https://portal.hdontap.com">
   <link rel="preconnect" href="https://www.youtube.com" crossorigin>
   <link rel="dns-prefetch" href="https://www.youtube.com">
   <link rel="preconnect" href="https://player.vimeo.com" crossorigin>
   <link rel="dns-prefetch" href="https://player.vimeo.com">
 
   <style>
-    /* --- HookedOnPortA theme tokens (copied from Maps Hub) --- */
+    /* --- HookedOnPortA theme tokens --- */
     .hop-btn { appearance:none; background:#1C5A98; color:#fff; border:none; border-radius:9999px; padding:10px 16px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; line-height:1; box-shadow:0 4px 0 #0e3a66, 0 8px 16px rgba(0,0,0,.15); cursor:pointer; transition: transform .06s ease, box-shadow .15s ease, filter .15s ease, background-color .15s ease; }
     .hop-btn:hover { filter:brightness(1.05); transform: translateY(-1px); box-shadow:0 5px 0 #0e3a66, 0 12px 20px rgba(0,0,0,.18); }
     .hop-btn:active { transform: translateY(2px); box-shadow:0 2px 0 #0e3a66, 0 6px 12px rgba(0,0,0,.18); }
-    .hop-btn--orange { background:#F77E17; box-shadow:0 4px 0 #b25610, 0 8px 16px rgba(0,0,0,.15); }
 
     :root{
       --bg:#f8f8f8; --card:#ffffff; --text:#1f2937; --muted:#6b7280; --border:#e2e8f0; --shadow:0 0 15px rgba(0,0,0,0.1); --radius:12px;
@@ -31,7 +28,7 @@
     html, body { padding:0; margin:0; background:var(--bg); color:var(--text); font-family:system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"; line-height:1.55; }
     .container{ max-width:850px; margin:60px auto; padding:30px; background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); overflow:visible; }
 
-    /* Header with centered logo (same style as provided) */
+    /* Header */
     .header{ position:relative; margin-bottom:20px; text-align:center; overflow:visible; }
     .logo{ display:block; margin:0 auto; max-height:90px; height:auto; width:auto; max-width:min(520px,92vw); object-fit:contain; padding-inline:8px; }
     .subhead{ color:#F77E17; margin-top:12px; }
@@ -40,21 +37,14 @@
 
     /* Webcam card */
     .card{ border:1px solid var(--border); border-radius:var(--map-radius); background:#fff; box-shadow:0 0 0 rgba(0,0,0,0.02); overflow:hidden; color:inherit; }
-    .card-header{ display:flex; align-items:center; gap:10px; padding:12px 14px; border-bottom:1px solid var(--border); background:#fff; }
-    .card-header label{ font-weight:600; }
+    .card-header{ display:flex; align-items:center; gap:10px; padding:12px 14px; border-bottom:1px solid var(--border); background:#fff; justify-content:center; }
+    .card-header label{ font-weight:600; margin-right:4px; }
+    .card-header .controls{ margin-left:0; display:inline-flex; }
     .card-body{ position:relative; background:#000; }
     .player-wrap{ position:relative; width:100%; height:var(--player-h); }
     .player-wrap iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
 
-    .controls{ margin-left:auto; }
     select{ padding:10px; font-size:16px; border-radius:10px; border:1px solid var(--border); background:#fff; }
-
-    /* Inline fallback ribbon */
-    .fallback{ display:none; position:absolute; left:0; right:0; bottom:0; background: rgba(0,0,0,0.7); color:#fff; padding:10px; text-align:center; }
-    .btn{ display:inline-block; padding:8px 12px; margin-left:8px; border-radius:8px; text-decoration:none; background:#fff; color:#111; }
-
-    /* External-mode card body */
-    .ext-card{ display:flex; align-items:center; justify-content:center; gap:10px; color:#fff; text-align:center; padding:28px; min-height:280px; }
 
     footer{ margin:30px auto 10px; border-top:1px solid var(--border); padding:20px; text-align:center; color:var(--muted); font-size:14px; max-width:1100px; }
 
@@ -65,41 +55,25 @@
     }
 
     /* Blue pill dropdown */
-#camSelector{
-  appearance: none;
-  -webkit-appearance: none;
-  background-color: #1C5A98;
-  color: #fff;
-  border: 1px solid #0e3a66;
-  border-radius: 10px;
-  padding: 10px 36px 10px 12px; /* extra right for arrow */
-  background-image:
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='10' viewBox='0 0 20 14' fill='none'><path d='M2 2l8 8 8-8' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>");
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 14px;
-}
-.card-header select:focus-visible{
-  outline: 2px solid #0ea5e9;
-  outline-offset: 2px;
-}
-
+    #camSelector{
+      appearance: none;
+      -webkit-appearance: none;
+      background-color: #1C5A98;
+      color: #fff;
+      border: 1px solid #0e3a66;
+      border-radius: 10px;
+      padding: 10px 36px 10px 12px; /* extra right for arrow */
+      background-image:
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='10' viewBox='0 0 20 14' fill='none'><path d='M2 2l8 8 8-8' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 14px;
+    }
+    .card-header select:focus-visible{
+      outline: 2px solid #0ea5e9;
+      outline-offset: 2px;
+    }
   </style>
-  <style>
-  /* Add these at the end of your existing <style> */
-  .card-header { 
-    justify-content: center;           /* center the whole row */
-    gap: 10px;                          /* keep a small space between label & select */
-  }
-  .card-header .controls { 
-    margin-left: 0;                     /* stop pushing to the right */
-    display: inline-flex;               /* shrink-wrap around the select */
-  }
-  .card-header label { 
-    margin-right: 4px;                  /* optional: tighten spacing */
-  }
-</style>
-
 </head>
 <body>
 
@@ -121,27 +95,17 @@
         <label for="camSelector">Camera:</label>
         <div class="controls">
           <select id="camSelector" aria-label="Choose a webcam">
-            <option value="princess">Aransas Princess</option>
             <option value="deepsea">Deep Sea Headquarters</option>
             <option value="dolphineast">Dolphin Docks East</option>
             <option value="dolphinwest">Dolphin Docks West</option>
-            <option value="gulfshores">Gulf Shores Condominiums</option>
             <option value="gulfwaters">Gulf Waters Beach Front RV Resort</option>
             <option value="shipchannel">Port Aransas Ship Channel</option>
-            <option value="sandcastle">Sandcastle Condominiums</option>
-            <option value="sandollar">Sandollar Sity</option>
-            <option value="sandpiper">Sandpiper Condominiums</option>
-            <option value="seagull">Sea Gull Condominiums</option>
           </select>
         </div>
       </div>
 
       <div class="card-body">
         <div id="playerWrap" class="player-wrap"></div>
-        <div id="fallback" class="fallback">
-          Seeing an “Oops…” message or a blank box?
-          <a id="openDirect" class="btn" target="_blank" rel="noopener">Open Stream Externally</a>
-        </div>
       </div>
     </section>
   </div>
@@ -156,97 +120,53 @@
   </footer>
 
   <script>
-    // mode: "inline" (embed iframe) or "external" (show card + button only)
+    // All cams embed inline now (no fallback/external mode)
     const cams = {
-      princess: {
-        mode: "external",
-        link: "https://portal.hdontap.com/s/embed?stream=aransas_princess-ptz-CUST&ratio=16:9&fluid=true",
-        height: 480
-      },
       deepsea: {
-        mode: "inline",
-        html: `<iframe src="https://g1.ipcamlive.com/player/player.php?alias=portafishrack&autoplay=1&mute=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`,
-        link: "https://g1.ipcamlive.com/player/player.php?alias=portafishrack&autoplay=1&mute=1",
+        html: `<iframe src="https://g1.ipcamlive.com/player/player.php?alias=portafishrack&autoplay=1&mute=1"
+                     allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`,
         height: 600
       },
-      dolphineast: {
-        mode: "inline",
-        html: `<iframe src="//g1.ipcamlive.com/player/player.php?alias=dolphindockeast&disablefullscreen=1&disablevideofit=1" allowfullscreen></iframe>`,
-        link: "https://g1.ipcamlive.com/player/player.php?alias=dolphindockeast&disablefullscreen=1&disablevideofit=1",
-        height: 600
-      },
-      dolphinwest: {
-        mode: "inline",
-        html: `<iframe src="//g1.ipcamlive.com/player/player.php?alias=dolphindockwest&disablefullscreen=1&disablevideofit=1" allowfullscreen></iframe>`,
-        link: "https://g1.ipcamlive.com/player/player.php?alias=dolphindockwest&disablefullscreen=1&disablevideofit=1",
-        height: 600
-      },
-      gulfshores: {
-        mode: "external",
-        link: "https://portal.hdontap.com/s/embed?stream=gulf-shores_beach-cam-CUST&ratio=16:9&fluid=true",
-        height: 480
-      },
+dolphineast: {
+  html: `<iframe
+           src="https://g1.ipcamlive.com/player/player.php?alias=dolphindockeast&autoplay=1&mute=1&disablefullscreen=1&disablevideofit=1"
+           allow="autoplay; fullscreen; picture-in-picture"
+           allowfullscreen
+         ></iframe>`,
+  height: 600
+},
+dolphinwest: {
+  html: `<iframe
+           src="https://g1.ipcamlive.com/player/player.php?alias=dolphindockwest&autoplay=1&mute=1&disablefullscreen=1&disablevideofit=1"
+           allow="autoplay; fullscreen; picture-in-picture"
+           allowfullscreen
+         ></iframe>`,
+  height: 600
+},
+
       gulfwaters: {
-        mode: "inline",
-        html: `<iframe src="https://www.youtube.com/embed/Ue6-LTCBCDY" title="Gulf Waters Boardwalk" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`,
-        link: "https://www.youtube.com/watch?v=Ue6-LTCBCDY",
+        html: `<iframe src="https://www.youtube.com/embed/Ue6-LTCBCDY?autoplay=1&mute=1&playsinline=1&rel=0"
+                     title="Gulf Waters Boardwalk"
+                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                     referrerpolicy="strict-origin-when-cross-origin"
+                     allowfullscreen></iframe>`,
         height: 810
       },
       shipchannel: {
-        mode: "inline",
-        html: `<iframe src="//g1.ipcamlive.com/player/player.php?alias=farley&autoplay=1&token=P%2BwJgROdAuOQV%2FfLPHC1SOsSOzdBVG4FPa%2BtKLySJtk%3D" allowfullscreen></iframe>`,
-        link: "https://g1.ipcamlive.com/player/player.php?alias=farley&autoplay=1&token=P%2BwJgROdAuOQV%2FfLPHC1SOsSOzdBVG4FPa%2BtKLySJtk%3D",
+        html: `<iframe src="https://g1.ipcamlive.com/player/player.php?alias=farley&autoplay=1&token=P%2BwJgROdAuOQV%2FfLPHC1SOsSOzdBVG4FPa%2BtKLySJtk%3D"
+                     allowfullscreen></iframe>`,
         height: 600
-      },
-      sandcastle: {
-        mode: "external",
-        link: "https://portal.hdontap.com/s/embed?stream=sandcastle_beach-cam-CUST",
-        height: 480
-      },
-      sandollar: {
-        mode: "external",
-        link: "https://www.ipcamlive.com/sanddollar",
-        height: 400
-      },
-      sandpiper: {
-        mode: "external",
-        link: "https://portal.hdontap.com/s/embed?stream=sandpiper_beach-cam-CUST&ratio=16:9&fluid=true",
-        height: 480
-      },
-      seagull: {
-        mode: "external",
-        link: "https://portal.hdontap.com/s/embed?stream=sgc_surfcam-CUST&ratio=16:9&fluid=true",
-        height: 480
-      },
- 
+      }
     };
 
     const sel = document.getElementById('camSelector');
     const playerWrap = document.getElementById('playerWrap');
-    const fallback = document.getElementById('fallback');
-    const openDirect = document.getElementById('openDirect');
-
-    function renderExternal(link, height){
-      document.documentElement.style.setProperty('--player-h', (height || 480) + 'px');
-      playerWrap.innerHTML = `<div class=\"ext-card\">Embedding is disabled by the host.<br><a class=\"btn\" href=\"${link}\" target=\"_blank\" rel=\"noopener\">Open Stream</a></div>`;
-      openDirect.href = link || '#';
-      fallback.style.display = 'none';
-    }
-
-    function renderInline(html, link, height){
-      document.documentElement.style.setProperty('--player-h', (height || 800) + 'px');
-      playerWrap.innerHTML = html;
-      openDirect.href = link || '#';
-      fallback.style.display = 'none';
-      // Show fallback if the embed is blocked by provider
-      setTimeout(() => { fallback.style.display = 'block'; }, 1500);
-    }
 
     function loadCam(key){
       const cam = cams[key];
       if(!cam) return;
-      if(cam.mode === 'external') renderExternal(cam.link, cam.height);
-      else renderInline(cam.html, cam.link, cam.height);
+      document.documentElement.style.setProperty('--player-h', (cam.height || 800) + 'px');
+      playerWrap.innerHTML = cam.html;
     }
 
     // Default selection: Deep Sea Headquarters
