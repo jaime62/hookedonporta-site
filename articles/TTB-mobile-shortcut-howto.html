@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tech Tackle Box — Add to Home Screen</title>
+  <meta name="description" content="How to add a Tech Tackle Box shortcut to your iPhone or Android home screen.">
+
+  <style>
+    /* --- HookedOnPortA / TTB theme tokens (matching sample) --- */
+    .hop-btn { appearance:none; background:#1C5A98; color:#fff; border:none; border-radius:9999px; padding:10px 16px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; line-height:1; box-shadow:0 4px 0 #0e3a66, 0 8px 16px rgba(0,0,0,.15); cursor:pointer; transition: transform .06s ease, box-shadow .15s ease, filter .15s ease, background-color .15s ease; }
+    .hop-btn:hover { filter:brightness(1.05); transform: translateY(-1px); box-shadow:0 5px 0 #0e3a66, 0 12px 20px rgba(0,0,0,.18); }
+    .hop-btn:active { transform: translateY(2px); box-shadow:0 2px 0 #0e3a66, 0 6px 12px rgba(0,0,0,.18); }
+    .hop-btn--orange { background:#F77E17; box-shadow:0 4px 0 #b25610, 0 8px 16px rgba(0,0,0,.15); }
+
+    :root{
+      --bg:#f8f8f8; --card:#ffffff; --text:#1f2937; --muted:#6b7280; --border:#e2e8f0; --shadow:0 0 15px rgba(0,0,0,0.1); --radius:12px;
+      --primary:#0ea5e9; --accent:#f97316; --gap:18px; --map-radius:16px;
+    }
+    html, body { padding:0; margin:0; background:var(--bg); color:var(--text); font-family:system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"; line-height:1.55; }
+    .container{ max-width:850px; margin:60px auto; padding:30px; background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); overflow:visible; }
+
+    .header{ position:relative; margin-bottom:20px; text-align:center; overflow:visible; }
+    .logo{ display:block; margin:0 auto; max-height:90px; height:auto; width:auto; max-width:min(520px,92vw); object-fit:contain; padding-inline:8px; }
+    .subhead{ color:#F77E17; margin-top:12px; }
+
+    .intro{ color:#334155; margin:0 0 16px; text-align:center; }
+
+    .card{ border:1px solid var(--border); border-radius:var(--map-radius); background:#fff; box-shadow:0 0 0 rgba(0,0,0,0.02); overflow:hidden; color:inherit; }
+    .card-header{ display:flex; align-items:center; gap:10px; padding:12px 14px; border-bottom:1px solid var(--border); background:#fff; }
+    .card-header h3{ margin:0; font-size:18px; }
+    .card-body{ padding:16px; }
+
+    ol.steps { margin:0; padding-left:20px; }
+    ol.steps li { margin:10px 0; }
+    .hint { color:var(--muted); font-size:14px; }
+
+    .tip { margin-top:14px; padding:12px; background:#f1f9ff; border-left:4px solid #0ea5e9; border-radius:8px; }
+
+    footer{ margin:30px auto 10px; border-top:1px solid var(--border); padding:20px; text-align:center; color:var(--muted); font-size:14px; max-width:1100px; }
+
+    @media (max-width:520px){ .container{ margin:30px 16px; padding:20px; } .logo{ max-height:90px; margin-bottom:10px; } }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <a href="https://HookedOnPortA.com" target="_parent"
+         onclick="window.open(this.href, '_parent'); window.close(); return false;">
+        <img class="logo"
+             src="https://github.com/jaime62/hookedonporta-site/blob/main/images/TTB-Logo.png?raw=true"
+             alt="HookedOnPortA.com">
+      </a>
+      <h2 class="subhead">Add to Home Screen</h2>
+    </div>
+
+    <p class="intro">Follow the instructions below to add a <B>Tech Tackle Box</b>™ shortcut to your phone!</p>
+
+    <section class="card" aria-label="iPhone instructions">
+      <div class="card-header">
+        <h3>📱 iPhone (Safari)</h3>
+      </div>
+      <div class="card-body">
+        <ol class="steps">
+          <li>Open <a href="https://hookedonporta.com" target="_blank" rel="noopener">hookedonporta.com</a> in Safari.</li>
+          <li>Tap the <strong>Share</strong> button (square with ↑ arrow).</li>
+          <li>Scroll and choose <strong>Add to Home Screen</strong>.</li>
+          <li>Optional: rename to <em>Tech Tackle Box</em>, then tap <strong>Add</strong>.</li>
+        </ol>
+        <div class="tip">Once added, find the TTB icon on your Home Screen. Launches in a clean, app-like view.</div>
+        <p class="hint">Note: On iPad, the steps are the same in Safari. If you don't see "Add to Home Screen", scroll the sheet all the way down.</p>
+      </div>
+    </section>
+
+    <br/>
+
+    <section class="card" aria-label="Android instructions">
+      <div class="card-header">
+        <h3>🤖 Android (Chrome)</h3>
+      </div>
+      <div class="card-body">
+        <ol class="steps">
+          <li>Open <a href="https://hookedonporta.com" target="_blank" rel="noopener">hookedonporta.com</a> in Chrome.</li>
+          <li>Tap the <strong>⋮</strong> menu in the top-right.</li>
+          <li>Choose <strong>Add to Home screen</strong> (or <strong>Install app</strong>).</li>
+          <li>Optional: rename to <em>Tech Tackle Box</em>, then tap <strong>Add</strong>.</li>
+        </ol>
+        <div class="tip">Android may show a placement prompt—drop the icon where you want it or tap <em>Add</em> to auto-place.</div>
+        <p class="hint">Note: Steps may vary slightly by device (Samsung Internet: <em>Add page to</em> → <em>Home screen</em>).</p>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="full-span" style="text-align:center; margin-top:50px;">
+    <button class="hop-btn" onclick="window.close()">Close</button>
+    <a class="hop-btn hop-btn--orange" style="margin-left:10px; text-decoration:none;" href="https://HookedOnPortA.com" target="_parent"
+       onclick="window.open(this.href, '_parent'); window.close(); return false;">Open TTB</a>
+  </div>
+
+  <footer>
+    <div>2025 Tech Tackle Box™</div>
+  </footer>
+</body>
+</html>
